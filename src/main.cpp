@@ -1,4 +1,3 @@
-#include <aria2/aria2.h>
 #include <fmt/base.h>
 #include <bits/stdc++.h>
 #include <vector>
