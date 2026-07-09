@@ -88,6 +88,20 @@ install(DIRECTORY screenshots/ DESTINATION share/MCParser/screenshots)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
 
+include(BundleUtilities)
+
+# 1. 设置安装目录根路径（CMAKE_INSTALL_PREFIX）
+set(BU_COPY_TO_INSTALL ON)
+
+# 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
+install(CODE "
+  message(STATUS \"开始收集依赖DLL...\")
+  file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/*.exe\")
+  foreach(exe \${EXE_LIST})
+    fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
+  endforeach()
+" COMPONENT Runtime)
+
 set(CPACK_PACKAGE_FILE_NAME 
   "${CMAKE_PROJECT_NAME}_${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_PROCESSOR}_${BUILD_TIME}_${CPACK_PACKAGE_VERSION}"
 )
