@@ -21,3 +21,15 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 下载完成
 
 ![下载完成](./screenshots/complete.png "下载完成")
+
+# 使用库
+
+jsoncpp（json解析）：<https://github.com/open-source-parsers/jsoncpp>
+
+libcurl（文件下载+API接口调用）：<https://curl.se/>
+
+fmt（字符串格式化）：<https://github.com/fmtlib/fmt>
+
+termcolor（彩色终端输出）：<https://github.com/ikalnytskyi/termcolor>
+
+tabulate（终端表格库）：<https://github.com/p-ranav/tabulate>
