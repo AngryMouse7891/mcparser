@@ -6,10 +6,6 @@ set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(SRC_WINRC ${CMAKE_CURRENT_SOURCE_DIR}/resources.rc)
-#set(JSONCPP_INCLUDE_DIRS "/ucrt64/include/json")
-#set(JSONCPP_LIBRARIES "/ucrt64/lib/libjsoncpp.a")
-
-#message(STATUS "JSONCPP_LIBRARIES: ${JSONCPP_LIBRARIES}")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
   message(STATUS "正在以发布模式构建")
@@ -17,13 +13,9 @@ else()
   message(STATUS "正在以调试模式构建")
 endif()
 
-#add_definitions(-DJSON_DLL)
-
-# 查找 json-cpp
-#find_package(JsonCpp REQUIRED)
+# 查找依赖
 find_package(fmt REQUIRED)
 find_package(PkgConfig REQUIRED)
-#pkg_check_modules(LIBARIA2 REQUIRED libaria2)
 pkg_check_modules(JSONCPP REQUIRED jsoncpp)
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
@@ -33,12 +25,6 @@ string(TIMESTAMP CURRENT_TIMESTAMP "%Y%m%d_%H%M%S")
 
 # 将时间戳存储到变量中
 set(BUILD_TIME ${CURRENT_TIMESTAMP})
-
-#add_custom_command(
-#  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resources.res
-#  COMMAND windres -i ${SRC_WINRC} -o ${CMAKE_CURRENT_BINARY_DIR}/resources.res
-#  DEPENDS ${SRC_WINRC}
-#)
 
 # 创建版本头文件
 configure_file(
@@ -52,7 +38,6 @@ aux_source_directory(${CMAKE_SOURCE_DIR}/src SRC_FILES)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${OPENSSL_INCLUDE_DIR})
 include_directories(${JSONCPP_INCLUDE_DIRS})
-#include_directories(${LIBARIA2_INCLUDE_DIRS})
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(src/include)
 
