@@ -1,0 +1,10 @@
+#ifndef INPUT_BEAUTIFY_H
+#define INPUT_BEAUTIFY_H
+
+#include <string>
+#include <iostream>
+#include "termcolor/termcolor.hpp"
+
+std::string beautified_input(std::string prompt);
+
+#endif

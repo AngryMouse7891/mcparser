@@ -1,0 +1,83 @@
+#include <iostream>
+#include <cstdio>
+#include <curl/curl.h>
+#include "termcolor/termcolor.hpp"
+
+// 进度回调函数
+int progress_callback(void* clientp, 
+                      curl_off_t dltotal, 
+                      curl_off_t dlnow, 
+                      curl_off_t ultotal, 
+                      curl_off_t ulnow)
+{
+    if (dltotal > 0) {
+        double progress = (double)dlnow / (double)dltotal * 100.0;
+        int barWidth = 50;
+        
+        std::cout << "\r |";
+        int pos = barWidth * dlnow / dltotal;
+        for (int i = 0; i < barWidth; ++i) {
+            if (i < pos) std::cout << "#";
+            else if (i == pos) std::cout << "#";
+            else std::cout << " ";
+        }
+        std::cout << "| " << progress << "% (" 
+                  << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         ";
+        std::cout.flush();
+    }
+    return 0;
+}
+
+// 写入文件的回调函数
+size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp)
+{
+    FILE* fp = (FILE*)userp;
+    size_t written = fwrite(contents, size, nmemb, fp);
+    return written;
+}
+
+bool download_file(std::string url, std::string output_path)
+{
+    CURL* curl = curl_easy_init();
+    if (!curl) {
+        std::cerr << "初始化 CURL 失败" << std::endl;
+        return false;
+    }
+
+    FILE* fp = fopen(output_path.c_str(), "wb");
+    if (!fp) {
+        std::cerr << "无法创建文件: " << output_path << std::endl;
+        curl_easy_cleanup(curl);
+        return false;
+    }
+
+    // 设置 URL
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    
+    // 写入文件
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+    
+    // 启用进度回调
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
+    curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, progress_callback);
+    
+    // 跟随重定向
+    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    
+    // 执行下载
+    CURLcode res = curl_easy_perform(curl);
+    
+    fclose(fp);
+    curl_easy_cleanup(curl);
+    
+    std::cout << std::endl;
+    
+    if (res != CURLE_OK) {
+        std::cerr << termcolor::red << "下载失败: " << curl_easy_strerror(res) << termcolor::reset << std::endl;
+        return false;
+    }
+    
+    std::cout << "下载完成!" << std::endl;
+    return true;
+}
