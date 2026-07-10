@@ -7,6 +7,8 @@
         "llvm-vs-code-extensions.vscode-clangd",
         "nico-castell.linux-desktop-file",
         "willasm.rc-script",
-        "DavidAnson.vscode-markdownlint"
+        "DavidAnson.vscode-markdownlint",
+        "slevesque.vscode-zipexplorer",
+        "idleberg.nsis"
     ]
 }
