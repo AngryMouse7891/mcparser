@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.0.0)
+project(MCParser VERSION 1.0.1)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(SRC_WINRC ${CMAKE_CURRENT_SOURCE_DIR}/resources.rc)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
   message(STATUS "正在以发布模式构建")
@@ -43,6 +42,12 @@ include_directories(src/include)
 
 add_executable(mcparser ${SRC_FILES} resources.rc)
 
+# 给mcparser目标添加O2优化，跨平台兼容
+target_compile_options(mcparser PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/O2>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
+)
+
 target_link_libraries(
   mcparser 
   PRIVATE
@@ -62,7 +67,7 @@ set(CPACK_PACKAGE_LICENSE "MIT")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
 set(CPACK_GENERATOR "NSIS;ZIP")
 
-# 编译目标 MyExecutable 安装到系统 bin 目录
+# 编译目标 mcparser 安装到系统 bin 目录
 install(TARGETS mcparser
   RUNTIME DESTINATION bin       # 可执行文件路径
   LIBRARY DESTINATION lib       # 动态库路径
