@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.0.1)
+project(MCParser VERSION 1.0.2)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
@@ -73,7 +73,7 @@ install(TARGETS mcparser
   LIBRARY DESTINATION lib       # 动态库路径
   ARCHIVE DESTINATION lib       # 静态库路径
 )
-install(FILES LICENSE README.md DESTINATION share/MCParser)
+install(FILES LICENSE README.md BUILD.md CHANGELOG DESTINATION share/MCParser)
 install(DIRECTORY screenshots/ DESTINATION share/MCParser/screenshots)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
