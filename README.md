@@ -1,8 +1,13 @@
-# MCParser
+# <center> MCParser
 
-MCParser是一个一个一个一个~~一个一个一个一个一个一个一个一个一个~~解析《我的世界》社区资源（如模组）的工具。
+<div align="center">
+   <img src="./badges/gitee-repo-blue.svg" alt="Gitee Repo">
+   <img src="./badges/License-MIT-green.svg" alt="MIT License">
+</div>
 
 ---
+
+MCParser是一个一个一个一个~~一个一个一个一个一个一个一个一个一个~~解析《我的世界》社区资源（如模组）的工具。
 
 # 截图
 
