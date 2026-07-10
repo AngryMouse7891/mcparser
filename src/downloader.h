@@ -1,7 +1,9 @@
 #ifndef DOWNLOADER_H
 #define DOWNLOADER_H
 
+#include <ios>
 #include <iostream>
+#include <iomanip>
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"

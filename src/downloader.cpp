@@ -1,4 +1,6 @@
+#include <ios>
 #include <iostream>
+#include <iomanip>
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
@@ -14,14 +16,14 @@ int progress_callback(void* clientp,
         double progress = (double)dlnow / (double)dltotal * 100.0;
         int barWidth = 50;
         
-        std::cout << "\r |";
+        std::cout << "\r |" << termcolor::bold;
         int pos = barWidth * dlnow / dltotal;
         for (int i = 0; i < barWidth; ++i) {
             if (i < pos) std::cout << "#";
             else if (i == pos) std::cout << "#";
             else std::cout << " ";
         }
-        std::cout << "| " << progress << "% (" 
+        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << "| " << progress << "% (" 
                   << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         ";
         std::cout.flush();
     }
