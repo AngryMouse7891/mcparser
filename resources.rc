@@ -6,8 +6,8 @@ MCParser ICON "data/mcparser.ico"
 // TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
 //
 1 VERSIONINFO
-FILEVERSION 1,0,2,0
-PRODUCTVERSION 1,0,2,0
+FILEVERSION 1,1,0,0
+PRODUCTVERSION 1,1,0,0
 FILETYPE VFT_APP
 {
   BLOCK "StringFileInfo"
@@ -15,14 +15,14 @@ FILETYPE VFT_APP
     BLOCK "080404e4"
     {
       VALUE "CompanyName", "AngryMouse7891"
-      VALUE "FileVersion", "1.0.2"
-      VALUE "FileDescription", "一个一个一个一个一个一个一个一个一个一个一个一个一个解析《我的世界》社区资源（如模组）的工具。"
+      VALUE "FileVersion", "1.1.0"
+      VALUE "FileDescription", "一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷锟揭碉拷锟斤拷锟界》锟斤拷锟斤拷锟斤拷源锟斤拷锟斤拷模锟介）锟侥癸拷锟竭★拷"
       VALUE "InternalName", "mcparser"
       VALUE "LegalCopyright", ""
       VALUE "LegalTrademarks", ""
       VALUE "OriginalFilename", "mcparser"
       VALUE "ProductName", "MCParser"
-      VALUE "ProductVersion", "1.0.2"
+      VALUE "ProductVersion", "1.1.0"
     }
   }
   BLOCK "VarFileInfo"
