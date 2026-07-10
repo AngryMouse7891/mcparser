@@ -1,8 +1,9 @@
-# <center> MCParser
+# <center> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark&style=for-the-badge" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark&style=for-the-badge" alt="star" />
 
 <div align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+   
 </div>
 
 ---
