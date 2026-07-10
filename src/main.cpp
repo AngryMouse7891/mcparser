@@ -10,6 +10,7 @@
 #include "fakepause.h"
 #include "tabulate/table.hpp"
 #include "downloader.h"
+#include "updcheck.h"
 #include "termcolor/termcolor.hpp"
 
 #ifdef _WIN32
@@ -30,6 +31,7 @@ int main(){
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
     }
     print_title();
+    check();
     string s=beautified_input("请输入要解析的项目ID");
     Table filelist;
     filelist.format()
