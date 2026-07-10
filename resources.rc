@@ -15,7 +15,7 @@ FILETYPE VFT_APP
     BLOCK "080404e4"
     {
       VALUE "CompanyName", "AngryMouse7891"
-      VALUE "FileVersion", "1.0.0"
+      VALUE "FileVersion", "1.0.1"
       VALUE "FileDescription", "一个一个一个一个一个一个一个一个一个一个一个一个一个解析《我的世界》社区资源（如模组）的工具。"
       VALUE "InternalName", ""
       VALUE "LegalCopyright", ""
