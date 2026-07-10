@@ -1,8 +1,8 @@
 # <center> MCParser
 
 <div align="center">
-   <img src="./badges/gitee-repo-blue.svg" alt="Gitee Repo">
-   <img src="./badges/License-MIT-green.svg" alt="MIT License">
+   <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee" alt="Gitee Repo">
+   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
 </div>
 
 ---
