@@ -1,8 +1,8 @@
 # <center> MCParser
 
 <div align="center">
-   <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee" alt="Gitee Repo">
-   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
+   <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
+   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
 </div>
 
 ---
@@ -26,6 +26,10 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 下载完成
 
 ![下载完成](./screenshots/complete.png "下载完成")
+
+更新检查
+
+![更新检查](./screenshots/updcheck.png "更新检查")
 
 # 使用库
 
