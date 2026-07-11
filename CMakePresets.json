@@ -2,7 +2,7 @@
     "version": 8,
     "configurePresets": [
         {
-            "name": "release",
+            "name": "release-win32",
             "displayName": "Windows Release",
             "description": "发布构建",
             "generator": "MinGW Makefiles",
@@ -15,7 +15,7 @@
             }
         },
         {
-            "name": "Debug",
+            "name": "debug-win32",
             "displayName": "Windows Debug",
             "description": "调试构建",
             "generator": "MinGW Makefiles",
