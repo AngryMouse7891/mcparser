@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
+#include <fmt/base.h>
 
 // 进度回调函数
 int progress_callback(void* clientp, 
@@ -73,13 +74,13 @@ bool download_file(std::string url, std::string output_path)
     fclose(fp);
     curl_easy_cleanup(curl);
     
-    std::cout << std::endl;
+    std::cout << '\n';
     
     if (res != CURLE_OK) {
         std::cerr << termcolor::red << "下载失败: " << curl_easy_strerror(res) << termcolor::reset << std::endl;
         return false;
     }
     
-    std::cout << "下载完成!" << std::endl;
+    fmt::print("下载完成!\n");
     return true;
 }

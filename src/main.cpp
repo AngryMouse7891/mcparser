@@ -62,7 +62,7 @@ int main(){
     for (int i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
-    cout<<filelist<<'\n';
+    fmt::print("{}\n",filelist);
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     int file_index=0;
 
@@ -73,7 +73,7 @@ int main(){
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径");
-    cout<<"正在下载"<<selected_url<<"...\n";
+    fmt::print("正在下载{}...\n",selected_url);
     download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     cout<<'\n';
     if (_WIN32) {

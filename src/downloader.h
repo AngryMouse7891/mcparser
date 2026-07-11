@@ -7,6 +7,7 @@
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
+#include <fmt/base.h>
 
 // 进度回调函数
 int progress_callback(void* clientp, 
