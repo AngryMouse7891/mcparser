@@ -1,12 +1,11 @@
 #ifndef UPDCHECK_H
 #define UPDCHECK_H
 
-#include "json/value.h"
+#include <json/value.h>
 #include <curl/curl.h>
 #include <json/json.h>
 #include <fmt/color.h>
 #include <fmt/base.h>
-#include <fmt/format.h>
 #include <iostream>
 #include <string>
 #include "version.h"
