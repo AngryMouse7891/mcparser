@@ -62,7 +62,7 @@ int main(){
     for (int i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
-    fmt::print("{}\n",filelist);
+    cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     int file_index=0;
 
