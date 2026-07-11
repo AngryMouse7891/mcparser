@@ -26,6 +26,8 @@ std::string parse_modrinth(std::string project_id){
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 5000L);
+        // 指定证书文件路径
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
 
 
         res = curl_easy_perform(curl);

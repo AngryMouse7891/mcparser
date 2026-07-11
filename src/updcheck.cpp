@@ -26,7 +26,8 @@ std::string get_releases(){
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 5000L);
-
+        // 指定证书文件路径
+        curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
 
         res = curl_easy_perform(curl);
 
@@ -75,11 +76,9 @@ void check(){
     fmt::print("正在检查更新...\n");
     std::string res=islatest();
     if (res=="0") {
-        fmt::print(fg(fmt::color::green),
-           "已是最新版\n");
+        std::cout<<termcolor::green<<"已是最新版\n"<<termcolor::reset;
     } else if (res=="-1") {
-        fmt::print(fg(fmt::color::red),
-           "更新检查失败\n");
+        std::cout<<termcolor::red<<"更新检查失败\n"<<termcolor::reset;
     } else {
         std::cout<<termcolor::yellow<<fmt::format("发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
     }

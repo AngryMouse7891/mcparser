@@ -58,6 +58,9 @@ target_link_libraries(
   ${CMAKE_BINARY_DIR} 
 )
 
+file(COPY "${CMAKE_SOURCE_DIR}/src/cacert.pem"
+     DESTINATION ${CMAKE_BINARY_DIR}/)
+
 set(CPACK_PACKAGE_NAME "MCParser")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 
@@ -73,6 +76,10 @@ install(TARGETS mcparser
   LIBRARY DESTINATION lib       # 动态库路径
   ARCHIVE DESTINATION lib       # 静态库路径
 )
+
+if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
+  install(FILES ${CMAKE_BINARY_DIR}/cacert.pem DESTINATION bin/)
+endif ()
 install(FILES LICENSE README.md BUILD.md CHANGELOG DESTINATION share/MCParser)
 install(DIRECTORY screenshots/ DESTINATION share/MCParser/screenshots)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
