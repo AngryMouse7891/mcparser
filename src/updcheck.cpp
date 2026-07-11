@@ -18,7 +18,7 @@ std::string get_releases(){
     curl = curl_easy_init();
 
     if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://gitee.com/api/v5/repos/AngryMouse7891/mcparser/releases?page=1&per_page=20&direction=desc");
+        curl_easy_setopt(curl, CURLOPT_URL, "https://gitee.com/api/v5/repos/AngryMouse7891/mcparser/releases/latest");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         struct curl_slist *headers = NULL;
@@ -65,10 +65,10 @@ std::string islatest(){
         return "-1"; //更新检测失败
     }
     Json::Value releases=parse_json(stat);
-    if (releases[0]["tag_name"].asString()<VERSION_STRING) {
+    if (releases["tag_name"].asString()<VERSION_STRING) {
         return "0";
     } else {
-        return releases[0]["tag_name"].asString();
+        return releases["tag_name"].asString();
     }
 }
 
@@ -80,6 +80,6 @@ void check(){
     } else if (res=="-1") {
         std::cout<<termcolor::red<<"更新检查失败\n"<<termcolor::reset;
     } else {
-        std::cout<<termcolor::yellow<<fmt::format("发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
+        std::cout<<termcolor::yellow<<fmt::format("发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
     }
 }
