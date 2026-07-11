@@ -23,7 +23,7 @@ using namespace tabulate;
 typedef long long ll;
 
 #if _WIN32
-int outputCodePage = GetConsoleOutputCP();
+ll outputCodePage = GetConsoleOutputCP();
 #endif
 
 int main(){
@@ -45,13 +45,13 @@ int main(){
     string res=parse_modrinth(s);
     vector<map<string,string>> files=json2vec(parse(res));
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
-    int limit=0;
+    ll limit=0;
     if(show_limit1==""){
         limit=5;
     }else if(show_limit1=="0"){
         show_limit1=files.size();
     }else{
-        limit=stoi(show_limit1);
+        limit=stoll(show_limit1);
     }
     string resp=parse_modrinth(s);
     if(resp=="-1"){
@@ -59,17 +59,17 @@ int main(){
         fakepause();
         return 1;
     }
-    for (int i=0; i<limit; i++) {
+    for (ll i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
     cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
-    int file_index=0;
+    ll file_index=0;
 
     if (file_index_input==""){
         file_index=0;
     }else{
-        file_index=stoi(file_index_input);
+        file_index=stoll(file_index_input);
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径");
