@@ -64,7 +64,7 @@ std::string islatest(){
         return "-1"; //更新检测失败
     }
     Json::Value releases=parse_json(stat);
-    if (releases["tag_name"].asString()<VERSION_STRING) {
+    if (releases["tag_name"].asString()<=VERSION_STRING) {
         return "0";
     } else {
         return releases["tag_name"].asString();
