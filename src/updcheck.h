@@ -10,10 +10,10 @@
 #include <string>
 #include "version.h"
 #include "parser.h"
+#include "json2map.h"
 #include "termcolor/termcolor.hpp"
 
 std::string get_releases();
-Json::Value parse_json(std::string src);
 std::string islatest();
 void check();
 

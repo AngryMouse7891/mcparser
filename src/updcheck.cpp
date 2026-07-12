@@ -7,6 +7,7 @@
 #include <string>
 #include "version.h"
 #include "parser.h"
+#include "json2map.h"
 #include "termcolor/termcolor.hpp"
 
 std::string get_releases(){
@@ -41,29 +42,12 @@ std::string get_releases(){
     return readBuffer;
 }
 
-Json::Value parse_json(std::string src){
-    // 新版推荐解析器
-    Json::CharReaderBuilder reader_builder;
-    std::string err_msg;
-    Json::Value root;
-    std::istringstream iss(src);
-    // 解析字符串
-    bool ok = Json::parseFromStream(
-        reader_builder,
-        iss,
-        &root,
-        &err_msg
-    );
-
-    return root;
-}
-
 std::string islatest(){
     std::string stat=get_releases();
     if (stat=="-1") {
         return "-1"; //更新检测失败
     }
-    Json::Value releases=parse_json(stat);
+    Json::Value releases=parse(stat);
     if (releases["tag_name"].asString()<=VERSION_STRING) {
         return "0";
     } else {
@@ -72,13 +56,13 @@ std::string islatest(){
 }
 
 void check(){
-    fmt::print("正在检查更新...\n");
+    fmt::print("[更新检测] 正在检查更新...\n");
     std::string res=islatest();
     if (res=="0") {
-        std::cout<<termcolor::green<<"已是最新版\n"<<termcolor::reset;
+        std::cout<<termcolor::green<<"[✅] 已是最新版\n"<<termcolor::reset;
     } else if (res=="-1") {
-        std::cout<<termcolor::red<<"更新检查失败\n"<<termcolor::reset;
+        std::cout<<termcolor::red<<"[❌] 更新检查失败\n"<<termcolor::reset;
     } else {
-        std::cout<<termcolor::yellow<<fmt::format("发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
+        std::cout<<termcolor::yellow<<fmt::format("[⚠] 发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
     }
 }
