@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.2.0)
+project(MCParser VERSION 1.2.1)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
@@ -86,7 +86,6 @@ install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
 
 include(BundleUtilities)
-
 # 1. 设置安装目录根路径（CMAKE_INSTALL_PREFIX）
 set(BU_COPY_TO_INSTALL ON)
 
