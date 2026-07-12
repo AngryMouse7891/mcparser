@@ -13,23 +13,20 @@
 #include "updcheck.h"
 #include "termcolor/termcolor.hpp"
 
-#ifdef _WIN32
-#include <windows.h>
-#endif
-
 using namespace std;
 using namespace tabulate;
 
 typedef long long ll;
 
-#if _WIN32
+#ifdef _WIN32
+#include <windows.h>
 ll outputCodePage = GetConsoleOutputCP();
 #endif
 
 int main(){
-    if (_WIN32) {
+    #if _WIN32
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
-    }
+    #endif
     print_title();
     check();
     string s=beautified_input("请输入要解析的项目ID");
@@ -75,11 +72,11 @@ int main(){
     string download_dir=beautified_input("请输入下载路径");
     fmt::print("正在下载{}...\n",selected_url);
     download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
-    cout<<'\n';
-    if (_WIN32) {
-        SetConsoleOutputCP(outputCodePage); // 设置控制台输出为 UTF-8 编码
-    }
-    cout<<'\n';
+    fmt::print("\n");
+    #if _WIN32
+        SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+    #endif
+    fmt::print("\n");
     fakepause();
     return 0;
 }
