@@ -9,6 +9,7 @@
         "willasm.rc-script",
         "DavidAnson.vscode-markdownlint",
         "slevesque.vscode-zipexplorer",
-        "idleberg.nsis"
+        "idleberg.nsis",
+        "ms-vscode.makefile-tools"
     ]
 }
