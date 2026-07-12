@@ -20,12 +20,12 @@ int progress_callback(void* clientp,
         std::cout << "\r |" << termcolor::bold;
         int pos = barWidth * dlnow / dltotal;
         for (int i = 0; i < barWidth; ++i) {
-            if (i < pos) std::cout << "#";
+            if (i < pos) std::cout << termcolor::yellow << "#";
             else if (i == pos) std::cout << "#";
             else std::cout << " ";
         }
-        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << "| " << progress << "% (" 
-                  << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         ";
+        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << "| " << termcolor::green << progress << "%" << termcolor::blue << " (" 
+                  << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         " << termcolor::reset;
         std::cout.flush();
     }
     return 0;
@@ -43,13 +43,13 @@ bool download_file(std::string url, std::string output_path)
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
-        std::cerr << "初始化 CURL 失败" << std::endl;
+        std::cerr << termcolor::red << "初始化 CURL 失败" << std::endl;
         return false;
     }
 
     FILE* fp = fopen(output_path.c_str(), "wb");
     if (!fp) {
-        std::cerr << "无法创建文件: " << output_path << std::endl;
+        std::cerr << termcolor::red << "无法创建文件: " << output_path << std::endl;
         curl_easy_cleanup(curl);
         return false;
     }
