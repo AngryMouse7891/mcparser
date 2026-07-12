@@ -74,7 +74,7 @@ bool download_file(std::string url, std::string output_path)
     fclose(fp);
     curl_easy_cleanup(curl);
     
-    std::cout << '\n';
+    fmt::print("\n");
     
     if (res != CURLE_OK) {
         std::cerr << termcolor::red << "下载失败: " << curl_easy_strerror(res) << termcolor::reset << std::endl;
