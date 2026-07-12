@@ -24,22 +24,6 @@ Json::Value parse(std::string src){
 std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
     std::vector<std::map<std::string,std::string>> res;
     for(int i=0; i<src.size(); i++) {
-        /*std::map<std::string,std::string> tmp={
-            {"index",std::to_string(i)},
-            {"version_id",src[i]["id"]},
-            {"version_name",src[i]["name"]},
-            {"release_time",src[i]["date_published"]},
-            {"down",src[i]["downloads"].asString()},
-            {"filename",src[i]["files"][0]["filename"]},
-            {"url",src[i]["files"][0]["url"]}
-        };*/
-        /*tmp["index"]=std::to_string(i);
-        tmp["version_id"]=src[i]["id"];
-        tmp["version_name"]=src[i]["name"];
-        tmp["release_time"]=src[i]["date_published"];
-        tmp["down"]=std::to_string(src[i]["downloads"]);
-        tmp["filename"]=src[i]["files"][0]["filename"];
-        tmp["url"]=src[i]["files"][0]["url"];*/
         res.push_back(
             {
                 {"index",std::to_string(i)},
