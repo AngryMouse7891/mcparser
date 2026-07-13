@@ -6,6 +6,8 @@ set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+message(STATUS "CMake版本: ${CMAKE_VERSION}")
+
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
   message(STATUS "正在以发布模式构建")
 else()
@@ -68,7 +70,11 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "一个解析MC社区资源的软件")
 set(CPACK_PACKAGE_VENDOR "AngryMouse7891")
 set(CPACK_PACKAGE_LICENSE "MIT")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
-set(CPACK_GENERATOR "NSIS;ZIP")
+if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
+  set(CPACK_GENERATOR "NSIS;ZIP")
+else()
+  set(CPACK_GENERATOR "DEB;TGZ")
+endif ()
 
 # 编译目标 mcparser 安装到系统 bin 目录
 install(TARGETS mcparser
@@ -116,5 +122,7 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut '$DESKTOP/MCParser.lnk' '$INSTDIR/bin/mcparser.exe'")
 # 开始菜单名称
 set(CPACK_NSIS_PACKAGE_NAME "MCParser")
+
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.3.1-6), libc6 (< 2.4)")
 
 include(CPack)
