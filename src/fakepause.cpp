@@ -2,5 +2,6 @@
 
 void fakepause() {
     std::cout << "Press Enter to continue..." << std::endl;
-    std::cin.get(); // 等待用户按Enter键
+    // 清空输入缓冲区残留，然后等待回车
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
