@@ -30,16 +30,6 @@ int main(){
     print_title();
     check();
     string s=beautified_input("请输入要解析的项目ID");
-    Table filelist;
-    filelist.format()
-        .font_style({FontStyle::bold}) // 表头加粗
-        .border_top("=")
-        .border_bottom("=")
-        .border_left("|")
-        .border_right("|")
-        .corner("+");
-    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名"});
-    vector<map<string,string>> files=json2vec(parse(res));
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1==""){
@@ -55,6 +45,16 @@ int main(){
         fakepause();
         return 1;
     }
+    vector<map<string,string>> files=json2vec(parse(resp));
+    Table filelist;
+    filelist.format()
+        .font_style({FontStyle::bold}) // 表头加粗
+        .border_top("=")
+        .border_bottom("=")
+        .border_left("|")
+        .border_right("|")
+        .corner("+");
+    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名"});
     for (ll i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
