@@ -22,7 +22,7 @@ int progress_callback(void* clientp,
         for (int i = 0; i < barWidth; ++i) {
             if (i < pos) std::cout << termcolor::yellow << "#";
             else if (i == pos) std::cout << "#";
-            else std::cout << " ";
+            else std::cout << termcolor::grey << "-";
         }
         std::cout << termcolor::reset << std::fixed << std::setprecision(2) << "| " << termcolor::green << progress << "%" << termcolor::blue << " (" 
                   << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         " << termcolor::reset;
