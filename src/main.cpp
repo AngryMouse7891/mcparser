@@ -32,7 +32,7 @@ int main(){
     string s=beautified_input("请输入要解析的项目ID");
     string resp=parse_modrinth(s);
     if(resp=="-1"){
-        cout<<termcolor::red<<"解析失败"<<termcolor::reset<<'\n';
+        cout<<termcolor::red<<"[❌] 解析失败"<<termcolor::reset<<'\n';
         fakepause();
         return 1;
     }
