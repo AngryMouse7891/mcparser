@@ -42,11 +42,11 @@ Gitee Releases：<https://gitee.com/AngryMouse7891/mcparser/releases>
 
 # 使用库
 
-JsonCpp（json解析）：<https://github.com/open-source-parsers/jsoncpp>
+JsonCpp（JSON解析）：<https://github.com/open-source-parsers/jsoncpp>
 
 libcurl（文件下载+API接口调用）：<https://curl.se/>
 
-fmt（字符串格式化）：<https://github.com/fmtlib/fmt>
+fmt（字符串格式化+部分文字输出）：<https://github.com/fmtlib/fmt>
 
 termcolor（彩色终端输出）：<https://github.com/ikalnytskyi/termcolor>
 
