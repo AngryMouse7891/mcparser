@@ -37,6 +37,7 @@ int main(){
         return 1;
     }
     vector<map<string,string>> files=json2vec(parse(resp));
+    cout<<termcolor::green<<"[✅] 解析成功，共解析"<<termcolor::bold<<files.size()<<termcolor::reset<<termcolor::green<<"个文件"<<termcolor::reset<<'\n';
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1==""){
@@ -58,6 +59,7 @@ int main(){
     for (ll i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
+    cout<<"文件列表（共"<<files.size()<<"个文件，已列出"<<limit<<"个\n";
     cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
