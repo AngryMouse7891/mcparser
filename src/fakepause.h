@@ -2,7 +2,7 @@
 #define FAKEPAUSE_H
 
 #include <iostream>
-#include <limits>   // numeric_limits
+#include <windows.h>
 
 void fakepause();
 
