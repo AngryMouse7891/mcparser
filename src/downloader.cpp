@@ -43,13 +43,13 @@ bool download_file(std::string url, std::string output_path)
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
-        std::cerr << termcolor::red << "初始化 CURL 失败" << std::endl;
+        std::cerr << termcolor::red << "初始化 CURL 失败" <<  termcolor::reset << '\n';
         return false;
     }
 
     FILE* fp = fopen(output_path.c_str(), "wb");
     if (!fp) {
-        std::cerr << termcolor::red << "无法创建文件: " << output_path << std::endl;
+        std::cerr << termcolor::red << "无法创建文件: " << output_path <<  termcolor::reset << '\n';
         curl_easy_cleanup(curl);
         return false;
     }
@@ -67,6 +67,8 @@ bool download_file(std::string url, std::string output_path)
     
     // 跟随重定向
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+    // 指定证书文件路径
+    curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
     
     // 执行下载
     CURLcode res = curl_easy_perform(curl);
@@ -77,10 +79,10 @@ bool download_file(std::string url, std::string output_path)
     fmt::print("\n");
     
     if (res != CURLE_OK) {
-        std::cerr << termcolor::red << "下载失败: " << curl_easy_strerror(res) << termcolor::reset << std::endl;
+        std::cerr << termcolor::red << "下载失败: " << curl_easy_strerror(res) << termcolor::reset << '\n';
         return false;
     }
     
-    fmt::print("下载完成!\n");
+    std::cout<<termcolor::green<<"下载完成!"<<termcolor::reset<<'\n';
     return true;
 }
