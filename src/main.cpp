@@ -30,6 +30,13 @@ int main(){
     print_title();
     check();
     string s=beautified_input("请输入要解析的项目ID");
+    string resp=parse_modrinth(s);
+    if(resp=="-1"){
+        cout<<termcolor::red<<"解析失败"<<termcolor::reset<<'\n';
+        fakepause();
+        return 1;
+    }
+    vector<map<string,string>> files=json2vec(parse(resp));
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1==""){
@@ -39,13 +46,6 @@ int main(){
     }else{
         limit=stoll(show_limit1);
     }
-    string resp=parse_modrinth(s);
-    if(resp=="-1"){
-        cout<<termcolor::red<<"解析失败"<<termcolor::reset<<'\n';
-        fakepause();
-        return 1;
-    }
-    vector<map<string,string>> files=json2vec(parse(resp));
     Table filelist;
     filelist.format()
         .font_style({FontStyle::bold}) // 表头加粗
