@@ -39,14 +39,13 @@ int main(){
         .border_right("|")
         .corner("+");
     filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名"});
-    string res=parse_modrinth(s);
     vector<map<string,string>> files=json2vec(parse(res));
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1==""){
         limit=5;
     }else if(show_limit1=="0"){
-        show_limit1=files.size();
+        limit=files.size();
     }else{
         limit=stoll(show_limit1);
     }
