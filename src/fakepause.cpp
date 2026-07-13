@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>   // numeric_limits
 
 void fakepause() {
     std::cout << "Press Enter to continue..." << std::endl;
