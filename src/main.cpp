@@ -33,6 +33,9 @@ int main(){
     string resp=parse_modrinth(s);
     if(resp=="-1"){
         cout<<termcolor::red<<"[❌] 解析失败"<<termcolor::reset<<'\n';
+        #if _WIN32
+            SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+        #endif
         fakepause();
         return 1;
     }
