@@ -12,7 +12,7 @@
 
 MCParser是一个一个一个一个~~一个一个一个一个一个一个一个一个一个~~解析《我的世界》社区资源（如模组）的工具。
 
-# 截图
+## 截图
 
 启动屏幕
 
@@ -34,13 +34,21 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 
 ![更新检查](./screenshots/updcheck.png "更新检查")
 
-# 下载链接
+## 下载链接
 
 Gitee Releases：<https://gitee.com/AngryMouse7891/mcparser/releases>
 
 夸克网盘：<https://pan.quark.cn/s/f88f5aed5752>
 
-# 使用库
+## 支持平台
+
+| 资源平台 | 是否支持 |
+| ----- | ----- |
+| [Curseforge](https://curseforge.com "Curseforge官网") | ❌ |
+| [Modrinth](https://modrinth.com "Modrinth官网") | ✅ |
+| [MCArchive](https://mcarchive.net "MCArchive官网") | ❌ |
+
+## 使用库
 
 JsonCpp（JSON解析）：<https://github.com/open-source-parsers/jsoncpp>
 
