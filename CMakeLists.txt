@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.2.5)
+project(MCParser VERSION 1.2.6)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
@@ -23,6 +23,25 @@ find_package(OpenSSL REQUIRED)
 
 # 获取当前时间戳，格式为 YYYYMMDD_HHMMSS
 string(TIMESTAMP CURRENT_TIMESTAMP "%Y%m%d_%H%M%S")
+
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_HASH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_BRANCH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+else()
+    set(GIT_COMMIT_HASH "unknown")
+    set(GIT_BRANCH "no-git")
+endif()
 
 # 将时间戳存储到变量中
 set(BUILD_TIME ${CURRENT_TIMESTAMP})
