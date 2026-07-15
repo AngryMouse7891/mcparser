@@ -23,7 +23,7 @@ void printGradientRGB(const std::string& text,
     size_t len = text.size();
     for(size_t i=0;i<len;i++)
     {
-        float t = 1.0f*i / std::max<size_t>(1,len-1);
+        double t = 1.0f*i / std::max<size_t>(1,len-1);
         uint8_t r = r1 + t*(r2-r1);
         uint8_t g = g1 + t*(g2-g1);
         uint8_t b = b1 + t*(b2-b1);

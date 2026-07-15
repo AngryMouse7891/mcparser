@@ -59,10 +59,10 @@ void check(){
     fmt::print("[更新检测] 正在检查更新...\n");
     std::string res=islatest();
     if (res=="0") {
-        std::cout<<termcolor::green<<"[✅] 已是最新版\n"<<termcolor::reset;
+        fmt::print(fmt::fg(fmt::color::green),"[✅] 已是最新版\n");
     } else if (res=="-1") {
-        std::cout<<termcolor::red<<"[❌] 更新检查失败\n"<<termcolor::reset;
+        fmt::print(fmt::fg(fmt::color::red),"[❌] 更新检查失败\n");
     } else {
-        std::cout<<termcolor::yellow<<fmt::format("[⚠] 发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res)<<termcolor::reset;
+        fmt::print(fmt::fg(fmt::color::blue),"[ℹ️] 发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res)；
     }
 }

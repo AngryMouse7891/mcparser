@@ -5,6 +5,7 @@
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
 #include <fmt/base.h>
+#include <fmt/color.h>
 
 // 进度回调函数
 int progress_callback(void* clientp, 
@@ -82,7 +83,7 @@ bool download_file(std::string url, std::string output_path)
         std::cerr << termcolor::red << "[❌] 下载失败: " << curl_easy_strerror(res) << termcolor::reset << '\n';
         return false;
     }
-    
-    std::cout<<termcolor::green<<"[✅] 下载完成!"<<termcolor::reset<<'\n';
+
+    fmt::print(fmt::fg(fmt::color::green),"[✅] 下载完成!\n");
     return true;
 }
