@@ -7,6 +7,8 @@
 #include <fmt/base.h>
 #include <fmt/color.h>
 
+typedef long long ll;
+
 // 进度回调函数
 int progress_callback(void* clientp, 
                       curl_off_t dltotal, 
@@ -19,8 +21,8 @@ int progress_callback(void* clientp,
         int barWidth = 50;
         
         std::cout << "\r |" << termcolor::bold;
-        int pos = barWidth * dlnow / dltotal;
-        for (int i = 0; i < barWidth; ++i) {
+        ll pos = barWidth * dlnow / dltotal;
+        for (ll i = 0; i < barWidth; ++i) {
             if (i < pos) std::cout << termcolor::yellow << "#";
             else if (i == pos) std::cout << "#";
             else std::cout << termcolor::white << "-";

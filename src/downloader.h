@@ -10,6 +10,8 @@
 #include <fmt/base.h>
 #include <fmt/color.h>
 
+typedef long long ll;
+
 // 进度回调函数
 int progress_callback(void* clientp, 
                       curl_off_t dltotal, 
