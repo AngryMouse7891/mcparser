@@ -4,6 +4,8 @@
 #include <map>
 #include <string>
 
+typedef long long ll;
+
 Json::Value parse(std::string src){
     // 新版推荐解析器
     Json::CharReaderBuilder reader_builder;
@@ -23,7 +25,7 @@ Json::Value parse(std::string src){
 
 std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
     std::vector<std::map<std::string,std::string>> res;
-    for(int i=0; i<src.size(); i++) {
+    for(ll i=0; i<src.size(); i++) {
         res.push_back(
             {
                 {"index",std::to_string(i)},

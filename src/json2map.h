@@ -7,6 +7,8 @@
 #include <map>
 #include <string>
 
+typedef long long ll;
+
 Json::Value parse(std::string src);
 std::vector<std::map<std::string,std::string>> json2vec(Json::Value src);
 
