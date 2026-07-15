@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Application
 Name=MCParser
+GenericName=Minecraft Community Resources Parser
+GenericName[zh_CN]=Minecraft社区资源解析器
 Exec=/usr/bin/mcparser %F
 Icon=mcparser
 Terminal=true
