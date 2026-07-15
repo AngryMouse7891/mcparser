@@ -26,5 +26,6 @@ void print_title(){
     printGradientRGB(fmt::format("BuildTime   {}",BUILD_TIME),144,202,249,244,133,177);
     printGradientRGB(fmt::format("GitHash     {}",GIT_HASH),144,202,249,244,133,177);
     printGradientRGB(fmt::format("GitBranch   {}",GIT_BRANCH),144,202,249,244,133,177);
+    printGradientRGB(fmt::format("Homepage    {}",PROJECT_HOMEPAGE_URL),144,202,249,244,133,177);
     cout<<'\n';
 }
