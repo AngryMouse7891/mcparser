@@ -9,14 +9,7 @@
 // 设置终端启用ANSI颜色（仅Windows需要）
 #ifdef _WIN32
 #include <windows.h>
-void enableAnsiColor()
-{
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    DWORD dwMode = 0;
-    GetConsoleMode(hOut, &dwMode);
-    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    SetConsoleMode(hOut, dwMode);
-}
+void enableAnsiColor();
 #endif
 
 void printGradientRGB(const std::string& text, 
