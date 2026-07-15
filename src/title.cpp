@@ -1,6 +1,7 @@
 #include "termcolor/termcolor.hpp"
 #include <iostream>
 #include <fmt/format.h>
+#include <fmt/base.h>
 #include "version.h"
 #include "gradient.h"
 
@@ -27,5 +28,12 @@ void print_title(){
     printGradientRGB(fmt::format("GitHash     {}",GIT_HASH),144,202,249,244,133,177);
     printGradientRGB(fmt::format("GitBranch   {}",GIT_BRANCH),144,202,249,244,133,177);
     printGradientRGB(fmt::format("Homepage    {}",PROJECT_HOMEPAGE_URL),144,202,249,244,133,177);
+    fmt::print('\n');
+    printGradientRGB(fmt::format("JsonCpp     {}",JSONCPP_VERSION_STRING),255,235,59,176,164,227);
+    printGradientRGB(fmt::format("fmt         {}",FMT_VERSION_STRING),255,235,59,176,164,227);
+    printGradientRGB(fmt::format("Libcurl     {}",LIBCURL_VERSION_STRING),255,235,59,176,164,227);
+    printGradientRGB(fmt::format("OpenSSL     {}",OPENSSL_VERSION_STRING),255,235,59,176,164,227);
+    printGradientRGB(fmt::format("Tabulate    {}",TABULATE_VERSION_STRING),255,235,59,176,164,227);
+    printGradientRGB(fmt::format("Termcolor   {}",TERMCOLOR_VERSION_STRING),255,235,59,176,164,227);
     cout<<'\n';
 }

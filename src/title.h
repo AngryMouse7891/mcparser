@@ -4,6 +4,7 @@
 #include "termcolor/termcolor.hpp"
 #include <iostream>
 #include <fmt/format.h>
+#include <fmt/base.h>
 #include "version.h"
 #include "gradient.h"
 
