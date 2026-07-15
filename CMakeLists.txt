@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.3.0)
+project(MCParser VERSION 1.3.1)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
@@ -16,9 +16,9 @@ else()
 endif()
 
 # 查找依赖
-find_package(fmt REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+pkg_check_modules(FMT REQUIRED fmt)
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
 
@@ -76,7 +76,7 @@ target_link_libraries(
   OpenSSL::SSL OpenSSL::Crypto 
   ${JSONCPP_LIBRARIES} 
   ${CURL_LIBRARIES} 
-  fmt::fmt 
+  ${FMT_LIBRARIES} 
   ${CMAKE_BINARY_DIR} 
 )
 
