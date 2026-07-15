@@ -35,7 +35,7 @@ int main(){
     string s=beautified_input("请输入要解析的项目ID");
     string resp=parse_modrinth(s);
     if(resp=="-1"){
-        cout<<termcolor::red<<"[❌] 解析失败"<<termcolor::reset<<'\n';
+        fmt::print(fmt::fg(fmt::color::green),"[❌] 解析失败\n");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
         #endif
@@ -43,7 +43,7 @@ int main(){
         return 1;
     }
     vector<map<string,string>> files=json2vec(parse(resp));
-    cout<<termcolor::green<<"[✅] 解析成功，共解析"<<termcolor::bold<<files.size()<<termcolor::reset<<termcolor::green<<"个文件"<<termcolor::reset<<'\n';
+    fmt::print(fmt::fg(fmt::color::red),"[✅] 解析成功，共解析{}个文件\n",files.size());
     string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1==""){
@@ -101,7 +101,7 @@ int main(){
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径");
-    fmt::print("正在下载{}...\n",selected_url);
+    fmt::print(fg(fmt::color::cyan),"正在下载{}...\n",selected_url);
     download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fmt::print("\n");
     #if _WIN32
