@@ -13,6 +13,11 @@ pacman -S $MINGW_PACKAGE_PREFIX-{gcc,make,jsoncpp,curl,fmt,openssl,pkgconf,cmake
 export PATH=$MSYSTEM_PREFIX/bin:$PATH
 ```
 
+你也可以将Ninja作为底层构建工具：
+```bash
+pacman -S $MINGW_PACKAGE_PREFIX-ninja
+```
+
 如果你不想通过MSYS2安装CMake，你也可以从 [CMake官网](https://cmake.org) 下载安装。
 
 3. 获取源码：
@@ -33,6 +38,7 @@ git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
 ```bash
 cd mcparser #切换到源码目录
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" #配置项目
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Ninja" #若使用Ninja
 cd build #切换到构建目录
 cmake --build . -- -j $(nproc) #构建项目（最大线程）
 cmake --install . --prefix test_install --config Release #安装项目（带收集dll）
