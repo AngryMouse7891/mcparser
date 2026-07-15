@@ -14,6 +14,7 @@ export PATH=$MSYSTEM_PREFIX/bin:$PATH
 ```
 
 你也可以将Ninja作为底层构建工具：
+
 ```bash
 pacman -S $MINGW_PACKAGE_PREFIX-ninja
 ```
