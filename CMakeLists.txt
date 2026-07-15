@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.2.6)
+project(MCParser VERSION 1.3.0)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(PROJECT_HOMEPAGE_URL "https://gitee.com/AngryMouse7891/mcparser/")
 
 message(STATUS "CMake版本: ${CMAKE_VERSION}")
 
@@ -89,10 +90,12 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "一个解析MC社区资源的软件")
 set(CPACK_PACKAGE_VENDOR "AngryMouse7891")
 set(CPACK_PACKAGE_LICENSE "MIT")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "AngryMouse7891 <pystart@qq.com>")
+
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_GENERATOR "NSIS;ZIP")
 else()
-  set(CPACK_GENERATOR "DEB;TGZ")
+  set(CPACK_GENERATOR "TGZ")
 endif ()
 
 # 编译目标 mcparser 安装到系统 bin 目录
