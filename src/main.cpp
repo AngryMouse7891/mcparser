@@ -12,6 +12,7 @@
 #include "downloader.h"
 #include "updcheck.h"
 #include "termcolor/termcolor.hpp"
+#include "tabulate/color.hpp"
 #include "gradient.h"
 
 using namespace std;
@@ -64,6 +65,30 @@ int main(){
     for (ll i=0; i<limit; i++) {
         filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
     } 
+    filelist.column(0).format()
+        .font_color(Color::cyan);
+    filelist.column(1).format()
+        .font_color(Color::magenta);
+    filelist.column(2).format()
+        .font_color(Color::green);
+    filelist.column(3).format()
+        .font_color(Color::blue);
+    filelist.column(4).format()
+        .font_color(Color::yellow);
+    filelist.column(5).format()
+        .font_color(Color::red);
+    filelist[0][0].format()
+        .font_color(Color::none);
+    filelist[0][1].format()
+        .font_color(Color::none);
+    filelist[0][2].format()
+        .font_color(Color::none);
+    filelist[0][3].format()
+        .font_color(Color::none);
+    filelist[0][4].format()
+        .font_color(Color::none);
+    filelist[0][5].format()
+        .font_color(Color::none);
     fmt::print("文件列表（共{}个文件，已列出{}个）\n",files.size(),limit);
     cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
