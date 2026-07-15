@@ -32,7 +32,7 @@ git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
 
 ```bash
 cd mcparser #切换到源码目录
-cmake -B build -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" #配置项目
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" #配置项目
 cd build #切换到构建目录
 cmake --build . -- -j $(nproc) #构建项目（最大线程）
 cmake --install . --prefix test_install --config Release #安装项目（带收集dll）
