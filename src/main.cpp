@@ -12,6 +12,7 @@
 #include "downloader.h"
 #include "updcheck.h"
 #include "termcolor/termcolor.hpp"
+#include "gradient.h"
 
 using namespace std;
 using namespace tabulate;
@@ -26,6 +27,7 @@ ll outputCodePage = GetConsoleOutputCP();
 int main(){
     #if _WIN32
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
+        enableAnsiColor();
     #endif
     print_title();
     check();
