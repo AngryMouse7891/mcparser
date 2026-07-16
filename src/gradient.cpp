@@ -1,7 +1,9 @@
-#include <iostream>
+#include <fmt/base.h>
 #include <string>
 #include <cstdint>
 #include <cmath>
+
+typedef long long ll;
 
 // 设置终端启用ANSI颜色（仅Windows需要）
 #ifdef _WIN32
@@ -27,7 +29,7 @@ void printGradientRGB(const std::string& text,
         uint8_t r = r1 + t*(r2-r1);
         uint8_t g = g1 + t*(g2-g1);
         uint8_t b = b1 + t*(b2-b1);
-        std::cout << "\033[38;2;" <<(int)r<<";"<<(int)g<<";"<<(int)b<<"m"<<text[i];
+        fmt::print("\033[38;2;{};{};{}m{}",(ll)r,(ll)g,(ll)b);
     }
-    std::cout << "\033[0m\n";
+    fmt::print("\033[0m\n");
 }

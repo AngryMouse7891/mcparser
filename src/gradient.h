@@ -1,10 +1,12 @@
 #ifndef GRADIENT_H
 #define GRADIENT_H
 
-#include <iostream>
+#include <fmt/base.h>
 #include <string>
 #include <cstdint>
 #include <cmath>
+
+typedef long long ll;
 
 // 设置终端启用ANSI颜色（仅Windows需要）
 #ifdef _WIN32
