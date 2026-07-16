@@ -29,7 +29,7 @@ void printGradientRGB(const std::string& text,
         uint8_t r = r1 + t*(r2-r1);
         uint8_t g = g1 + t*(g2-g1);
         uint8_t b = b1 + t*(b2-b1);
-        fmt::print("\033[38;2;{};{};{}m{}",(ll)r,(ll)g,(ll)b);
+        fmt::print("\033[38;2;{};{};{}m{}",(ll)r,(ll)g,(ll)b,text[i]);
     }
     fmt::print("\033[0m\n");
 }
