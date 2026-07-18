@@ -6,7 +6,7 @@
    " alt="License">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Freleases%2Flatest&query=%24.tag_name&style=for-the-badge&label=version&color=orange
    " alt="Version">
-   <img src="https://img.shields.io/badge/Language-C++-70F3FF?style=for-the-badge" alt="Language">
+   <img src="https://img.shields.io/badge/Language-C++-70F3FF?style=for-the-badge&logo=cplusplus" alt="Language">
 </div>
 
 ---
