@@ -23,8 +23,9 @@ string title_str=R"(
 )";
 
 void set_title(){
+    string console_title=fmt::format("title MCParser v{} (Git hash {}) - {}",VERSION_STRING,GIT_HASH,AUTHOR);
     #if _WIN32
-    system(fmt::format("title MCParser v{} (Git hash {}) - {}",VERSION_STRING,GIT_HASH,AUTHOR));
+    system(console_title);
     #endif
 }
 
