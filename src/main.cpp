@@ -30,6 +30,7 @@ int main(){
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
         enableAnsiColor();
     #endif
+    set_title();
     print_title();
     check();
     string s=beautified_input("请输入要解析的项目ID");

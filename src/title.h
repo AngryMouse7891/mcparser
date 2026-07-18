@@ -7,6 +7,10 @@
 #include <fmt/base.h>
 #include "version.h"
 #include "gradient.h"
+#if _WIN32
+#include <windows.h>
+#endif
+
 
 using namespace std;
 
@@ -22,6 +26,8 @@ string title=R"(
                                                                                          
                                                                                          
 )";
+
+void set_title();
 
 void print_title();
 
