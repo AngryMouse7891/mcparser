@@ -110,6 +110,7 @@ if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
 endif ()
 install(FILES LICENSE README.md BUILD.md CHANGELOG DESTINATION share/MCParser)
 install(DIRECTORY screenshots/ DESTINATION share/MCParser/screenshots)
+install(DIRECTORY images/ DESTINATION share/MCParser/images)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
 
