@@ -1,3 +1,5 @@
+<center> <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/>
+
 # <center> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> 
 
 <div align="center">
