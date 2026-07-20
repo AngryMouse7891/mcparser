@@ -50,7 +50,7 @@ Gitee Releases：<https://gitee.com/AngryMouse7891/mcparser/releases>
 
 夸克网盘：<https://pan.quark.cn/s/f88f5aed5752>
 
-## 支持平台
+## 支持的资源平台
 
 | 资源平台 | 是否支持 |
 | ----- | ----- |
