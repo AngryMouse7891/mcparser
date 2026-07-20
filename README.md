@@ -1,6 +1,6 @@
-<center> <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/>
+<center> <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/> </center> 
 
-# <center> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> 
+# <center> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> </center> 
 
 <div align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
@@ -14,6 +14,13 @@
 ---
 
 MCParser是一个一个一个一个~~一个一个一个一个一个一个一个一个一个~~解析《我的世界》社区资源（如模组）的工具。
+
+## 特性
+
+* ✅ 完全基于C++编写
+* ✅ 性能极强
+* ✅ 支持彩色输出
+* ✅ 跨平台
 
 ## 截图（部分从WSL Archlinux GNOME控制台截取）
 
