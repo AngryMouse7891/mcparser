@@ -4,7 +4,7 @@
 #include "termcolor/termcolor.hpp"
 
 std::string beautified_input(std::string prompt){
-    std::cout<<termcolor::blue<<'['<<termcolor::bright_blue<<prompt<<termcolor::blue<<']'<<termcolor::yellow<<"==> "<<termcolor::reset;
+    std::cout<<termcolor::cyan<<prompt<<termcolor::white<<" ==> "<<termcolor::reset;
     std::string result;
     std::cin>>result;
     return result;
