@@ -27,7 +27,7 @@ ret = subprocess.run([
     "-S", root_dir,
     "-B", build_dir,
     "-DCMAKE_BUILD_TYPE=Release",
-    "-G", "MinGW Makefiles"
+    "-G", "Ninja"
 ])
 
 if ret.returncode:
