@@ -63,6 +63,6 @@ void check(){
     } else if (res=="-1") {
         fmt::print(fmt::fg(fmt::color::red),"[❌] 更新检查失败\n");
     } else {
-        fmt::print(fmt::fg(fmt::color::blue),"[ℹ️] 发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res);
+        fmt::print(fmt::fg(fmt::color::cyan),"[ℹ️] 发现新版本！{} -> {}\n请去https://gitee.com/AngryMouse7891/mcparser/releases或https://pan.quark.cn/s/f88f5aed5752下载更新。\n",VERSION_STRING,res);
     }
 }
