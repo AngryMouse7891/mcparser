@@ -30,6 +30,7 @@ int main(){
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
         enableAnsiColor();
     #endif
+    ios::sync_with_stdio(false); cin.tie(nullptr);
     set_title();
     print_title();
     check();
