@@ -74,11 +74,14 @@ target_link_libraries(
   ${CMAKE_BINARY_DIR} 
 )
 
-# 给mcparser目标添加O2优化，跨平台兼容
-target_compile_options(mcparser PRIVATE
-  $<$<CXX_COMPILER_ID:MSVC>:/O2>
-  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
-)
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  # 给mcparser目标添加O2优化，跨平台兼容
+  target_compile_options(mcparser PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/O2>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
+  )
+endif()
+
 
 file(COPY "${CMAKE_SOURCE_DIR}/src/cacert.pem"
      DESTINATION ${CMAKE_BINARY_DIR}/)
