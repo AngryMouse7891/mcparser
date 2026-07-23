@@ -10,7 +10,7 @@ MCParser 构建脚本
 ************************************
 """
 
-GENERATOR="Ninja"
+GENERATOR="Visual Studio 17 2022"
 
 print(TITLE)
 
@@ -27,7 +27,7 @@ ret = subprocess.run([
     "-S", root_dir,
     "-B", build_dir,
     "-DCMAKE_BUILD_TYPE=Release",
-    "-G", "Ninja"
+    "-G", GENERATOR
 ])
 
 if ret.returncode:
