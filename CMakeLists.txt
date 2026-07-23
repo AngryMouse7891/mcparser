@@ -11,11 +11,6 @@ message(STATUS "CMake版本: ${CMAKE_VERSION}")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
   message(STATUS "正在以发布模式构建")
-  # 给mcparser目标添加O2优化，跨平台兼容
-  target_compile_options(mcparser PRIVATE
-    $<$<CXX_COMPILER_ID:MSVC>:/O2>
-    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
-  )
 else()
   message(STATUS "正在以调试模式构建")
 endif()
@@ -77,6 +72,12 @@ target_link_libraries(
   ${CURL_LIBRARIES} 
   ${FMT_LIBRARIES} 
   ${CMAKE_BINARY_DIR} 
+)
+
+# 给mcparser目标添加O2优化，跨平台兼容
+target_compile_options(mcparser PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/O2>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
 )
 
 file(COPY "${CMAKE_SOURCE_DIR}/src/cacert.pem"
