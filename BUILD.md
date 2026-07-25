@@ -6,17 +6,17 @@
 
 2. 配置环境
 
-在MSYS2中安装工具链以及其它依赖然后配置环境变量：
+在MSYS2 UCRT64终端中输入以下命令以安装工具链以及其它依赖然后配置环境变量：
 
 ```bash
-pacman -S $MINGW_PACKAGE_PREFIX-{gcc,make,jsoncpp,curl,fmt,openssl,pkgconf,cmake} #安装GCC、make、jsoncpp、cURL、fmt、OpenSSL、pkg-config、CMake
-export PATH=$MSYSTEM_PREFIX/bin:$PATH
+pacman -S mingw-w64-ucrt-x86_64-{gcc,make,jsoncpp,curl,fmt,openssl,pkgconf,cmake} #安装GCC、make、jsoncpp、cURL、fmt、OpenSSL、pkg-config、CMake
+export PATH=/ucrt64/bin:$PATH
 ```
 
 你也可以将Ninja作为底层构建工具：
 
 ```bash
-pacman -S $MINGW_PACKAGE_PREFIX-ninja
+pacman -S mingw-w64-ucrt-x86_64-ninja
 ```
 
 如果你不想通过MSYS2安装CMake，你也可以从 [CMake官网](https://cmake.org) 下载安装。
@@ -52,7 +52,7 @@ cmake --install . --prefix test_install --config Release #安装项目（带收�
 在MSYS2中安装NSIS并配置：
 
 ```bash
-pacman -S $MINGW_PACKAGE_PREFIX-nsis #安装NSIS
+pacman -S mingw-w64-ucrt-x86_64-nsis #安装NSIS
 ```
 
 如果你不想通过MSYS2安装NSIS，你也可以从 [NSIS官网](https://nsis.sourceforge.io/) 下载安装。
