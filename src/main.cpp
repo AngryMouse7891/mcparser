@@ -36,7 +36,7 @@ int main(){
     set_title();
     print_title();
     check();
-    string s=beautified_input("请输入要解析的项目ID");
+    string s=beautified_input("请输入要解析的项目ID",true);
     string resp=parse_modrinth(s);
     if(resp=="-1"){
         error_print("解析失败");
@@ -114,7 +114,7 @@ int main(){
         file_index=0;
     }
     string selected_url=files[file_index]["url"];
-    string download_dir=beautified_input("请输入下载路径");
+    string download_dir=beautified_input("请输入下载路径",true);
     info_print(fmt::format("正在下载{}...\n",selected_url));
     download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fmt::print("\n");
