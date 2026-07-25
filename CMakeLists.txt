@@ -162,6 +162,12 @@ set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut '$DESKTOP/MCParser.lnk' '$INST
 # 开始菜单名称
 set(CPACK_NSIS_PACKAGE_NAME "MCParser")
 
+# set the install/uninstall icon used for the installer itself
+set (CPACK_NSIS_MUI_ICON
+     "data/installer_icon.ico")
+set (CPACK_NSIS_MUI_UNIICON
+     "data/installer_icon.ico")
+
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.3.1-6), libc6 (< 2.4)")
 
 include(CPack)
