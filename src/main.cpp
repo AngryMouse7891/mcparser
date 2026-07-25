@@ -48,7 +48,7 @@ int main(){
         return 1;
     }
     vector<map<string,string>> files=json2vec(parse(resp));
-    success_print(fmt::format("[✅] 解析成功，共解析{}个文件\n",files.size()));
+    success_print(fmt::format("解析成功，共解析{}个文件\n",files.size()));
     string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1.empty()){
