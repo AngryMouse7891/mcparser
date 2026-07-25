@@ -46,11 +46,11 @@ int main(){
     }
     vector<map<string,string>> files=json2vec(parse(resp));
     fmt::print(fmt::fg(fmt::color::green),"[✅] 解析成功，共解析{}个文件\n",files.size());
-    string show_limit1=beautified_input("请输入最多展示几条（0为所有，留空则默认为5）");
+    string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;
-    if(show_limit1==""){
+    if(show_limit1.empty()){
         limit=5;
-    }else if(show_limit1=="0"){
+    }else if(show_limit1=="0" || show_limit1=="all"){
         limit=files.size();
     }else{
         limit=stoll(show_limit1);
@@ -96,7 +96,7 @@ int main(){
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
 
-    if (file_index_input==""){
+    if (file_index_input.empty()){
         file_index=0;
     }else{
         file_index=stoll(file_index_input);
