@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "termcolor/termcolor.hpp"
+#include "print_beautify.h"
 
 std::string beautified_input(std::string prompt);
 
