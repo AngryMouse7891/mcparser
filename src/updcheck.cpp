@@ -63,10 +63,8 @@ void check(){
     } else if (res=="-1") {
         fmt::print(fmt::fg(fmt::color::red),"[❌] 更新检查失败\n");
     } else {
-        fmt::print(
-            fmt::fg(fmt::color::cyan),
-            "[ℹ️] 发现新版本！{} -> {}\n请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\n",
-            VERSION_STRING,res
-        );
+        std::string prompt_str=fmt::format("[ℹ️] 发现新版本！{} -> {}请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\n",
+            VERSION_STRING,res);
+        std::cout<<termcolor::cyan<<prompt_str<<termcolor::reset;
     }
 }
