@@ -7,8 +7,8 @@
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
-#include <fmt/base.h>
-#include <fmt/color.h>
+#include <fmt/format.h>
+#include "print_beautify.h"
 
 typedef long long ll;
 

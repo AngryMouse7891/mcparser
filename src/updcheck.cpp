@@ -9,6 +9,7 @@
 #include "parser.h"
 #include "json2map.h"
 #include "termcolor/termcolor.hpp"
+#include "print_beautify.h"
 
 std::string get_releases(){
     CURL* curl;
@@ -32,7 +33,7 @@ std::string get_releases(){
         res = curl_easy_perform(curl);
 
         if (res != CURLE_OK) {
-            std::cerr << termcolor::red << "[❌] GET request failed: " << curl_easy_strerror(res) << termcolor::reset << '\n';
+            error_print(fmt::format("GET request failed: {}",curl_easy_strerror(res)));
             readBuffer.clear();
             return "-1";
         }
@@ -59,12 +60,12 @@ void check(){
     fmt::print("[更新检测] 正在检查更新...\n");
     std::string res=islatest();
     if (res=="0") {
-        fmt::print(fmt::fg(fmt::color::green),"[✅] 已是最新版（{}）\n",VERSION_STRING);
+        success_print(fmt::format("[✅] 已是最新版（{}）\n",VERSION_STRING));
     } else if (res=="-1") {
-        fmt::print(fmt::fg(fmt::color::red),"[❌] 更新检查失败\n");
+        error_print("更新检查失败");
     } else {
         std::string prompt_str=fmt::format("[ℹ️] 发现新版本！{} -> {}请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\n",
             VERSION_STRING,res);
-        std::cout<<termcolor::cyan<<prompt_str<<termcolor::reset;
+        info_print(prompt_str);
     }
 }

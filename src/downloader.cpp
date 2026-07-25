@@ -4,8 +4,8 @@
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
-#include <fmt/base.h>
-#include <fmt/color.h>
+#include <fmt/format.h>
+#include "print_beautify.h"
 
 typedef long long ll;
 
@@ -46,13 +46,13 @@ bool download_file(std::string url, std::string output_path)
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
-        std::cerr << termcolor::red << "[❌] 初始化 CURL 失败" <<  termcolor::reset << '\n';
+        error_print("初始化 CURL 失败");
         return false;
     }
 
     FILE* fp = fopen(output_path.c_str(), "wb");
     if (!fp) {
-        std::cerr << termcolor::red << "[❌] 无法创建文件: " << output_path <<  termcolor::reset << '\n';
+        error_print(fmt::format("无法创建文件: {}",output_path));
         curl_easy_cleanup(curl);
         return false;
     }
@@ -82,10 +82,10 @@ bool download_file(std::string url, std::string output_path)
     fmt::print("\n");
     
     if (res != CURLE_OK) {
-        std::cerr << termcolor::red << "[❌] 下载失败: " << curl_easy_strerror(res) << termcolor::reset << '\n';
+        error_print(fmt::format("下载失败: {}",curl_easy_strerror(res)));
         return false;
     }
 
-    fmt::print(fmt::fg(fmt::color::green),"[✅] 下载完成!\n");
+    success_print("下载完成!");
     return true;
 }

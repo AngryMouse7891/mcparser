@@ -12,6 +12,7 @@
 #include "parser.h"
 #include "json2map.h"
 #include "termcolor/termcolor.hpp"
+#include "print_beautify.h"
 
 std::string get_releases();
 std::string islatest();
