@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.3.6)
+project(MCParser VERSION 1.3.7)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
