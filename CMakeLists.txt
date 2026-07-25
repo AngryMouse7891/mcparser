@@ -168,6 +168,8 @@ set (CPACK_NSIS_MUI_ICON
 set (CPACK_NSIS_MUI_UNIICON
      "data/installer_icon.ico")
 
+set (CPACK_CREATE_DESKTOP_LINKS mcparser)
+
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.3.1-6), libc6 (< 2.4)")
 
 include(CPack)
