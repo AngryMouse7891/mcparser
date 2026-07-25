@@ -126,7 +126,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
   install(CODE "
     include(BundleUtilities)
-    message(STATUS \"开始收集依赖DLL...\")
+    message(STATUS \"开始收集动态库...\")
     file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\")
     foreach(exe \${EXE_LIST})
       fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
