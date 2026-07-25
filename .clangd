@@ -5,3 +5,8 @@ CompileFlags:
     - -IC:/msys64/ucrt64/include/c++/15.2.0
     - -IC:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32
     - -Isrc/include
+    - -Ibuild
+    - -Iout/build/debug-win32
+    - -Iout/build/release-win32
+    - -Iout/build/debug-linux
+    - -Iout/build/release-linux
