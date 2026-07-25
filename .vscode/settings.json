@@ -1,5 +1,8 @@
 {
     "[rc-script]": {
         "files.encoding": "gb2312"
+    },
+    "files.associations": {
+        ".clangd": "yaml"
     }
 }
