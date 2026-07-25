@@ -110,8 +110,8 @@ int main(){
     }
     if (file_index>=files.size())
     {
-        warning_print(fmt::format("输入范围超过{}，已自动设为{}",files.size()-1,files.size()-1));
-        file_index=files.size()-1;
+        warning_print(fmt::format("输入范围超过{}，已自动设为0",files.size()-1));
+        file_index=0;
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径");
