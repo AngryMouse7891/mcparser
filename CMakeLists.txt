@@ -131,7 +131,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     foreach(exe \${EXE_LIST})
       fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
     endforeach()
-  " COMPONENT Runtime)
+  ")
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
   install(CODE "
@@ -141,7 +141,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     foreach(exe \${EXE_LIST})
       fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
     endforeach()
-  " COMPONENT Runtime)
+  ")
 endif()
 
 set(CPACK_PACKAGE_FILE_NAME 
