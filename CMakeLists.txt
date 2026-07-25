@@ -98,7 +98,7 @@ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "AngryMouse7891 <pystart@qq.com>")
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_GENERATOR "NSIS;ZIP")
 else()
-  set(CPACK_GENERATOR "TGZ")
+  set(CPACK_GENERATOR "TGZ;IFW")
 endif ()
 
 # 编译目标 mcparser 安装到系统 bin 目录
@@ -122,15 +122,27 @@ include(BundleUtilities)
 # 1. 设置安装目录根路径（CMAKE_INSTALL_PREFIX）
 set(BU_COPY_TO_INSTALL ON)
 
-# 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
-install(CODE "
-  include(BundleUtilities)
-  message(STATUS \"开始收集依赖DLL...\")
-  file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/*.exe\")
-  foreach(exe \${EXE_LIST})
-    fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
-  endforeach()
-" COMPONENT Runtime)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+  # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
+  install(CODE "
+    include(BundleUtilities)
+    message(STATUS \"开始收集依赖DLL...\")
+    file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\")
+    foreach(exe \${EXE_LIST})
+      fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
+    endforeach()
+  " COMPONENT Runtime)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
+  install(CODE "
+    include(BundleUtilities)
+    message(STATUS \"开始收集依赖DLL...\")
+    file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/*.exe\")
+    foreach(exe \${EXE_LIST})
+      fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
+    endforeach()
+  " COMPONENT Runtime)
+endif()
 
 set(CPACK_PACKAGE_FILE_NAME 
   "${CMAKE_PROJECT_NAME}_${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_PROCESSOR}_${BUILD_TIME}_${CPACK_PACKAGE_VERSION}"
