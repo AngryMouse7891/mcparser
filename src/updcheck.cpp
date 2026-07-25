@@ -60,11 +60,11 @@ void check(){
     fmt::print("[更新检测] 正在检查更新...\n");
     std::string res=islatest();
     if (res=="0") {
-        success_print(fmt::format("[✅] 已是最新版（{}）\n",VERSION_STRING));
+        success_print(fmt::format("已是最新版（{}）\n",VERSION_STRING));
     } else if (res=="-1") {
         error_print("更新检查失败");
     } else {
-        std::string prompt_str=fmt::format("[ℹ️] 发现新版本！{} -> {}请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\n",
+        std::string prompt_str=fmt::format("发现新版本！{} -> {}请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\n",
             VERSION_STRING,res);
         info_print(prompt_str);
     }
