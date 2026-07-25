@@ -14,6 +14,7 @@
 #include "termcolor/termcolor.hpp"
 #include "tabulate/color.hpp"
 #include "gradient.h"
+#include "print_beautify.h"
 
 using namespace std;
 using namespace tabulate;
@@ -28,6 +29,7 @@ ll outputCodePage = GetConsoleOutputCP();
 int main(){
     #if _WIN32
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
+        SetConsoleCP(CP_UTF8);
         enableAnsiColor();
     #endif
     ios::sync_with_stdio(false); cin.tie(nullptr);
@@ -37,15 +39,16 @@ int main(){
     string s=beautified_input("请输入要解析的项目ID");
     string resp=parse_modrinth(s);
     if(resp=="-1"){
-        fmt::print(fmt::fg(fmt::color::red),"[❌] 解析失败\n");
+        error_print("解析失败");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+            SetConsoleCP(outputCodePage);
         #endif
         fakepause();
         return 1;
     }
     vector<map<string,string>> files=json2vec(parse(resp));
-    fmt::print(fmt::fg(fmt::color::green),"[✅] 解析成功，共解析{}个文件\n",files.size());
+    success_print(fmt::format("[✅] 解析成功，共解析{}个文件\n",files.size()));
     string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1.empty()){
@@ -54,6 +57,11 @@ int main(){
         limit=files.size();
     }else{
         limit=stoll(show_limit1);
+    }
+    if (limit>files.size())
+    {
+        warning_print(fmt::format("输入范围超过{}，已自动设为{}",files.size(),files.size()));
+        limit=files.size();
     }
     Table filelist;
     filelist.format()
@@ -95,19 +103,24 @@ int main(){
     cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
-
     if (file_index_input.empty()){
         file_index=0;
     }else{
         file_index=stoll(file_index_input);
     }
+    if (file_index>=files.size())
+    {
+        warning_print(fmt::format("输入范围超过{}，已自动设为{}",files.size()-1,files.size()-1));
+        file_index=files.size()-1;
+    }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径");
-    fmt::print(fg(fmt::color::cyan),"正在下载{}...\n",selected_url);
+    info_print(fmt::format("正在下载{}...\n",selected_url));
     download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fmt::print("\n");
     #if _WIN32
         SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+        SetConsoleCP(outputCodePage);
     #endif
     fmt::print("\n");
     fakepause();
