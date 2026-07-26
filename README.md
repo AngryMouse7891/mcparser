@@ -52,7 +52,7 @@ Gitee Releases：<https://gitee.com/AngryMouse7891/mcparser/releases>
 
 百度网盘（提取码`bikb`）：<https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew>
 
-MineBBS：<https://www.minebbs.com/resources/mcparser.17434/>
+MineBBS：<https://www.minebbs.com/resources/mcparser.17435/>
 
 ## 支持的资源平台
 
