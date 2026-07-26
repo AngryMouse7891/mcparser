@@ -3,6 +3,7 @@
         "files.encoding": "gb2312"
     },
     "files.associations": {
-        ".clangd": "yaml"
+        ".clangd": "yaml",
+        "CHANGELOG": "markdown"
     }
 }
