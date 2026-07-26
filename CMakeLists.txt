@@ -125,9 +125,6 @@ install(DIRECTORY images/ DESTINATION share/MCParser/images)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/256x256@2x/mcparser.png DESTINATION share/icons/hicolor/256x256@2x/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
-install(FILES "data/installer_icon.ico"
-    DESTINATION "data"
-)
 
 include(BundleUtilities)
 # 1. 设置安装目录根路径（CMAKE_INSTALL_PREFIX）
