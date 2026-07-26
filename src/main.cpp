@@ -99,7 +99,7 @@ int main(){
         .font_color(Color::none);
     filelist[0][5].format()
         .font_color(Color::none);
-    fmt::print("文件列表（共{}个文件，已列出{}个）\n",files.size(),limit);
+    fmt::print("\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
     cout<<filelist<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
@@ -116,7 +116,7 @@ int main(){
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径",true);
     info_print(fmt::format("正在下载{}...\n",selected_url));
-    download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
+    bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fmt::print("\n");
     #if _WIN32
         SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
@@ -124,5 +124,12 @@ int main(){
     #endif
     fmt::print("\n");
     fakepause();
-    return 0;
+    if (result)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
