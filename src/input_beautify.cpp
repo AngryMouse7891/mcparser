@@ -4,10 +4,10 @@
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
 
-std::string beautified_input(std::string prompt,bool required=false){
+std::string beautified_input(std::string prompt,bool required){
     if (required)
     {
-        std::cout<<termcolor::red<<'*'<<termcolor::cyan<<prompt<<termcolor::white<<" ==> "<<termcolor::reset<<std::flush;
+        std::cout<<termcolor::red<<"* "<<termcolor::cyan<<prompt<<termcolor::white<<" ==> "<<termcolor::reset<<std::flush;
     }
     else
     {
