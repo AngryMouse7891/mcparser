@@ -28,7 +28,7 @@ std::string get_releases(){
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10000L);
         // 指定证书文件路径
-        curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir());
+        curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir().c_str());
 
         res = curl_easy_perform(curl);
 
