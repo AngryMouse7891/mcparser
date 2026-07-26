@@ -6,6 +6,7 @@
 #include "termcolor/termcolor.hpp"
 #include <fmt/format.h>
 #include "print_beautify.h"
+#include "certdir.h"
 
 typedef long long ll;
 
@@ -71,7 +72,7 @@ bool download_file(std::string url, std::string output_path)
     // 跟随重定向
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     // 指定证书文件路径
-    curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
+    curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir().c_str());
     
     // 执行下载
     CURLcode res = curl_easy_perform(curl);

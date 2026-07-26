@@ -98,8 +98,10 @@ set(CPACK_IFW_ARCHIVE_COMPRESSION "5")
 set(CPACK_IFW_PACKAGE_WIZARD_STYLE "Modern")
 
 # set the install/uninstall icon used for the installer itself
-set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
+set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/uninst_icon.ico")
 set (CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
+set (CPACK_PACKAGE_ICON
+     "${CMake_SOURCE_DIR}/data/install.bmp")
 
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_GENERATOR "NSIS;ZIP")
