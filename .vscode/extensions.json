@@ -1,10 +1,6 @@
 {
     "recommendations": [
-        "ms-vscode.cmake-tools",
-        "ms-vscode.cpptools-themes",
-        "ms-vscode.cpp-devtools",
-        "ms-vscode.cpptools",
-        "llvm-vs-code-extensions.vscode-clangd",
+        "ms-vscode.cpptools-extension-pack",
         "nico-castell.linux-desktop-file",
         "willasm.rc-script",
         "DavidAnson.vscode-markdownlint",
