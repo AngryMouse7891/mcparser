@@ -45,11 +45,12 @@ std::string get_releases(){
 
 std::string islatest(){
     std::string stat=get_releases();
+    std::string current_version=VERSION_STRING;
     if (stat=="-1") {
         return "-1"; //更新检测失败
     }
     Json::Value releases=parse(stat);
-    if (releases["tag_name"].asString()<=VERSION_STRING) {
+    if (releases["tag_name"].asString()<=current_version && releases["tag_name"].asString().size()==current_version.size()) {
         return "0";
     } else {
         return releases["tag_name"].asString();
