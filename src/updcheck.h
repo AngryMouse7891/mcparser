@@ -4,7 +4,6 @@
 #include <json/value.h>
 #include <curl/curl.h>
 #include <json/json.h>
-#include <fmt/color.h>
 #include <fmt/base.h>
 #include <iostream>
 #include <string>
@@ -13,6 +12,7 @@
 #include "json2map.h"
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
+#include "certdir.h"
 
 std::string get_releases();
 std::string islatest();

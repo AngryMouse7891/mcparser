@@ -4,6 +4,7 @@
 #include <string>
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
+#include "certdir.h"
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
@@ -29,7 +30,7 @@ std::string parse_modrinth(std::string project_id){
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10000L);
         // 指定证书文件路径
-        curl_easy_setopt(curl, CURLOPT_CAINFO, "cacert.pem");
+        curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir().c_str());
 
 
         res = curl_easy_perform(curl);

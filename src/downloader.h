@@ -9,6 +9,7 @@
 #include "termcolor/termcolor.hpp"
 #include <fmt/format.h>
 #include "print_beautify.h"
+#include "certdir.h"
 
 typedef long long ll;
 
