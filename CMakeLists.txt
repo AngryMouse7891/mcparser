@@ -96,7 +96,7 @@ set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "AngryMouse7891 <pystart@qq.com>")
 
 # set the install/uninstall icon used for the installer itself
-set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
+set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/uninst_icon.ico")
 set (CPACK_NSIS_MUI_UNIICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
 set (CPACK_PACKAGE_ICON
      "${CMake_SOURCE_DIR}/data/install.bmp")
