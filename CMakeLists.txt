@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.3.9)
+project(MCParser VERSION 1.3.10)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
@@ -94,6 +94,8 @@ set(CPACK_PACKAGE_VENDOR "AngryMouse7891")
 set(CPACK_PACKAGE_LICENSE "MIT")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "AngryMouse7891 <pystart@qq.com>")
+set(CPACK_IFW_ARCHIVE_COMPRESSION "5")
+set(CPACK_IFW_PACKAGE_WIZARD_STYLE "Modern")
 
 # set the install/uninstall icon used for the installer itself
 set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
