@@ -34,7 +34,7 @@ if ret.returncode:
     print('构建 大 失 败。')
     exit(1)
 
-ret = subprocess.run(["cmake", "--build", build_dir])
+ret = subprocess.run(["cmake", "--build", build_dir, "--", "-j", "4"])
 
 if ret.returncode:
     print('构建 大 失 败。')
