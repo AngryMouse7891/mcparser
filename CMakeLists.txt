@@ -94,8 +94,6 @@ set(CPACK_PACKAGE_VENDOR "AngryMouse7891")
 set(CPACK_PACKAGE_LICENSE "MIT")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.luogu.com.cn/user/1342923")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "AngryMouse7891 <pystart@qq.com>")
-set(CPACK_IFW_ARCHIVE_COMPRESSION "5")
-set(CPACK_IFW_PACKAGE_WIZARD_STYLE "Modern")
 
 # set the install/uninstall icon used for the installer itself
 set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
@@ -106,7 +104,7 @@ set (CPACK_PACKAGE_ICON
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_GENERATOR "NSIS;ZIP")
 else()
-  set(CPACK_GENERATOR "TGZ;IFW")
+  set(CPACK_GENERATOR "TGZ")
 endif ()
 
 # 编译目标 mcparser 安装到系统 bin 目录
