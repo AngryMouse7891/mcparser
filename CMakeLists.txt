@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser VERSION 1.3.11)
+project(MCParser 
+  VERSION 1.3.11
+  DESCRIPTION "一个一个一个一个一个一个一个一个一个一个一个一个一个解析Minecraft社区资源（如模组）的工具，部分由AI赋能。"
+  HOMEPAGE_URL "https://www.mcbbs.co/thread-5638-1-1.html"
+)
 
 set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(PROJECT_HOMEPAGE_URL "https://gitee.com/AngryMouse7891/mcparser/")
 
 message(STATUS "CMake版本: ${CMAKE_VERSION}")
 
