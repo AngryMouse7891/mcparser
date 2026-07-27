@@ -20,7 +20,6 @@ std::string beautified_input(std::string prompt,bool required){
         error_print("未输入必填项！");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-            SetConsoleCP(outputCodePage);
         #endif
         exit(1);
     }
