@@ -17,5 +17,6 @@
 #define TABULATE_VERSION_STRING "1.5.0"
 #define TERMCOLOR_VERSION_STRING "2.1.0"
 #define LUOGU_HOMEPAGE "https://www.luogu.com.cn/user/1342923"
+#define MCBBS_HOMEPAGE "https://www.mcbbs.co/space-uid-199297.html"
 
 #endif
