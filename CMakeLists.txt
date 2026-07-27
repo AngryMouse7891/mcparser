@@ -102,7 +102,7 @@ set(CPACK_RPM_PACKAGE_SUMMARY "A toolkit that can parse Minecraft community reso
 set(CPACK_RPM_PACKAGE_RELEASE 1)
 set(CPACK_RPM_PACKAGE_LICENSE "MIT")
 set(CPACK_RPM_PACKAGE_GROUP "games")
-set(CPACK_RPM_PACKAGE_REQUIRES "libjsoncpp27 >= 1.0.0, libfmt12, libcurl4 >= 8.0.0, libopenssl3")
+set(CPACK_RPM_PACKAGE_REQUIRES "libjsoncpp27 >= 1.0.0, libfmt12, libcurl4 >= 8.0.0, libopenssl3, ca-certificates")
 
 # set the install/uninstall icon used for the installer itself
 set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
