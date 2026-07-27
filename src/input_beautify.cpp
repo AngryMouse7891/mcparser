@@ -3,6 +3,10 @@
 #include "input_beautify.h"
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
+#ifdef _WIN32
+#include <windows.h>
+ll outputCodePage = GetConsoleOutputCP();
+#endif
 
 std::string beautified_input(std::string prompt,bool required){
     if (required)
