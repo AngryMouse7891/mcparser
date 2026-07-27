@@ -1,5 +1,5 @@
 #ifndef CERTDIR_H
-#define GCERTDIR_H
+#define CERTDIR_H
 
 #include<string>
 #include<sys/stat.h>
