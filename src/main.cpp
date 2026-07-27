@@ -29,7 +29,6 @@ ll outputCodePage = GetConsoleOutputCP();
 int main(){
     #if _WIN32
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
-        SetConsoleCP(CP_UTF8);
         enableAnsiColor();
     #endif
     ios::sync_with_stdio(false); cin.tie(nullptr);
@@ -42,7 +41,6 @@ int main(){
         error_print("解析失败");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-            SetConsoleCP(outputCodePage);
         #endif
         fakepause();
         return 1;
@@ -120,7 +118,6 @@ int main(){
     fmt::print("\n");
     #if _WIN32
         SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-        SetConsoleCP(outputCodePage);
     #endif
     fmt::print("\n");
     fakepause();
