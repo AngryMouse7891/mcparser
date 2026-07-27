@@ -6,7 +6,7 @@
 typedef long long ll;
 #ifdef _WIN32
 #include <windows.h>
-ll outputCodePage = GetConsoleOutputCP();
+ll outputCP = GetConsoleOutputCP();
 #endif
 
 std::string beautified_input(std::string prompt,bool required){
@@ -24,7 +24,7 @@ std::string beautified_input(std::string prompt,bool required){
     {
         error_print("未输入必填项！");
         #if _WIN32
-            SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+            SetConsoleOutputCP(outputCP); // 设置控制台输出为系统原编码
         #endif
         exit(1);
     }
