@@ -7,5 +7,5 @@ Exec=/usr/bin/mcparser %F
 Icon=mcparser
 Terminal=true
 Categories=Utility;
-Comment=A toolkit can parse Minecraft community resources (such as mods)
+Comment=A toolkit that can parse Minecraft community resources (such as mods)
 Comment[zh_CN]=一个一个一个一个一个一个一个一个一个一个一个一个一个解析《我的世界》社区资源（如模组）的工具。
