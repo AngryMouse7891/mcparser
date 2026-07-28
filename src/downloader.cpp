@@ -22,14 +22,14 @@ int progress_callback(void* clientp,
         double progress = (double)dlnow / (double)dltotal * 100.0;
         int barWidth = 50;
         
-        std::cout << "\r |" << termcolor::bold;
+        std::cout << "\r ";
         ll pos = barWidth * dlnow / dltotal;
         for (ll i = 0; i < barWidth; ++i) {
-            if (i < pos) std::cout << termcolor::yellow << "#";
-            else if (i == pos) std::cout << "#";
-            else std::cout << termcolor::white << "-";
+            if (i < pos) std::cout << termcolor::yellow << "█";
+            else if (i == pos) std::cout << termcolor::yellow << "█";
+            else std::cout << termcolor::grey << "█";
         }
-        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << "| " << termcolor::green << progress << "%" << termcolor::cyan << " (" 
+        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << " " << termcolor::green << progress << "%" << termcolor::cyan << " (" 
                   << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         " << termcolor::reset;
         std::cout.flush();
     }
