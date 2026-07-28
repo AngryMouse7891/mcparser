@@ -4,12 +4,14 @@
 #include <fmt/base.h>
 #include <iostream>
 #include <string>
+#include <vector>
 #include "version.h"
 #include "parser.h"
 #include "json2map.h"
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
 #include "certdir.h"
+#include "spilt.h"
 
 std::string get_releases(){
     CURL* curl;
@@ -50,11 +52,18 @@ std::string islatest(){
         return "-1"; //更新检测失败
     }
     Json::Value releases=parse(stat);
-    if (releases["tag_name"].asString()<=current_version && releases["tag_name"].asString().size()==current_version.size()) {
-        return "0";
-    } else {
-        return releases["tag_name"].asString();
+    std::string latest=releases["tag_name"].asString();
+    std::vector latest_spilt=spiltstr(latest,'.');
+    std::vector cur_spilt=spiltstr(current_version,'.');
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        if (cur_spilt[i]<latest_spilt[i])
+        {
+            return latest;
+        }
     }
+    return "0";
 }
 
 void check(){
