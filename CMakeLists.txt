@@ -74,7 +74,6 @@ target_link_libraries(
   ${JSONCPP_LIBRARIES} 
   ${CURL_LIBRARIES} 
   ${FMT_LIBRARIES} 
-  ${CMAKE_BINARY_DIR} 
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
