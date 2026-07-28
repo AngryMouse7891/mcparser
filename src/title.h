@@ -15,10 +15,6 @@
 
 using namespace std;
 
-string title_str_base;
-
-string title_str;
-
 void set_title();
 
 void print_title();
