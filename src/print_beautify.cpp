@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include "termcolor/termcolor.hpp"
+#include "print_beautify.h"
 
 void info_print(std::string msg){
     fmt::print("\033[36m[ℹ️] {}\033[0m\n",msg);

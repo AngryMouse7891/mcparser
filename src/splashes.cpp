@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include "splashes.h"
 
 using namespace std;
 

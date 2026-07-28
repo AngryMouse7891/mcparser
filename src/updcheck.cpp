@@ -12,6 +12,7 @@
 #include "print_beautify.h"
 #include "certdir.h"
 #include "spilt.h"
+#include "updcheck.h"
 
 std::string get_releases(){
     CURL* curl;

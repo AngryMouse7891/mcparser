@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "json2map.h"
 
 Json::Value parse(std::string src){
     // 新版推荐解析器

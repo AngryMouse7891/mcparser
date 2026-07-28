@@ -1,5 +1,6 @@
 #include<string>
 #include <sys/stat.h>
+#include "certdir.h"
 
 int file_exists(const char *filename) {
     struct stat buffer;

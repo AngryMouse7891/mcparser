@@ -5,6 +5,7 @@
 #include "version.h"
 #include "gradient.h"
 #include "splashes.h"
+#include "title.h"
 #if _WIN32
 #include <windows.h>
 #endif

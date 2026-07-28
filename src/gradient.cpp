@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdint>
 #include <cmath>
+#include "gradient.h"
 
 typedef long long ll;
 

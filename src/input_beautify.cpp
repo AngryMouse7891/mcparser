@@ -3,6 +3,7 @@
 #include "input_beautify.h"
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
+#include "input_beautify.h"
 typedef long long ll;
 #ifdef _WIN32
 #include <windows.h>
