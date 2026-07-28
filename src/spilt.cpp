@@ -1,15 +1,27 @@
-#ifndef SPILT_H
-#define SPILT_H
-
 #include <sstream>
 #include <vector>
 #include <string>
-#include "spilt.h"
 
 using namespace std;
 
-vector<string> spiltstr(string src,char c);
+vector<string> spiltstr(string src,char c){
+    stringstream ss(src.c_str()); // 将字符数组转换为字符串流
+    vector<string> result;
+    string token;
 
-vector<int> to_number(vector<string> src);
+    // 使用 getline 按逗号分割
+    while (getline(ss, token, c)) {
+        result.push_back(token);
+    }
 
-#endif
+    return result;
+}
+
+vector<int> to_number(vector<string> src){
+    vector<int> res;
+    for (size_t i = 0; i < src.size(); i++)
+    {
+        res.push_back(stoi(src[i]));
+    }
+    return res;
+}
