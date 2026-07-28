@@ -8,6 +8,8 @@
 
 using namespace std;
 
+extern vector<string> splashes;
+
 int randint(int mininum,int maxinum);
 
 string rand_splash();
