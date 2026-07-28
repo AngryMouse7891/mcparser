@@ -84,6 +84,10 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
   )
 endif()
 
+target_compile_options(mcparser PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/utf-8>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-finput-charset=UTF-8 -fexec-charset=UTF-8>
+)  
 
 file(COPY "${CMAKE_SOURCE_DIR}/src/cacert.pem"
      DESTINATION ${CMAKE_BINARY_DIR}/)
