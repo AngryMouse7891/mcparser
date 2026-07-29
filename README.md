@@ -8,7 +8,12 @@
    " alt="License">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Freleases%2Flatest&query=%24.tag_name&style=for-the-badge&label=version&color=orange
    " alt="Version">
-   <img src="https://img.shields.io/badge/Language-C++-70F3FF?style=for-the-badge&logo=cplusplus" alt="Language">
+   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B0%5D.percent&suffix=%25&style=for-the-badge&logo=C%2B%2B&label=C%2B%2B&color=f34b7d
+   " alt="C++">
+   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B1%5D.percent&suffix=%25&style=for-the-badge&logo=Python&label=Python&color=3572A5
+   " alt="Python">
+   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B2%5D.percent&suffix=%25&style=for-the-badge&logo=CMake&label=CMake&color=DA3434
+   " alt="CMake">
 </div>
 
 ---
@@ -22,7 +27,7 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 * ✅ 支持彩色输出
 * ✅ 跨平台
 
-## 截图（部分从WSL Archlinux GNOME控制台截取）
+## 截图
 
 启动屏幕
 
@@ -53,6 +58,8 @@ Gitee Releases：<https://gitee.com/AngryMouse7891/mcparser/releases>
 百度网盘（提取码`bikb`）：<https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew>
 
 MineBBS：<https://www.minebbs.com/resources/mcparser.17435/>
+
+MCBBS纪念版：<https://www.mcbbs.co/thread-5638-1-1.html>
 
 ## 支持的资源平台
 
