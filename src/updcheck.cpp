@@ -59,7 +59,7 @@ std::string islatest(){
 
     for (size_t i = 0; i < 3; i++)
     {
-        if (cur_spilt[i]<latest_spilt[i])
+        if (stoi(cur_spilt[i])<stoi(latest_spilt[i]))
         {
             return latest;
         }
