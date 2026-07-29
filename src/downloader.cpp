@@ -1,6 +1,7 @@
 #include <ios>
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
@@ -11,6 +12,32 @@
 
 typedef long long ll;
 
+// 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
+std::string formatSize(double bytes) {
+    const char* suffixes[] = {"B", "KiB", "MiB", "GiB", "TiB"};
+    int suffixIndex = 0;
+    while (bytes >= 1024 && suffixIndex < 4) {
+        bytes /= 1024;
+        suffixIndex++;
+    }
+    
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "%.2f %s", bytes, suffixes[suffixIndex]);
+    return std::string(buffer);
+}
+
+// 辅助函数：将秒数转换为 HH:MM:SS 格式
+std::string formatTime(double seconds) {
+    if (seconds < 0) return "--'--\"";
+    
+    int mins = ((int)seconds % 3600) / 60;
+    int secs = (int)seconds % 60;
+    
+    char buffer[16];
+    snprintf(buffer, sizeof(buffer), "%02d'%02d\"", mins, secs);
+    return std::string(buffer);
+}
+
 // 进度回调函数
 int progress_callback(void* clientp, 
                       curl_off_t dltotal, 
@@ -18,19 +45,31 @@ int progress_callback(void* clientp,
                       curl_off_t ultotal, 
                       curl_off_t ulnow)
 {
+    CURL* curl = (CURL*)clientp;
+    
     if (dltotal > 0) {
         double progress = (double)dlnow / (double)dltotal * 100.0;
         int barWidth = 50;
-        
-        std::cout << "\r ";
+
+        // 获取平均下载速度
+        double speed = 0.0;
+        curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD, &speed);
+
+        // 计算剩余时间
+        double time_remaining = 0.0;
+        if (speed > 0) {
+            time_remaining = (dltotal - dlnow) / speed;
+        }
+        std::cout << "\r";
         ll pos = barWidth * dlnow / dltotal;
+        std::cout<<termcolor::green << ll(progress) << "% ";
         for (ll i = 0; i < barWidth; ++i) {
-            if (i < pos) std::cout << termcolor::yellow << "█";
-            else if (i == pos) std::cout << termcolor::yellow << "█";
+            if (i <= pos) std::cout << termcolor::blue << "█";
             else std::cout << termcolor::grey << "█";
         }
-        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << " " << termcolor::green << progress << "%" << termcolor::cyan << " (" 
-                  << 1.0*dlnow/1024 << "/" << 1.0*dltotal/1024 << " KB)         " << termcolor::reset;
+        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << " " << termcolor::cyan << " (" 
+                  << formatSize(dlnow) << "/" << formatSize(dltotal) << ") " << termcolor::magenta << formatSize(speed) << "/s " 
+                  << termcolor::yellow << formatTime(time_remaining) << "     " << termcolor::reset;
         std::cout.flush();
     }
     return 0;
@@ -70,6 +109,8 @@ bool download_file(std::string url, std::string output_path)
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
     curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, progress_callback);
     
+    curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, curl);
+
     // 跟随重定向
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     // 指定证书文件路径

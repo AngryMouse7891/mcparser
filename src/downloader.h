@@ -4,6 +4,7 @@
 #include <ios>
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
@@ -12,6 +13,12 @@
 #include "certdir.h"
 
 typedef long long ll;
+
+// 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
+std::string formatSize(double bytes);
+
+// 辅助函数：将秒数转换为 HH:MM:SS 格式
+std::string formatTime(double seconds);
 
 // 进度回调函数
 int progress_callback(void* clientp, 
