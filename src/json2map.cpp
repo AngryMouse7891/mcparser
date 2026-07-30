@@ -1,8 +1,4 @@
 #include <json/json.h>
-#if _WIN32
-#include <winsock2.h>
-#include <windows.h> 
-#endif
 #include <sstream>
 #include <vector>
 #include <map>

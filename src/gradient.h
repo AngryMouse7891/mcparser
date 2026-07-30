@@ -10,7 +10,9 @@ typedef long long ll;
 
 // 设置终端启用ANSI颜色（仅Windows需要）
 #ifdef _WIN32
+#include <winsock2.h>
 #include <windows.h>
+#include <wincon.h> // 强制加载控制台 API
 void enableAnsiColor();
 #endif
 
