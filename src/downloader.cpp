@@ -13,16 +13,16 @@
 typedef long long ll;
 
 // 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
-std::string formatSize(double bytes) {
+std::string formatSize(double src_bytes) {
     const char* suffixes[] = {"B", "KiB", "MiB", "GiB", "TiB"};
     int suffixIndex = 0;
-    while (bytes >= 1024 && suffixIndex < 4) {
-        bytes /= 1024;
+    while (src_bytes >= 1024 && suffixIndex < 4) {
+        src_bytes /= 1024;
         suffixIndex++;
     }
     
     char buffer[32];
-    snprintf(buffer, sizeof(buffer), "%.2f %s", bytes, suffixes[suffixIndex]);
+    snprintf(buffer, sizeof(buffer), "%.2f %s", src_bytes, suffixes[suffixIndex]);
     return std::string(buffer);
 }
 

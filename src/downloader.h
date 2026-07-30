@@ -15,7 +15,7 @@
 typedef long long ll;
 
 // 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
-std::string formatSize(double bytes);
+std::string formatSize(double src_bytes);
 
 // 辅助函数：将秒数转换为 HH:MM:SS 格式
 std::string formatTime(double seconds);
