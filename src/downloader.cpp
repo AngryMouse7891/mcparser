@@ -70,9 +70,9 @@ int progress_callback(void* clientp,
             else std::cout<<"\033[30m█";
         }
 
-        std::cout << std::fixed << std::setprecision(2) << " \033[36m (" 
-                  << formatSize(dlnow) << "/" << formatSize(dltotal) << ") \033[35m" << formatSize(speed) 
-                  << "/s \033[33m" << formatTime(time_remaining) << "     \033[00m";
+        std::cout << " \033[36m (" << formatSize(dlnow) << "/" << formatSize(dltotal) 
+                  << ")\033[35m" << formatSize(speed) << "/s \033[33m" 
+                  << formatTime(time_remaining) << "     \033[00m";
         std::cout.flush();
     }
     return 0;
