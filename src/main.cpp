@@ -15,6 +15,9 @@
 #include "tabulate/color.hpp"
 #include "gradient.h"
 #include "print_beautify.h"
+// 1. 必须放在最前面的宏定义
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
 
 using namespace std;
 using namespace tabulate;
@@ -22,7 +25,10 @@ using namespace tabulate;
 typedef long long ll;
 
 #ifdef _WIN32
+// 2. 必须先包含 winsock (因为你的项目用到了 curl)
+#include <winsock2.h>
 #include <windows.h>
+#include <wincon.h> // 强制加载控制台 API
 ll outputCodePage = GetConsoleOutputCP();
 #endif
 

@@ -1,14 +1,7 @@
 #ifndef DOWNLOADER_H
 #define DOWNLOADER_H
 
-#define WIN32_LEAN_AND_MEAN // 排除极少使用的 Windows 服务，加快编译，减少冲突
-#define NOMINMAX            // 防止 Windows 宏污染 min/max 函数
 #include <ios>
-#if _WIN32
-#include <winsock2.h>
-#include <windows.h> 
-#include <wincon.h> // 强制加载控制台 API
-#endif
 #include <iostream>
 #include <iomanip>
 #include <string>
