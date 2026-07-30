@@ -39,7 +39,6 @@ void print_title(){
     printGradientRGB(fmt::format("GitHash            {}",GIT_HASH),144,202,249,244,133,177);
     printGradientRGB(fmt::format("GitBranch          {}",GIT_BRANCH),144,202,249,244,133,177);
     printGradientRGB(fmt::format("Homepage           {}",PROJECT_HOMEPAGE_URL),144,202,249,244,133,177);
-    printGradientRGB(fmt::format("LuoguHomepage      {}",LUOGU_HOMEPAGE),144,202,249,244,133,177);
     printGradientRGB(fmt::format("MCBBSHomepage      {}",MCBBS_HOMEPAGE),144,202,249,244,133,177);
     fmt::print("\n");
     printGradientRGB(fmt::format("JsonCpp            {}",JSONCPP_VERSION_STRING),255,235,59,176,164,227);
