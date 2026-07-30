@@ -64,10 +64,10 @@ int progress_callback(void* clientp,
         std::cout << "\r";
         ll pos = barWidth * dlnow / dltotal;
         
-        cout<<"\033[32m"<<ll(progress)<<"% ";
+        std::cout<<"\033[32m"<<ll(progress)<<"% ";
         for (ll i = 0; i < barWidth; ++i) {
-            if (i <= pos) cout<<"\033[36m█";
-            else cout<<"\033[30m█";
+            if (i <= pos) std::cout<<"\033[36m█";
+            else std::cout<<"\033[30m█";
         }
 
         std::cout << std::fixed << std::setprecision(2) << " \033[36m (" 
