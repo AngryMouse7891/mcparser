@@ -30,7 +30,7 @@ void set_title(){
 }
 
 void print_title(){
-    fmt::print("\033[93m                                                                    {}\033[0m\n",rand_splash());
+    fmt::print("\033[93m                                                 {}\033[0m\n",rand_splash());
     printGradientRGB(title_str,34,139,34,139,69,19);
     printGradientRGB(fmt::format("By {}",AUTHOR),255,76,0,75,92,196);
     fmt::print("\n");
