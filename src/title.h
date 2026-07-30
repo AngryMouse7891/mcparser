@@ -8,6 +8,7 @@
 #include "version.h"
 #include "gradient.h"
 #include "splashes.h"
+#include "get_repo_data.h"
 #if _WIN32
 #include <windows.h>
 #endif

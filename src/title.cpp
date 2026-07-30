@@ -6,6 +6,7 @@
 #include "gradient.h"
 #include "splashes.h"
 #include "title.h"
+#include "get_repo_data.h"
 #if _WIN32
 #include <windows.h>
 #endif
@@ -19,8 +20,7 @@ string title_str=R"( ****     ****   ******  *******
 /**  //*   /**/**       /**////    *******  /** / //***** /******* /** / 
 /**   /    /**//**    **/**       **////**  /**    /////**/**////  /**   
 /**        /** //****** /**      //********/***    ****** //******/***   
-//         //   //////  //        //////// ///    //////   ////// ///    
-)";
+//         //   //////  //        //////// ///    //////   ////// ///    )";
 
 void set_title(){
     string console_title=fmt::format("title MCParser v{} (Git hash {}) - {}",VERSION_STRING,GIT_HASH,AUTHOR);
@@ -32,6 +32,7 @@ void set_title(){
 void print_title(){
     fmt::print("\033[93m                                                 {}\033[0m\n",rand_splash());
     printGradientRGB(title_str,34,139,34,139,69,19);
+    print_data();
     printGradientRGB(fmt::format("By {}",AUTHOR),255,76,0,75,92,196);
     fmt::print("\n");
     printGradientRGB(fmt::format("Version            {}",VERSION_STRING),144,202,249,244,133,177);
