@@ -5,9 +5,11 @@
 #include <cstdio>
 #include <curl/curl.h>
 #include "termcolor/termcolor.hpp"
+#include <fmt/base.h>
 #include <fmt/format.h>
 #include "print_beautify.h"
 #include "certdir.h"
+#include "convert.h"
 #include "downloader.h"
 
 typedef long long ll;
@@ -62,14 +64,16 @@ int progress_callback(void* clientp,
         }
         std::cout << "\r";
         ll pos = barWidth * dlnow / dltotal;
-        std::cout<<termcolor::green << ll(progress) << "% ";
+        
+        cout<<"\033[32m"<<ll(progress)<<"% ";
         for (ll i = 0; i < barWidth; ++i) {
-            if (i <= pos) std::cout << termcolor::blue << "█";
-            else std::cout << termcolor::grey << "█";
+            if (i <= pos) cout<<"\033[36m█";
+            else cout<<"\033[30m█";
         }
-        std::cout << termcolor::reset << std::fixed << std::setprecision(2) << " " << termcolor::cyan << " (" 
-                  << formatSize(dlnow) << "/" << formatSize(dltotal) << ") " << termcolor::magenta << formatSize(speed) << "/s " 
-                  << termcolor::yellow << formatTime(time_remaining) << "     " << termcolor::reset;
+
+        std::cout << std::fixed << std::setprecision(2) << " \033[36m (" 
+                  << formatSize(dlnow) << "/" << formatSize(dltotal) << ") \033[35m" << formatSize(speed) 
+                  << "/s \033[33m" << formatTime(time_remaining) << "     \033[00m";
         std::cout.flush();
     }
     return 0;
