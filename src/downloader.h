@@ -2,6 +2,10 @@
 #define DOWNLOADER_H
 
 #include <ios>
+#if _WIN32
+#include <windows.h> 
+#include <winsock2.h>
+#endif
 #include <iostream>
 #include <iomanip>
 #include <string>
