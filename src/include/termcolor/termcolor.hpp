@@ -14,12 +14,22 @@
 
 #include <iostream>
 
-// Detect target's platform and set some macros in order to wrap platform
-// specific code this library depends on.
+// the following snippet of code detects the current OS and
+// defines the appropriate macro that is used to wrap some
+// platform specific things
+// 如果已定义强制使用 ANSI，则定义为类 Unix 以使用 ANSI 转义序列
 #if defined(_WIN32) || defined(_WIN64)
-#   define TERMCOLOR_TARGET_WINDOWS
-#elif defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-#   define TERMCOLOR_TARGET_POSIX
+#   if defined(FORCE_ANSI_COLORS)
+#       define TERMCOLOR_OS_MACOS  // 复用 macOS 分支（使用 ANSI）
+#   else
+#       define TERMCOLOR_OS_WINDOWS
+#   endif
+#elif defined(__APPLE__)
+#define TERMCOLOR_OS_MACOS
+#elif defined(__unix__) || defined(__unix)
+#define TERMCOLOR_OS_LINUX
+#else
+#error unsupported platform
 #endif
 
 // If implementation has not been explicitly set, try to choose one based on
