@@ -15,7 +15,8 @@ vector<string> splashes={
     "作者mcbbs纪念版已经lv3了",
     "秦始皇骑北极熊，北极熊骑秦始皇",
     "提个issue吧求求了",
-    "100% Writen with using C++!"
+    "100% Writen with using C++!",
+    "无 敌 神 镐"
 };
 
 int randint(int mininum,int maxinum){
