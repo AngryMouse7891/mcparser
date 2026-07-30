@@ -365,7 +365,11 @@ inline FILE *get_standard_stream(const std::ostream &stream) {
 // true for ATTY streams and may be true for streams marked with
 // colorize flag.
 inline bool is_colorized(std::ostream &stream) {
-  return is_atty(stream) || static_cast<bool>(stream.iword(colorize_index));
+#if defined(TERMCOLOR_OS_MACOS) || defined(TERMCOLOR_OS_LINUX)
+    return true;  // ANSI 模式下始终启用颜色
+#else
+    return is_atty(stream) || static_cast<bool>(stream.iword(colorize_index));
+#endif
 }
 
 //! Test whether a given `std::ostream` object refers to
