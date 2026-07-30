@@ -82,6 +82,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     $<$<CXX_COMPILER_ID:MSVC>:/O2>
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-O2>
   )
+else()
+  target_compile_options(mcparser PRIVATE
+    $<$<CXX_COMPILER_ID:MSVC>:/DEBUG>
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-g>
+  )
 endif()
 
 #target_compile_options(mcparser PRIVATE
