@@ -3,6 +3,8 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "convert.h"
+#include "downloader.h"
 #include "json2map.h"
 
 Json::Value parse(std::string src){
@@ -33,7 +35,9 @@ std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
                 {"release_time",src[i]["date_published"].asString()},
                 {"down",src[i]["downloads"].asString()},
                 {"filename",src[i]["files"][0]["filename"].asString()},
-                {"url",src[i]["files"][0]["url"].asString()}
+                {"url",src[i]["files"][0]["url"].asString()},
+                {"size",formatSize(src[i]["files"][0]["size"].asDouble())},
+                {"mc_versions",jsonarray2str(src[i]["game_versions"])}
             }
         );
     }

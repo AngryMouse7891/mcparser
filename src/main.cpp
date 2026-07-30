@@ -69,9 +69,20 @@ int main(){
         .border_left("|")
         .border_right("|")
         .corner("+");
-    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名"});
+    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名","大小","支持的Minecraft版本"});
     for (ll i=0; i<limit; i++) {
-        filelist.add_row({files[i]["index"],files[i]["version_id"],files[i]["version_name"],files[i]["release_time"],files[i]["down"],files[i]["filename"]});
+        filelist.add_row(
+            {
+                files[i]["index"],
+                files[i]["version_id"],
+                files[i]["version_name"],
+                files[i]["release_time"],
+                files[i]["down"],
+                files[i]["filename"],
+                files[i]["size"],
+                files[i]["mc_versions"]
+            }
+        );
     } 
     filelist.column(0).format()
         .font_color(Color::cyan);
@@ -85,6 +96,8 @@ int main(){
         .font_color(Color::yellow);
     filelist.column(5).format()
         .font_color(Color::red);
+    filelist.column(6).format()
+        .font_color(Color::cyan);
     filelist[0][0].format()
         .font_color(Color::none);
     filelist[0][1].format()
@@ -96,6 +109,8 @@ int main(){
     filelist[0][4].format()
         .font_color(Color::none);
     filelist[0][5].format()
+        .font_color(Color::none);
+    filelist[0][6].format()
         .font_color(Color::none);
     fmt::print("\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
     cout<<filelist<<'\n';
