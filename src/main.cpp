@@ -1,3 +1,11 @@
+// 1. 必须放在最前面的宏定义
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+
+// 2. 强制 Windows 使用 ANSI 转义序列（Windows 10+ 已启用虚拟终端）
+#define FORCE_ANSI_COLORS
+#define TERMCOLOR_USE_ANSI_ESCAPE_SEQUENCES
+
 #include <fmt/base.h>
 #include <iostream>
 #include <vector>
@@ -15,9 +23,6 @@
 #include "tabulate/color.hpp"
 #include "gradient.h"
 #include "print_beautify.h"
-// 1. 必须放在最前面的宏定义
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
 
 using namespace std;
 using namespace tabulate;

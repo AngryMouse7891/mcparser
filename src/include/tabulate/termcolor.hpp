@@ -15,8 +15,13 @@
 // the following snippet of code detects the current OS and
 // defines the appropriate macro that is used to wrap some
 // platform specific things
+// 如果已定义强制使用 ANSI，则定义为类 Unix 以使用 ANSI 转义序列
 #if defined(_WIN32) || defined(_WIN64)
-#define TERMCOLOR_OS_WINDOWS
+#   if defined(FORCE_ANSI_COLORS)
+#       define TERMCOLOR_OS_MACOS  // 复用 macOS 分支（使用 ANSI）
+#   else
+#       define TERMCOLOR_OS_WINDOWS
+#   endif
 #elif defined(__APPLE__)
 #define TERMCOLOR_OS_MACOS
 #elif defined(__unix__) || defined(__unix)
