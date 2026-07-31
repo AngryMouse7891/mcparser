@@ -10,6 +10,7 @@
 #include <string>
 #include "convert.h"
 #include "downloader.h"
+#include "format_number.h"
 #include "json2map.h"
 
 Json::Value parse(std::string src){
@@ -38,7 +39,7 @@ std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
                 {"version_id",src[i]["id"].asString()},
                 {"version_name",src[i]["name"].asString()},
                 {"release_time",src[i]["date_published"].asString()},
-                {"down",src[i]["downloads"].asString()},
+                {"down",formatNum(src[i]["downloads"].asInt())},
                 {"filename",src[i]["files"][0]["filename"].asString()},
                 {"url",src[i]["files"][0]["url"].asString()},
                 {"size",formatSize(src[i]["files"][0]["size"].asDouble())},
