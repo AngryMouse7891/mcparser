@@ -49,14 +49,24 @@ int main(){
     string s=beautified_input("请输入要解析的项目ID",true);
     string resp=parse_modrinth(s);
     if(resp=="-1"){
-        error_print("解析失败");
+        error_print("解析失败！");
+        #if _WIN32
+            SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
+        #endif
+        fakepause();
+        return -1;
+    }
+    vector<map<string,string>> files=json2vec(parse(resp));
+    if (files.size()==0)
+    {
+        warning_print("解析结果为空，请检查输入是否正确");
+        error_print("解析失败！");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
         #endif
         fakepause();
         return 1;
     }
-    vector<map<string,string>> files=json2vec(parse(resp));
     success_print(fmt::format("解析成功，共解析{}个文件\n",files.size()));
     string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;
@@ -139,13 +149,12 @@ int main(){
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径",true);
-    info_print(fmt::format("正在下载{}...\n",selected_url));
+    info_print(fmt::format("正在下载{}...",selected_url));
     bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fmt::print("\n");
     #if _WIN32
         SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
     #endif
-    fmt::print("\n");
     fakepause();
     if (result)
     {
