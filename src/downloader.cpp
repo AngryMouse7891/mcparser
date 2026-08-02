@@ -64,13 +64,13 @@ int progress_callback(void* clientp,
         std::cout << "\r";
         ll pos = barWidth * dlnow / dltotal;
         
-        std::cout<<"\033[32m"<<ll(progress)<<"% ";
+        std::cout<<std::right<<std::setw(3)<<"\033[32m"<<ll(progress)<<"% ";
         for (ll i = 0; i < barWidth; ++i) {
             if (i <= pos) std::cout<<"\033[36m█";
             else std::cout<<"\033[30m█";
         }
 
-        std::cout << " \033[36m (" << formatSize(dlnow) << "/" << formatSize(dltotal) 
+        std::cout << " \033[36m(" << formatSize(dlnow) << "/" << formatSize(dltotal) 
                   << ")\033[35m " << formatSize(speed) << "/s \033[33m" 
                   << formatTime(time_remaining) << "     \033[00m";
         std::cout.flush();

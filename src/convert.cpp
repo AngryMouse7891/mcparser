@@ -28,7 +28,7 @@ string jsonarray2str(Json::Value src){
 
     // 获取最终字符串
     string res = ss.str();
-    res.pop_back();
+    res.pop_back(); res.pop_back();
     return res;
 }
 
