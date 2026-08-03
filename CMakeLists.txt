@@ -185,7 +185,7 @@ set (CPACK_PACKAGE_EXECUTABLES "bin\\mcparser" "MCParser" )
 set(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 # 桌面快捷方式
-set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut '$DESKTOP\\MCParser.lnk' '$INSTDIR\\bin\\mcparser.exe'")
+set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut '$DESKTOP/MCParser.lnk' '$INSTDIR/bin/mcparser.exe'")
 # 开始菜单名称
 set(CPACK_NSIS_PACKAGE_NAME "MCParser")
 
