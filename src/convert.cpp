@@ -13,15 +13,15 @@ string jsonarray2str(Json::Value src){
     for (const auto& item : src) {
         // 将每个元素转换为字符串并添加到结果中
         if (item.isString()) {
-            ss << item.asString() << ",";
+            ss << item.asString() << ", ";
         } else if (item.isInt()) {
-            ss << item.asInt() << ",";
+            ss << item.asInt() << ", ";
         } else if (item.isBool()) {
-            ss << (item.asBool() ? "true" : "false") << ",";
+            ss << (item.asBool() ? "true" : "false") << ", ";
         } else if (item.isDouble()) {
-            ss << item.asDouble() << ",";
+            ss << item.asDouble() << ", ";
         } else if (item.isNull()) {
-            ss << "null,";
+            ss << "null, ";
         }
         // 其他类型可以根据需要添加
     }
