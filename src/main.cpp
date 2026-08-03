@@ -23,6 +23,9 @@
 #include "tabulate/color.hpp"
 #include "gradient.h"
 #include "print_beautify.h"
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 using namespace std;
 using namespace tabulate;
@@ -37,12 +40,50 @@ typedef long long ll;
 ll outputCodePage = GetConsoleOutputCP();
 #endif
 
+// 切换工作目录到程序自身所在文件夹
+bool chdir_to_exe_dir()
+{
+    fs::path exe_path; // 定义在函数最外层，整个函数都能访问
+
+#ifdef _WIN32
+    // Windows 获取 exe 完整路径
+    wchar_t buf[1024] = { 0 };
+    GetModuleFileNameW(NULL, buf, 1024);
+    exe_path = buf;
+#else
+    // Linux / macOS 获取程序路径
+    char buf[PATH_MAX] = { 0 };
+    ssize_t len = readlink("/proc/self/exe", buf, sizeof(buf) - 1);
+    if (len <= 0)
+    {
+        return false;
+    }
+    buf[len] = '\0';
+    exe_path = std::string(buf);
+#endif
+
+    // 提取所在文件夹
+    fs::path exe_dir = exe_path.parent_path();
+
+    try
+    {
+        fs::current_path(exe_dir); // 切换工作目录
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        return false;
+    }
+}
+
+
 int main(){
     #if _WIN32
         SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
         enableAnsiColor();
     #endif
     ios::sync_with_stdio(false); cin.tie(nullptr);
+    chdir_to_exe_dir();
     set_title();
     print_title();
     check();
