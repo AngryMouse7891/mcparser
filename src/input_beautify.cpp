@@ -12,11 +12,11 @@ ll outputCP = GetConsoleOutputCP();
 std::string beautified_input(std::string prompt,bool required){
     if (required)
     {
-        std::cout<<termcolor::red<<" * "<<termcolor::cyan<<prompt<<termcolor::white<<" ==> "<<termcolor::reset<<std::flush;
+        std::cout<<"\033[31m * \033[36m"<<prompt<<"\033[37m ==> \033[00m"<<termcolor::reset<<std::flush;
     }
     else
     {
-        std::cout<<termcolor::cyan<<prompt<<termcolor::white<<" ==> "<<termcolor::reset<<std::flush;
+        std::cout<<"\033[36m"<<prompt<<"\033[37m ==> \033[00m"<<termcolor::reset<<std::flush;
     }
     std::string result;
     std::cin>>result;
