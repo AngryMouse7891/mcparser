@@ -131,7 +131,7 @@ int main(){
         .border_left("|")
         .border_right("|")
         .corner("+");
-    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名","大小","支持的Minecraft版本"});
+    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名","大小","Minecraft版本"});
     for (ll i=0; i<limit; i++) {
         filelist.add_row(
             {
