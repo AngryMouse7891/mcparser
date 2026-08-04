@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MCParser 
+project(MCParser
   VERSION 1.4.1
   DESCRIPTION "一个一个一个一个一个一个一个一个一个一个一个一个一个解析Minecraft社区资源（如模组）的工具，部分由AI赋能。"
   HOMEPAGE_URL "https://www.mcbbs.co/thread-5638-1-1.html"
@@ -30,21 +30,21 @@ string(TIMESTAMP CURRENT_TIMESTAMP "%Y%m%d_%H%M%S")
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
-    execute_process(
+  execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_COMMIT_HASH
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
-    execute_process(
+  execute_process(
         COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         OUTPUT_VARIABLE GIT_BRANCH
         OUTPUT_STRIP_TRAILING_WHITESPACE
     )
 else()
-    set(GIT_COMMIT_HASH "unknown")
-    set(GIT_BRANCH "no-git")
+  set(GIT_COMMIT_HASH "unknown")
+  set(GIT_BRANCH "no-git")
 endif()
 
 # 将时间戳存储到变量中
@@ -68,12 +68,12 @@ include_directories(src/include)
 add_executable(mcparser ${SRC_FILES} resources.rc)
 
 target_link_libraries(
-  mcparser 
+  mcparser
   PRIVATE
-  OpenSSL::SSL OpenSSL::Crypto 
-  ${JSONCPP_LIBRARIES} 
-  ${CURL_LIBRARIES} 
-  ${FMT_LIBRARIES} 
+  OpenSSL::SSL OpenSSL::Crypto
+  ${JSONCPP_LIBRARIES}
+  ${CURL_LIBRARIES}
+  ${FMT_LIBRARIES}
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -88,11 +88,6 @@ else()
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-g>
   )
 endif()
-
-#target_compile_options(mcparser PRIVATE
-#  $<$<CXX_COMPILER_ID:MSVC>:/utf-8>
-#  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-finput-charset=UTF-8 -fexec-charset=UTF-8>
-#)  
 
 file(COPY "${CMAKE_SOURCE_DIR}/src/cacert.pem"
      DESTINATION ${CMAKE_BINARY_DIR}/)
@@ -170,7 +165,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
   ")
 endif()
 
-set(CPACK_PACKAGE_FILE_NAME 
+set(CPACK_PACKAGE_FILE_NAME
   "${CMAKE_PROJECT_NAME}_${CMAKE_SYSTEM_NAME}_${CMAKE_SYSTEM_PROCESSOR}_${BUILD_TIME}_${CPACK_PACKAGE_VERSION}"
 )
 
