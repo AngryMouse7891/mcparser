@@ -1,6 +1,5 @@
 #include <string>
 #include <iostream>
-#include "input_beautify.h"
 #include "termcolor/termcolor.hpp"
 #include "print_beautify.h"
 #include "input_beautify.h"
