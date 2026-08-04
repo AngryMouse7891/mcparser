@@ -60,6 +60,6 @@ void print_data(){
         return;
     }
     std::map<std::string,int> repo_data=convert_data(fetched);
-    std::string msg=fmt::format("{} stars | {} forks | {} open issues",repo_data["forks"],repo_data["stars"],repo_data["open_issues"]);
+    std::string msg=fmt::format("{} stars | {} forks | {} open issues",repo_data["stars"],repo_data["forks"],repo_data["open_issues"]);
     printGradientRGB(msg,214,236,240,179,92,68);
 }
