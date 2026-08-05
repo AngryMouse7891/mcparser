@@ -153,7 +153,7 @@ set(BU_COPY_TO_INSTALL ON)
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   if(MCPARSER_LINUX_BUNDLE)
     install(CODE "
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/app\"
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\"
         \"\"          # 额外需要搜索的库列表
         \"/usr/lib\"  # 库搜索路径
         IGNORE_ITEM \"libc.so*\"
@@ -162,7 +162,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     )
     ")
     install(CODE "
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/app\"
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\"
         \"\"          # 额外需要搜索的库列表
         \"/usr/local/lib\"  # 库搜索路径
         IGNORE_ITEM \"libc.so*\"
