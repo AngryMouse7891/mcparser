@@ -10,7 +10,7 @@ set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(MCPARSER_LINUX_BUNDLE OFF) # 定义一个布尔变量
+set(MCPARSER_LINUX_BUNDLE OFF CACHE BOOL "启用Linux动态库打包")
 
 message(STATUS "CMake版本: ${CMAKE_VERSION}")
 
@@ -152,24 +152,93 @@ set(BU_COPY_TO_INSTALL ON)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
   if(MCPARSER_LINUX_BUNDLE)
+    # 使用ldd手动收集依赖库
     install(CODE "
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\"
-        \"\"          # 额外需要搜索的库列表
-        \"/usr/lib\"  # 库搜索路径
-        IGNORE_ITEM \"libc.so*\"
-        IGNORE_ITEM \"libm.so*\"
-        IGNORE_ITEM \"libpthread.so*\"
-    )
+      message(STATUS \"开始收集Linux依赖库...\")
+      
+      # 获取绝对路径
+      get_filename_component(EXE_ABSOLUTE \"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\" ABSOLUTE)
+      get_filename_component(INSTALL_PREFIX_ABSOLUTE \"\${CMAKE_INSTALL_PREFIX}\" ABSOLUTE)
+      
+      if(EXISTS \"\${EXE_ABSOLUTE}\")
+        # 使用ldd获取依赖库列表
+        execute_process(
+          COMMAND ldd \"\${EXE_ABSOLUTE}\"
+          OUTPUT_VARIABLE LDD_OUTPUT
+          ERROR_VARIABLE LDD_ERROR
+          RESULT_VARIABLE LDD_RESULT
+        )
+        
+        if(LDD_RESULT EQUAL 0)
+          # 解析ldd输出，提取动态库路径
+          string(REGEX MATCHALL \"(/[^\n ]+\\.so[^\n ]*)\" LIB_LIST \"\${LDD_OUTPUT}\")
+          
+          # 只跳过虚拟库和动态链接器
+          set(SKIP_PATTERNS
+            \"linux-vdso.so\"
+            \"ld-linux\"
+          )
+          
+          set(COLLECTED_COUNT 0)
+          set(SKIPPED_COUNT 0)
+          
+          # 处理每个依赖库
+          foreach(LIB_FULL_PATH \${LIB_LIST})
+            # 获取文件名
+            get_filename_component(LIB_NAME \"\${LIB_FULL_PATH}\" NAME)
+            
+            # 检查是否应该跳过
+            set(SHOULD_SKIP FALSE)
+            foreach(SKIP_PATTERN \${SKIP_PATTERNS})
+              if(\"\${LIB_NAME}\" MATCHES \"\${SKIP_PATTERN}\")
+                set(SHOULD_SKIP TRUE)
+                break()
+              endif()
+            endforeach()
+            
+            # 如果不应该跳过，则复制
+            if(NOT SHOULD_SKIP)
+              message(STATUS \"收集依赖库: \${LIB_NAME} from \${LIB_FULL_PATH}\")
+              
+              # 确保目标目录存在
+              file(MAKE_DIRECTORY \"\${INSTALL_PREFIX_ABSOLUTE}/lib\")
+              
+              # 复制库文件
+              execute_process(
+                COMMAND \${CMAKE_COMMAND} -E copy \"\${LIB_FULL_PATH}\" \"\${INSTALL_PREFIX_ABSOLUTE}/lib/\${LIB_NAME}\"
+                RESULT_VARIABLE COPY_RESULT
+              )
+              
+              if(COPY_RESULT EQUAL 0)
+                math(EXPR COLLECTED_COUNT \"\${COLLECTED_COUNT} + 1\")
+                
+                # 如果是符号链接，也复制指向的实际文件
+                get_filename_component(LIB_REAL \"\${LIB_FULL_PATH}\" REALPATH)
+                if(NOT \"\${LIB_REAL}\" STREQUAL \"\${LIB_FULL_PATH}\")
+                  get_filename_component(LIB_REAL_NAME \"\${LIB_REAL}\" NAME)
+                  execute_process(
+                    COMMAND \${CMAKE_COMMAND} -E copy \"\${LIB_REAL}\" \"\${INSTALL_PREFIX_ABSOLUTE}/lib/\${LIB_REAL_NAME}\"
+                  )
+                  math(EXPR COLLECTED_COUNT \"\${COLLECTED_COUNT} + 1\")
+                endif()
+              else()
+                message(WARNING \"无法复制库文件: \${LIB_FULL_PATH}\")
+              endif()
+            else()
+              math(EXPR SKIPPED_COUNT \"\${SKIPPED_COUNT} + 1\")
+              message(STATUS \"跳过系统库: \${LIB_NAME}\")
+            endif()
+          endforeach()
+          
+          message(STATUS \"依赖库收集完成，共收集 \${COLLECTED_COUNT} 个文件，跳过 \${SKIPPED_COUNT} 个系统库\")
+        else()
+          message(WARNING \"ldd命令执行失败: \${LDD_ERROR}\")
+        endif()
+      else()
+        message(WARNING \"可执行文件不存在: \${EXE_ABSOLUTE}\")
+      endif()
     ")
-    install(CODE "
-    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\"
-        \"\"          # 额外需要搜索的库列表
-        \"/usr/local/lib\"  # 库搜索路径
-        IGNORE_ITEM \"libc.so*\"
-        IGNORE_ITEM \"libm.so*\"
-        IGNORE_ITEM \"libpthread.so*\"
-    )
-    ")
+    
     # 构建阶段rpath
     set(CMAKE_BUILD_RPATH "$ORIGIN/../lib")
     # 安装阶段rpath
