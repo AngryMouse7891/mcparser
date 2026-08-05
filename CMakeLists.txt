@@ -151,7 +151,7 @@ include(BundleUtilities)
 set(BU_COPY_TO_INSTALL ON)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  if(${MCPARSER_LINUX_BUNDLE})
+  if(MCPARSER_LINUX_BUNDLE)
     install(CODE "
     fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/app\"
         \"\"          # 额外需要搜索的库列表
