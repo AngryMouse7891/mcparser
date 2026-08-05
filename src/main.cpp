@@ -140,7 +140,7 @@ int main(){
                 files[i]["version_name"],
                 files[i]["release_time"],
                 files[i]["down"],
-                files[i]["filename"],
+                files[i]["filename_display"],
                 files[i]["size"],
                 files[i]["mc_versions"]
             }
