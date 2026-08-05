@@ -4,6 +4,7 @@
     },
     "files.associations": {
         ".clangd": "yaml",
-        "CHANGELOG": "markdown"
+        "CHANGELOG": "markdown",
+        "*.manifest": "xml"
     }
 }
