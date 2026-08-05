@@ -1,2 +1,7 @@
 /build
 /out
+mcparser_*.snap
+/.craft
+/parts
+/prime
+/stage
