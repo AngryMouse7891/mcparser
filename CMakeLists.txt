@@ -27,6 +27,7 @@ find_package(OpenSSL REQUIRED)
 
 # 获取当前时间戳，格式为 YYYYMMDD_HHMMSS
 string(TIMESTAMP CURRENT_TIMESTAMP "%Y%m%d_%H%M%S")
+string(TIMESTAMP BUILD_TIME_NORMAL "%Y/%m/%d %H:%M:%S")
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -138,6 +139,10 @@ install(DIRECTORY images/ DESTINATION share/MCParser/images)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/256x256@2x/mcparser.png DESTINATION share/icons/hicolor/256x256@2x/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
+  install(FILES data/mcparser.exe.manifest DESTINATION bin)
+endif()
 
 include(BundleUtilities)
 # 1. 设置安装目录根路径（CMAKE_INSTALL_PREFIX）

@@ -2,6 +2,9 @@
 
 MCParser ICON "data/mcparser.ico"
 
+#define RT_MANIFEST 24
+1 RT_MANIFEST "mcparser.exe.manifest"
+
 //
 // TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
 //
