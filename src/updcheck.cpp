@@ -68,7 +68,7 @@ std::string islatest(){
 }
 
 void check(){
-    fmt::print("[更新检测] 正在检查更新...\n");
+    info_print("[更新检测] 正在检查更新...");
     std::string res=islatest();
     if (res=="0") {
         success_print(fmt::format("已是最新版（{}）\n",VERSION_STRING));
