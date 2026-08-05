@@ -173,16 +173,17 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
           # 解析ldd输出，提取动态库路径
           string(REGEX MATCHALL \"(/[^\n ]+\\.so[^\n ]*)\" LIB_LIST \"\${LDD_OUTPUT}\")
           
-          # 只收集指定的库（白名单模式）
-          set(COLLECT_PATTERNS
-            \"libfmt\.so\"
-            \"libjsoncpp\.so\"
-          )
-          
-          # 始终跳过的库
-          set(ALWAYS_SKIP_PATTERNS
-            \"linux-vdso\.so\"
-            \"ld-linux\"
+          # 需要过滤的系统基础库
+          set(SKIP_PATTERNS
+            \"linux-vdso\.so\"           # 内核虚拟库
+            \"ld-linux\"                 # 动态链接器
+            \"libc\.so\6\"                # C标准库
+            \"libm\.so\6\"                # 数学库
+            \"libstdc\+\+\.so\6\"         # C++标准库
+            \"libgcc_s\.so\1\"            # GCC运行时
+            \"libpthread\.so\0\"          # 线程库
+            \"libdl\.so\2\"               # 动态加载库
+            \"librt\.so\1\"               # 实时扩展库
           )
           
           set(COLLECTED_COUNT 0)
@@ -193,24 +194,14 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
             # 获取文件名
             get_filename_component(LIB_NAME \"\${LIB_FULL_PATH}\" NAME)
             
-            # 检查是否应该跳过（始终跳过的库）
-            set(SHOULD_SKIP TRUE)
-            foreach(SKIP_PATTERN \${ALWAYS_SKIP_PATTERNS})
+            # 检查是否应该跳过
+            set(SHOULD_SKIP FALSE)
+            foreach(SKIP_PATTERN \${SKIP_PATTERNS})
               if(\"\${LIB_NAME}\" MATCHES \"\${SKIP_PATTERN}\")
                 set(SHOULD_SKIP TRUE)
                 break()
               endif()
             endforeach()
-            
-            # 检查是否在白名单中
-            if(SHOULD_SKIP)
-              foreach(COLLECT_PATTERN \${COLLECT_PATTERNS})
-                if(\"\${LIB_NAME}\" MATCHES \"\${COLLECT_PATTERN}\")
-                  set(SHOULD_SKIP FALSE)
-                  break()
-                endif()
-              endforeach()
-            endif()
             
             # 如果不应该跳过，则复制
             if(NOT SHOULD_SKIP)
@@ -242,10 +233,11 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
               endif()
             else()
               math(EXPR SKIPPED_COUNT \"\${SKIPPED_COUNT} + 1\")
+              message(STATUS \"跳过系统库: \${LIB_NAME}\")
             endif()
           endforeach()
           
-          message(STATUS \"依赖库收集完成，共收集 \${COLLECTED_COUNT} 个文件，跳过 \${SKIPPED_COUNT} 个库\")
+          message(STATUS \"依赖库收集完成，共收集 \${COLLECTED_COUNT} 个文件，跳过 \${SKIPPED_COUNT} 个系统基础库\")
         else()
           message(WARNING \"ldd命令执行失败: \${LDD_ERROR}\")
         endif()
