@@ -1,0 +1,32 @@
+name: mcparser
+version: 1.4.2
+summary: Minecraft commuinty resources parser
+description: |
+  A toolkit that can parse Minecraft community resources
+
+base: core26
+grade: stable
+confinement: strict # strict/devmode
+
+parts:
+  mcparser:
+    plugin: cmake
+    source: .
+    # CMake 参数
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DMCPARSER_LINUX_BUNDLE=ON
+    build-packages:
+      - gcc
+      - g++
+      - cmake
+      - make
+    stage-packages:
+      - libstdc++6
+      # 运行时依赖，例如 libstdc++、Qt、SDL 等按需添加
+      # - libstdc++6
+
+apps:
+  mcparser:
+    command: usr/bin/mcparser
