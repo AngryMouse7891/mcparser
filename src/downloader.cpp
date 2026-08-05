@@ -50,7 +50,7 @@ int progress_callback(void* clientp,
     
     if (dltotal > 0) {
         double progress = (double)dlnow / (double)dltotal * 100.0;
-        int barWidth = 50;
+        int barWidth = 12;
 
         // 获取平均下载速度
         double speed = 0.0;
@@ -61,18 +61,17 @@ int progress_callback(void* clientp,
         if (speed > 0) {
             time_remaining = (dltotal - dlnow) / speed;
         }
-        std::cout << "\r";
+        std::cout << "\r[";
         ll pos = barWidth * dlnow / dltotal;
-        
-        std::cout<<std::right<<std::setw(3)<<"\033[32m"<<ll(progress)<<"% ";
-        for (ll i = 0; i < barWidth; ++i) {
-            if (i <= pos) std::cout<<"\033[36m█";
-            else std::cout<<"\033[30m█";
-        }
 
-        std::cout << " \033[36m(" << formatSize(dlnow) << "/" << formatSize(dltotal) 
-                  << ")\033[35m " << formatSize(speed) << "/s \033[33m" 
-                  << formatTime(time_remaining) << "     \033[00m";
+        for (ll i = 0; i < barWidth; ++i) {
+            if (i <= pos) std::cout<<"█";
+            else std::cout<<" ";
+        }
+        std::cout << "] " << formatSize(dlnow) << "/\033[36m" << formatSize(dltotal) 
+                  << "\033[37m, \033[32m" << ll(progress)<<"%\033[37m, \033[33mcur. " 
+                  << formatSize(speed) << "\033[37m/sec, \033[35m" 
+                  << formatTime(time_remaining) << "\033[00m sec   ";
         std::cout.flush();
     }
     return 0;
