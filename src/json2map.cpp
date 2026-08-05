@@ -40,7 +40,7 @@ std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
                 {"version_name",src[i]["name"].asString()},
                 {"release_time",convert_time(src[i]["date_published"].asString())},
                 {"down",formatNum(src[i]["downloads"].asInt())},
-                {"filename",src[i]["files"][0]["filename"].asString()},
+                {"filename",cut_str(src[i]["files"][0]["filename"].asString(),30)},
                 {"url",src[i]["files"][0]["url"].asString()},
                 {"size",formatSize(src[i]["files"][0]["size"].asDouble())},
                 {"mc_versions",jsonarray2str(src[i]["game_versions"],5)}

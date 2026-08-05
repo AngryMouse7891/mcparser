@@ -76,3 +76,11 @@ string convert_time(const string& iso_str)
     strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &utc_tm);
     return buf;
 }
+
+string cut_str(string src,int limit){
+    if (src.size()<=limit)
+    {
+        return src;
+    }
+    return src.substr(0,limit)+"...";
+}

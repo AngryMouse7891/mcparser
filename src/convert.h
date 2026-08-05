@@ -14,3 +14,5 @@ double round_k(double x, int k);
 
 // ISO8601 UTC 解析函数
 string convert_time(const string& iso_str);
+
+string cut_str(string src,int limit);
