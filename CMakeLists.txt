@@ -142,8 +142,7 @@ install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/256x256@2x/mcparser.png DESTINATION share/icons/hicolor/256x256@2x/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-  # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
-  install(FILES data/mcparser.exe.manifest DESTINATION bin)
+  install(FILES mcparser.exe.manifest DESTINATION bin)
 endif()
 
 include(BundleUtilities)
