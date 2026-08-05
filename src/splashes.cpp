@@ -17,7 +17,13 @@ vector<string> splashes={
     "提个issue吧求求了",
     "100% Writen with using C++!",
     "无 敌 神 镐",
-    "！？强强？！"
+    "！？强强？！",
+    "无 敌 玄 素 镐",
+    "特辣的海藻！！！🔥🔥🔥",
+    "未曾设想的道路",
+    "八月白露降，槐叶次第黄。 ————【唐】白居易《和答诗十首·和松树》",
+    "立 入 禁 止",
+    "两 只 老 虎 爱 跳 舞 ~"
 };
 
 int randint(int mininum,int maxinum){
