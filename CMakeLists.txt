@@ -10,6 +10,8 @@ set(SOURCE_DIR src)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(MCPARSER_LINUX_BUNDLE OFF) # 定义一个布尔变量
+
 message(STATUS "CMake版本: ${CMAKE_VERSION}")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
@@ -149,15 +151,31 @@ include(BundleUtilities)
 set(BU_COPY_TO_INSTALL ON)
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
-  # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
-  install(CODE "
-    include(BundleUtilities)
-    message(STATUS \"开始收集动态库...\")
-    file(GLOB EXE_LIST \"\${CMAKE_INSTALL_PREFIX}/bin/mcparser\")
-    foreach(exe \${EXE_LIST})
-      fixup_bundle(\"\${exe}\" \"\" \"\" COPY_REQUIRED_FILES)
-    endforeach()
-  ")
+  if(${MCPARSER_LINUX_BUNDLE})
+    install(CODE "
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/app\"
+        \"\"          # 额外需要搜索的库列表
+        \"/usr/lib\"  # 库搜索路径
+        IGNORE_ITEM \"libc.so*\"
+        IGNORE_ITEM \"libm.so*\"
+        IGNORE_ITEM \"libpthread.so*\"
+    )
+    ")
+    install(CODE "
+    fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/bin/app\"
+        \"\"          # 额外需要搜索的库列表
+        \"/usr/local/lib\"  # 库搜索路径
+        IGNORE_ITEM \"libc.so*\"
+        IGNORE_ITEM \"libm.so*\"
+        IGNORE_ITEM \"libpthread.so*\"
+    )
+    ")
+    # 构建阶段rpath
+    set(CMAKE_BUILD_RPATH "$ORIGIN/../lib")
+    # 安装阶段rpath
+    set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
+  endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # 在脚本模式执行依赖拷贝，需要生成一个 .cmake 脚本，安装结束自动运行
   install(CODE "
