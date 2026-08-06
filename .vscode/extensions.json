@@ -8,6 +8,7 @@
         "idleberg.nsis",
         "ms-vscode.makefile-tools",
         "vadimcn.vscode-lldb",
-        "redhat.vscode-xml"
+        "redhat.vscode-xml",
+        "nooreldeensalah.snapcraft-intellisense"
     ]
 }
