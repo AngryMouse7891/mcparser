@@ -112,6 +112,8 @@ set(CPACK_RPM_PACKAGE_RELEASE 1)
 set(CPACK_RPM_PACKAGE_LICENSE "MIT")
 set(CPACK_RPM_PACKAGE_GROUP "games")
 set(CPACK_RPM_PACKAGE_REQUIRES "libjsoncpp27 >= 1.0.0, libfmt12, libcurl4 >= 8.0.0, libopenssl3, ca-certificates")
+set(CPACK_RPM_PACKAGE_DESCRIPTION "一个解析Minecraft社区资源的软件")
+set(CPACK_RPM_CHANGELOG_FILE ${CMAKE_SOURCE_DIR}/CHANGELOG)
 
 # set the install/uninstall icon used for the installer itself
 set (CPACK_NSIS_MUI_ICON "${CMAKE_SOURCE_DIR}/data/installer_icon.ico")
