@@ -89,7 +89,7 @@ bool download_file(std::string url, std::string output_path)
 {
     CURL* curl = curl_easy_init();
     if (!curl) {
-        error_print("初始化 CURL 失败");
+        error_print("初始化 CURL 失败辣！(￣□￣)");
         return false;
     }
 
@@ -131,6 +131,6 @@ bool download_file(std::string url, std::string output_path)
         return false;
     }
 
-    success_print("下载完成!");
+    success_print("下载完成!ヘ(￣ω￣ヘ)");
     return true;
 }

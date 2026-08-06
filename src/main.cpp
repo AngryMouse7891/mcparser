@@ -101,7 +101,7 @@ int main(){
     if (files.size()==0)
     {
         warning_print("解析结果为空，请检查输入是否正确");
-        error_print("解析失败！");
+        error_print("解析失败辣！ゞ◎Д◎ヾ");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
         #endif
