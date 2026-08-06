@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(MCParser
-  VERSION 1.4.2
+  VERSION 1.4.3
   DESCRIPTION "一个一个一个一个一个一个一个一个一个一个一个一个一个解析Minecraft社区资源（如模组）的工具，部分由AI赋能。"
   HOMEPAGE_URL "https://www.mcbbs.co/thread-5638-1-1.html"
 )
