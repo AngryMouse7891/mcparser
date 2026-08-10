@@ -190,9 +190,8 @@ int main(){
     }
     string selected_url=files[file_index]["url"];
     string download_dir=beautified_input("请输入下载路径",true);
-    info_print(fmt::format("正在下载{}...",selected_url));
+    info_print(fmt::format("正在下载 🌐 {} -> 📂 {}/{} ...",selected_url,download_dir,files[file_index]["filename"]));
     bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
-    fmt::print("\n");
     #if _WIN32
         SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
     #endif
