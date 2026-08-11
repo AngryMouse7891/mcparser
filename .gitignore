@@ -2,6 +2,7 @@
 /out
 mcparser_*.snap
 /.craft
+/overlay
 /parts
 /prime
 /stage
