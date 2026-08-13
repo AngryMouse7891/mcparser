@@ -35,7 +35,7 @@ void print_title(){
     print_data();
     printGradientRGB(fmt::format("By {}",AUTHOR),255,76,0,75,92,196);
     fmt::print("\n");
-    printGradientRGB(fmt::format("v{} | 编译时间 {} | r{} | 分支{}",VERSION_STRING,BUILD_TIME,GIT_HASH,GIT_BRANCH),144,202,249,244,133,177);
+    printGradientRGB(fmt::format("v{} | BuildTime {} | r{} | Branch {}",VERSION_STRING,BUILD_TIME,GIT_HASH,GIT_BRANCH),144,202,249,244,133,177);
     cout<<termcolor::yellow<<"项目主页：https://www.mcbbs.co/thread-5638-1-1.html\n"<<termcolor::reset;
     fmt::print("\n");
 }
