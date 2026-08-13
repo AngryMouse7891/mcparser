@@ -125,13 +125,12 @@ int main(){
     }
     Table filelist;
     filelist.format()
-        .font_style({FontStyle::bold}) // 表头加粗
         .border_top("=")
         .border_bottom("=")
         .border_left("|")
         .border_right("|")
         .corner("+");
-    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名","大小","Minecraft版本"});
+    filelist.add_row({"\033[1m索引\033[00m","\033[1m版本ID\033[00m","\033[1m版本名\033[00m","\033[1m发行时间\033[00m","\033[1m下载量\033[00m","\033[1m文件名\033[00m","\033[1m大小\033[00m","\033[1mMinecraft版本\033[00m"});
     for (ll i=0; i<limit; i++) {
         filelist.add_row(
             {
