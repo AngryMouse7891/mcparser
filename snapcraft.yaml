@@ -1,5 +1,5 @@
 name: mcparser
-version: 1.4.3
+version: 1.4.4
 summary: Minecraft commuinty resources parser
 description: |
   A toolkit that can parse Minecraft community resources
@@ -23,9 +23,8 @@ parts:
       - cmake
       - make
     stage-packages:
-      - libstdc++6
       # 运行时依赖，例如 libstdc++、Qt、SDL 等按需添加
-      # - libstdc++6
+      - libstdc++6
 
 apps:
   mcparser:
