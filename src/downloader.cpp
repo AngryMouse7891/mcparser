@@ -52,37 +52,42 @@ int progress_callback(void* clientp,
 {
     CURL* curl = (CURL*)clientp;
     
+    double progress = 0.0;
+
     if (dltotal > 0) {
         double progress = (double)dlnow / (double)dltotal * 100.0;
-        int barWidth = 12;
-
-        // 获取平均下载速度
-        double speed = 0.0;
-        curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD, &speed);
-
-        // 计算剩余时间
-        double time_remaining = 0.0;
-        if (speed > 0) {
-            time_remaining = (dltotal - dlnow) / speed;
-        }
-        std::cout << "\r[";
-        ll pos = barWidth * dlnow / dltotal;
-
-        for (ll i = 0; i < barWidth; ++i) {
-            if (i <= pos) std::cout<<"█";
-            else std::cout<<" ";
-        }
-
-        #if _WIN32
-        system(fmt::format("title MCParser v{} (r{}) - by {} - 已下载 {}%",VERSION_STRING,GIT_HASH,AUTHOR,ll(progress)).c_str());
-        #endif
-
-        std::cout << "] " << formatSize(dlnow) << "/\033[36m" << formatSize(dltotal) 
-                  << "\033[37m, \033[32m" << ll(progress)<<"%\033[37m, \033[33mcur. " 
-                  << formatSize(speed) << "\033[37m/sec, \033[35m" 
-                  << formatTime(time_remaining) << "\033[00m sec   ";
-        std::cout.flush();
     }
+
+    // 获取平均下载速度
+    double speed = 0.0;
+    curl_easy_getinfo(curl, CURLINFO_SPEED_DOWNLOAD, &speed);
+
+    // 计算剩余时间
+    double time_remaining = 0.0;
+    if (speed > 0) {
+        time_remaining = (dltotal - dlnow) / speed;
+    }
+
+    int barWidth = 12;
+
+    std::cout << "\r[";
+    ll pos = barWidth * dlnow / dltotal;
+
+    for (ll i = 0; i < barWidth; ++i) {
+        if (i <= pos) std::cout<<"█";
+        else std::cout<<" ";
+    }
+
+    #if _WIN32
+    system(fmt::format("title MCParser v{} (r{}) - by {} - 已下载 {}%",VERSION_STRING,GIT_HASH,AUTHOR,ll(progress)).c_str());
+    #endif
+
+    std::cout << "] " << formatSize(dlnow) << "/\033[36m" << formatSize(dltotal) 
+              << "\033[37m, \033[32m" << ll(progress)<<"%\033[37m, \033[33mcur. " 
+              << formatSize(speed) << "\033[37m/sec, \033[35m" 
+              << formatTime(time_remaining) << "\033[00m sec   ";
+    std::cout.flush();
+    
     return 0;
 }
 
