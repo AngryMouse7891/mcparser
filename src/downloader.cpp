@@ -17,6 +17,10 @@
 
 typedef long long ll;
 
+std::string spinner="|/-\\";
+
+ll idx=0;
+
 // 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
 std::string formatSize(double src_bytes) {
     const char* suffixes[] = {"B", "KiB", "MiB", "GiB", "TiB"};
@@ -55,7 +59,7 @@ int progress_callback(void* clientp,
     double progress = 0.0;
 
     if (dltotal > 0) {
-        double progress = (double)dlnow / (double)dltotal * 100.0;
+        progress = (double)dlnow / (double)dltotal * 100.0;
     }
 
     // 获取平均下载速度
@@ -70,8 +74,11 @@ int progress_callback(void* clientp,
 
     int barWidth = 12;
 
-    std::cout << "\r[";
-    ll pos = barWidth * dlnow / dltotal;
+    std::cout << "\r\033[34m" << spinner[idx] << "\033[37m [";
+    ll pos = 0;
+    if (dltotal > 0) {
+        pos = barWidth * dlnow / dltotal;
+    }
 
     for (ll i = 0; i < barWidth; ++i) {
         if (i <= pos) std::cout<<"█";
@@ -87,6 +94,13 @@ int progress_callback(void* clientp,
               << formatSize(speed) << "\033[37m/sec, \033[35m" 
               << formatTime(time_remaining) << "\033[00m sec   ";
     std::cout.flush();
+
+    idx++;
+    if (idx>=spinner.size())
+    {
+        /* code */
+        idx=0;
+    }
     
     return 0;
 }

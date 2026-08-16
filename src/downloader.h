@@ -18,6 +18,10 @@
 
 typedef long long ll;
 
+extern std::string spinner;
+
+extern ll idx;
+
 // 辅助函数：将字节数转换为人类可读的字符串 (KB, MB, GB)
 std::string formatSize(double src_bytes);
 
