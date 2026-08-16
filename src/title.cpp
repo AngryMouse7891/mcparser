@@ -31,11 +31,11 @@ void set_title(){
 
 void print_title(){
     fmt::print("\033[93m                                      {}\033[0m\n",rand_splash());
+    fmt::print("\033[33m项目主页：https://www.mcbbs.co/thread-5638-1-1.html\033[00m\n");
     printGradientRGB(title_str,82,127,70,69,47,30);
     print_data();
     printGradientRGB(fmt::format("By {}",AUTHOR),255,76,0,75,92,196);
     fmt::print("\n");
     printGradientRGB(fmt::format("v{} | BuildTime {} | r{} | Branch {}",VERSION_STRING,BUILD_TIME,GIT_HASH,GIT_BRANCH),144,202,249,244,133,177);
-    cout<<termcolor::yellow<<"项目主页：https://www.mcbbs.co/thread-5638-1-1.html\n"<<termcolor::reset;
     fmt::print("\n");
 }

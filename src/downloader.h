@@ -11,6 +11,10 @@
 #include <fmt/format.h>
 #include "print_beautify.h"
 #include "certdir.h"
+#include "version.h"
+#if _WIN32
+#include <windows.h>
+#endif
 
 typedef long long ll;
 

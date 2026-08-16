@@ -108,6 +108,9 @@ int main(){
         fakepause();
         return 1;
     }
+    #if _WIN32
+    system(fmt::format("title MCParser v{} (r{}) - by {} - 已解析{}个文件",VERSION_STRING,GIT_HASH,AUTHOR,files.size()).c_str());
+    #endif
     success_print(fmt::format("解析成功，共解析{}个文件\n",files.size()));
     string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;

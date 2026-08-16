@@ -10,6 +10,10 @@
 #include "print_beautify.h"
 #include "certdir.h"
 #include "downloader.h"
+#include "version.h"
+#if _WIN32
+#include <windows.h>
+#endif
 
 typedef long long ll;
 
@@ -68,6 +72,11 @@ int progress_callback(void* clientp,
             if (i <= pos) std::cout<<"█";
             else std::cout<<" ";
         }
+
+        #if _WIN32
+        system(fmt::format("title MCParser v{} (r{}) - by {} - 已下载 {}%",VERSION_STRING,GIT_HASH,AUTHOR,ll(progress)).c_str());
+        #endif
+
         std::cout << "] " << formatSize(dlnow) << "/\033[36m" << formatSize(dltotal) 
                   << "\033[37m, \033[32m" << ll(progress)<<"%\033[37m, \033[33mcur. " 
                   << formatSize(speed) << "\033[37m/sec, \033[35m" 
