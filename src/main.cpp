@@ -159,7 +159,7 @@ int main(){
         .font_color(Color::blue);
     filelist.column(4).format()
         .font_color(Color::yellow)
-        .width(5);
+        .width(7);
     filelist.column(5).format()
         .font_color(Color::red);
     filelist.column(6).format()
