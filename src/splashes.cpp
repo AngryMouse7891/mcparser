@@ -29,7 +29,14 @@ vector<string> splashes={
     "庭中有奇树，绿叶发华兹。 ————【两汉】《古诗十九首》",
     "我报路长嗟日暮，学诗谩有惊人句。九万里风鹏正举。风休住，蓬舟吹取三山去！ ————【宋】李清照《渔家傲·天接云涛连晓雾》",
     "Creeper?",
-    "aww man"
+    "aww man",
+    "大狗大狗叫叫叫🐶🐶🐶",
+    "Hello, I'm Verity! Your personal helper friend. Ask me everything, I know everything.",
+    "666磕到甲沟炎了",
+    "牛来",
+    "你为什么不去问问神奇海螺呢？",
+    "gogogo出发咯",
+    "Ciallo～(∠・ω )⌒☆"
 };
 
 int randint(int mininum,int maxinum){
