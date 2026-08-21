@@ -126,6 +126,11 @@ int main(){
         warning_print(fmt::format("输入范围超过{}，已自动设为{}",files.size(),files.size()));
         limit=files.size();
     }
+    if (limit<0)
+    {
+        warning_print("输入范围小于0，已自动设为5");
+        limit=5;
+    }
     Table filelist;
     filelist.format()
         .border_top("=")
@@ -190,6 +195,11 @@ int main(){
     if (file_index>=files.size())
     {
         warning_print(fmt::format("输入范围超过{}，已自动设为0",files.size()-1));
+        file_index=0;
+    }
+    if (file_index<0)
+    {
+        warning_print("输入范围小于0，已自动设为0");
         file_index=0;
     }
     string selected_url=files[file_index]["url"];
