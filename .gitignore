@@ -7,3 +7,6 @@ mcparser_*.snap
 /parts
 /prime
 /stage
+/pkg/pkg
+/pkg/src
+/pkg/mcparser-*.tar.zst
