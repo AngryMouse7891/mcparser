@@ -11,7 +11,7 @@ confinement: strict # strict/devmode
 parts:
   mcparser:
     plugin: cmake
-    source: .
+    source: ..
     # CMake 参数
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
