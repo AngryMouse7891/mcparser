@@ -176,15 +176,15 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
           
           # 需要过滤的系统基础库
           set(SKIP_PATTERNS
-            \"linux-vdso\.so\"           # 内核虚拟库
-            \"ld-linux\"                 # 动态链接器
-            \"libc\.so\6\"                # C标准库
-            \"libm\.so\6\"                # 数学库
-            \"libstdc\+\+\.so\6\"         # C++标准库
-            \"libgcc_s\.so\1\"            # GCC运行时
-            \"libpthread\.so\0\"          # 线程库
-            \"libdl\.so\2\"               # 动态加载库
-            \"librt\.so\1\"               # 实时扩展库
+            "linux-vdso\\.so"            # 内核虚拟库
+            "ld-linux"                    # 动态链接器
+            "libc\\.so\\.[0-9]+"         # C标准库
+            "libm\\.so\\.[0-9]+"         # 数学库
+            "libstdc\\+\\+\\.so\\.[0-9]+" # C++标准库
+            "libgcc_s\\.so\\.[0-9]+"     # GCC运行时
+            "libpthread\\.so\\.[0-9]+"   # 线程库
+            "libdl\\.so\\.[0-9]+"        # 动态加载库
+            "librt\\.so\\.[0-9]+"         # 实时扩展库
           )
           
           set(COLLECTED_COUNT 0)
