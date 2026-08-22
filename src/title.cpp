@@ -31,8 +31,8 @@ void set_title(){
 
 void print_title(){
     fmt::print("\033[93m                                      {}\033[0m\n",rand_splash());
-    fmt::print("\033[33m项目主页：https://www.mcbbs.co/thread-5638-1-1.html\033[00m\n");
     printGradientRGB(title_str,82,127,70,69,47,30);
+    fmt::print("\033[33m项目主页：https://www.mcbbs.co/thread-5638-1-1.html\033[00m\n");
     print_data();
     printGradientRGB(fmt::format("By {}",AUTHOR),255,76,0,75,92,196);
     fmt::print("\n");
