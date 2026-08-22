@@ -1,8 +1,10 @@
-<center> <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/> </center> 
+<p align="center"> 
+   <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/> 
+</p> 
 
-# <center> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> </center> 
+# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> </p> 
 
-<div align="center">
+<p align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flicense&query=%24.license&style=for-the-badge&label=license&color=green
    " alt="License">
@@ -14,9 +16,22 @@
    " alt="Python">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B2%5D.percent&suffix=%25&style=for-the-badge&logo=CMake&label=CMake&color=DA3434
    " alt="CMake">
-</div>
+</p>
 
 ---
+
+## 公告栏
+
+> [!WARNING]
+> 由于Gitee Releases附件大小限额已达1G，v1.4.5及之后的版本的预构建二进制文件已不再在Gitee Releases上提交。请大家选择其他下载线路以下载最新版本。
+> 虽然以后仍会创建发行版，但只会上传源码了…… :cry: 
+
+> [!TIP]
+> 由于2026年8月20日本人已注册蓝奏云盘账号，新版本已开始上传至蓝奏云盘，速度更快！
+> 分享链接（提取码`cu7m`）：<https://wwbdd.lanzouu.com/b01euppgqj>
+
+
+## 简介
 
 MCParser是一个一个一个一个~~一个一个一个一个一个一个一个一个一个~~解析《我的世界》社区资源（如模组）的工具，基于C++编写，部分由AI赋能。
 
