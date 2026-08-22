@@ -1,11 +1,11 @@
-/.craft
+/pkg/.craft
 /build
 /out
 /pkg/mcparser_*.snap
-/overlay
-/parts
-/prime
-/stage
+/pkg/overlay
+/pkg/parts
+/pkg/prime
+/pkg/stage
 /pkg/pkg
 /pkg/src
 /pkg/mcparser-*.tar.zst
