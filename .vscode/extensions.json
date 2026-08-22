@@ -9,6 +9,7 @@
         "ms-vscode.makefile-tools",
         "vadimcn.vscode-lldb",
         "redhat.vscode-xml",
-        "nooreldeensalah.snapcraft-intellisense"
+        "nooreldeensalah.snapcraft-intellisense",
+        "mads-hartmann.bash-ide-vscode"
     ]
 }
