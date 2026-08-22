@@ -138,7 +138,7 @@ int main(){
         .border_left("|")
         .border_right("|")
         .corner("+");
-    filelist.add_row({"\033[1m索引\033[00m","\033[1m版本ID\033[00m","\033[1m版本名\033[00m","\033[1m发行时间\033[00m","\033[1m下载量\033[00m","\033[1m文件名\033[00m","\033[1m大小\033[00m","\033[1mMinecraft版本\033[00m"});
+    filelist.add_row({"索引","版本ID","版本名","发行时间","下载量","文件名","大小","Minecraft版本"});
     for (ll i=0; i<limit; i++) {
         filelist.add_row(
             {
@@ -154,17 +154,17 @@ int main(){
         );
     } 
     filelist.column(0).format()
-        .font_color(Color::cyan);
-    filelist.column(1).format()
-        .font_color(Color::magenta)
+        .font_color(Color::cyan)
         .width(11);
+    filelist.column(1).format()
+        .font_color(Color::magenta);
     filelist.column(2).format()
         .font_color(Color::green);
     filelist.column(3).format()
         .font_color(Color::blue);
     filelist.column(4).format()
         .font_color(Color::yellow)
-        .width(10);
+        .width(11);
     filelist.column(5).format()
         .font_color(Color::red);
     filelist.column(6).format()
@@ -184,7 +184,7 @@ int main(){
     filelist[0][6].format()
         .font_color(Color::none);
     fmt::print("\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
-    cout<<filelist<<'\n';
+    cout<<filelist.str()<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
     if (file_index_input.empty()){
