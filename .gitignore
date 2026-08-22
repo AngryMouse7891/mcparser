@@ -1,8 +1,7 @@
 /.craft
 /build
 /out
-mcparser_*.snap
-/.craft
+/pkg/mcparser_*.snap
 /overlay
 /parts
 /prime
