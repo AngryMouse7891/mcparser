@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://gitee.com/AngryMouse7891/mcparser"
 license=('MIT')
 # 编译依赖：cmake、编译器、构建工具；运行依赖按需添加
-makedepends=('cmake' 'gcc' 'ninja')
+makedepends=('cmake' 'gcc' 'make')
 depends=('fmt' 'jsoncpp' 'curl' 'openssl' 'ca-certificates')
 # 源码，可以是本地文件或者git地址、压缩包
 source=("../")
@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 build() {
     mkdir -p build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -G "Ninja" ../../
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ../../../
     make -j$(nproc)
 }
 
