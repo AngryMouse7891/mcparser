@@ -50,6 +50,10 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 
 ![启动屏幕](./screenshots/splashscreen.png "启动屏幕")
 
+解析成功
+
+![解析成功](./screenshots/filelist.png "解析成功")
+
 文件列表
 
 ![文件列表](./screenshots/filelist.png "文件列表")
