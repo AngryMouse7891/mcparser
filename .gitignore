@@ -10,3 +10,4 @@
 /pkg/src
 /pkg/mcparser-*.tar.zst
 /.venv
+/site
