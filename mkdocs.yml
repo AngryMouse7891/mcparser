@@ -1,0 +1,14 @@
+site_name: MCParser百科全书（bushi
+repo_url: https://gitee.com/AngryMouse7891/mcparser
+repo_name: AngryMouse7891/mcparser
+site_description: MCParser社区资源解析助手百科全书（bushi
+
+theme:
+  name: material
+  language: zh
+  favicon: mcparser_docs.png
+
+nav:
+  - 主页: index.md
+  - 使用方法: manual.md
+  - 开发指南: BUILD.md
