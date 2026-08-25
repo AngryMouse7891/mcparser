@@ -23,3 +23,5 @@
 * [使用方法](./manual.md)
 
 * [开发指南](./BUILD.md)
+
+* [链接](./links.md)
