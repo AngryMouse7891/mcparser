@@ -36,7 +36,10 @@ vector<string> splashes={
     "牛来",
     "你为什么不去问问神奇海螺呢？",
     "gogogo出发咯",
-    "Ciallo～(∠・ω )⌒☆"
+    "Ciallo～(∠・ω )⌒☆",
+    "MkDocs update!",
+    "MkDocs+Material for MkDocs, YYDS!",
+    "眼睛瞎在手机上"
 };
 
 int randint(int mininum,int maxinum){
