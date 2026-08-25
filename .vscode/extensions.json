@@ -10,6 +10,7 @@
         "vadimcn.vscode-lldb",
         "redhat.vscode-xml",
         "nooreldeensalah.snapcraft-intellisense",
-        "mads-hartmann.bash-ide-vscode"
+        "mads-hartmann.bash-ide-vscode",
+        "redhat.vscode-yaml"
     ]
 }
