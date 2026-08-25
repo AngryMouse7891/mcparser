@@ -1,0 +1,45 @@
+# 安装
+
+## 通过预编译二进制文件下载安装
+
+!!! warning "Gitee Releases不再更新预编译二进制文件通知"
+    由于Gitee Releases附件大小限额已达1G，v1.4.5及之后的版本的预构建二进制文件已不再在Gitee Releases上提交。请大家选择其他下载线路以下载最新版本。
+    虽然以后仍会创建发行版，但只会上传源码了……
+
+!!! tip "新增蓝奏云盘下载线路"
+    由于2026年8月20日本人已注册蓝奏云盘账号，新版本已开始上传至蓝奏云盘，速度更快！
+    分享链接（提取码`cu7m`）：<https://wwbdd.lanzouu.com/b01euppgqj>
+
+Gitee Releases（`v1.4.5`之后停止更新二进制文件）：<https://gitee.com/AngryMouse7891/mcparser/releases>
+
+夸克网盘：<https://pan.quark.cn/s/f88f5aed5752>
+
+百度网盘（提取码`bikb`）：<https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew>
+
+蓝奏云（可下载Windows、Linux版，提取码`cu7m`）：<https://wwbdd.lanzouu.com/b01euppgqj>
+
+MineBBS：<https://www.minebbs.com/resources/mcparser.17435/>
+
+MCBBS纪念版：<https://www.mcbbs.co/thread-5638-1-1.html>
+
+## 通过源码编译安装
+
+详细请看[开发指南](./BUILD.md)。
+
+# 使用
+
+!!! warning "避坑指南"
+    输入文字之后，一定要按回车，一定要按回车！！！
+
+启动之后，一般界面如下：
+
+![启动屏幕](./screenshots/splashscreen.png "启动屏幕")
+
+输入项目id之后按回车，解析成功后，一般界面如下：
+
+![解析成功](./screenshots/parse_success.png "解析成功")
+
+再输入要列出的文件数之后按回车，一般界面如下：
+
+![文件列表](./screenshots/filelist.png "文件列表")
+
