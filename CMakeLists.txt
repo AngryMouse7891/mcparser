@@ -50,6 +50,39 @@ else()
   set(GIT_BRANCH "no-git")
 endif()
 
+# 选项：是否开启文档构建，默认OFF，按需打开
+option(MCPARSER_BUILD_DOCS "Build documentation with MkDocs" OFF)
+
+if(MCPARSER_BUILD_DOCS)
+    find_program(MKDOCS_EXECUTABLE
+            NAMES mkdocs
+            DOC "MkDocs static site generator"
+    )
+
+    if(NOT MKDOCS_EXECUTABLE)
+        message(FATAL_ERROR "BUILD_DOCS is ON but mkdocs was not found!")
+    endif()
+
+    # 文档输出路径：构建目录下 docs/site
+    set(MKDOCS_OUTPUT_DIR "${CMAKE_BINARY_DIR}/site")
+
+    add_custom_target(docs
+            COMMAND ${MKDOCS_EXECUTABLE} build
+                    -d ${MKDOCS_OUTPUT_DIR}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            COMMENT "Building MkDocs documentation -> ${MKDOCS_OUTPUT_DIR}"
+            VERBATIM
+    )
+
+    # 安装规则
+    install(DIRECTORY ${MKDOCS_OUTPUT_DIR}/
+            DESTINATION "share/doc/mcparser"
+            COMPONENT docs
+    )
+endif()
+
+
+
 # 将时间戳存储到变量中
 set(BUILD_TIME ${CURRENT_TIMESTAMP})
 
@@ -137,9 +170,7 @@ install(TARGETS mcparser
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   install(FILES ${CMAKE_BINARY_DIR}/cacert.pem DESTINATION bin/)
 endif ()
-install(FILES LICENSE README.md BUILD.md CHANGELOG DESTINATION share/MCParser)
-install(DIRECTORY screenshots/ DESTINATION share/MCParser/screenshots)
-install(DIRECTORY images/ DESTINATION share/MCParser/images)
+install(FILES LICENSE DESTINATION share/licenses/mcparser)
 install(FILES data/mcparser.png DESTINATION share/icons/hicolor/256x256/apps)
 install(FILES data/256x256@2x/mcparser.png DESTINATION share/icons/hicolor/256x256@2x/apps)
 install(FILES data/MCParser.desktop DESTINATION share/applications)
