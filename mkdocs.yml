@@ -12,6 +12,7 @@ nav:
   - 主页: index.md
   - 使用方法: manual.md
   - 开发指南: BUILD.md
+  - 链接: links.md
 
 markdown_extensions:
   - admonition
@@ -19,7 +20,8 @@ markdown_extensions:
   - pymdownx.superfences
 
 plugins:
-  - tags
+  - tags:
+      enabled: true
   - search
   - extrafiles:
       files:
