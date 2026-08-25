@@ -7,6 +7,7 @@
 * 添加MkDocs文档（Material for MkDocs主题）
 * 将文档装到`share/doc/mcparser`并将开源许可证装到`share/licenses/mcparser`
 * 添加3句闪烁标语
+* 修正一句闪烁标语
 
 ## 1.4.6 (2026/8/22)
 
