@@ -11,3 +11,4 @@
 /pkg/mcparser-*.tar.zst
 /.venv
 /site
+/.cache
