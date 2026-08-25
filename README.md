@@ -52,7 +52,7 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 
 解析成功
 
-![解析成功](./screenshots/filelist.png "解析成功")
+![解析成功](./screenshots/parse_success.png "解析成功")
 
 文件列表
 
