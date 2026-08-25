@@ -12,3 +12,18 @@ nav:
   - 主页: index.md
   - 使用方法: manual.md
   - 开发指南: BUILD.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - tags
+  - search
+  - extrafiles:
+      files:
+        - src: images/** # glob (copies all matches)
+          dest: images/ # must end with '/' to indicate a directory
+        - src: screenshots/** # glob (copies all matches)
+          dest: screenshots/ # must end with '/' to indicate a directory
