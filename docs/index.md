@@ -16,6 +16,8 @@
    " alt="Python">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B2%5D.percent&suffix=%25&style=for-the-badge&logo=CMake&label=CMake&color=DA3434
    " alt="CMake">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B3%5D.percent&suffix=%25&style=for-the-badge&logo=gnubash&label=Shell&color=89e051
+   " alt="Shell">
 </p>
 
 ## 文档导航
