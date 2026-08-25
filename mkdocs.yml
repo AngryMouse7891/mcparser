@@ -23,6 +23,7 @@ plugins:
   - tags:
       enabled: true
   - search
+  - glightbox
   - extrafiles:
       files:
         - src: images/** # glob (copies all matches)
