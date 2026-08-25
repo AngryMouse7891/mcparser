@@ -1,5 +1,13 @@
 # MCParser发行注记
 
+## 1.4.7 (2026/8/25)
+
+* 添加解析成功截图
+* 添加公告日期
+* 添加MkDocs文档（Material for MkDocs主题）
+* 将文档装到`share/doc/mcparser`并将开源许可证装到`share/licenses/mcparser`
+* 添加3句闪烁标语
+
 ## 1.4.6 (2026/8/22)
 
 * 更新蓝奏云盘下载链接
