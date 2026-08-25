@@ -70,3 +70,60 @@ cpack -C Release #通过CPack打包
 `MCParser_xxx_xxx_xxxxxxxx_xxxxxx_x.x.x.zip`
 
 这就是打包之后的文件。
+
+## Linux
+
+1. 配置环境
+
+```bash
+pacman -S fmt jsoncpp curl openssl cmake make #如果是Arch Linux
+```
+
+2. 获取源码：
+
+通过Git克隆该仓库：
+
+```bash
+pacman -S git #安装git
+
+git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
+
+```
+
+你也可以将Ninja作为底层构建工具：
+
+```bash
+pacman -S ninja
+```
+
+3. 获取源码：
+
+通过Git克隆该仓库：
+
+```bash
+pacman -S git #安装git
+
+git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
+
+```
+
+4. 正式构建：
+
+```bash
+cd mcparser #切换到源码目录
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" #配置项目
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Ninja" #若使用Ninja
+cd build #切换到构建目录
+cmake --build . -- -j $(nproc) #构建项目（最大线程）
+cmake --install . --prefix test_install --config Release #安装项目（带收集dll）
+```
+
+上述步骤完成后，`build/test_install/bin/mcparser`就是构建之后的文件。
+
+5. 打包（可选）
+
+在源码目录下的`build`目录运行命令：
+
+```bash
+cpack -C Release #通过CPack打包
+````
