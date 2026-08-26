@@ -19,7 +19,7 @@ std::string parse_modrinth(std::string project_id){
 
     curl = curl_easy_init();
 
-    std::string url=fmt::format("https://api.modrinth.com/v2/project/{0}/version",project_id);
+    std::string url=fmt::format("https://mod.mcimirror.top/modrinth/v2/project/{}/version",project_id);
 
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());

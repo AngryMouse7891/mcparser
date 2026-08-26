@@ -15,6 +15,7 @@
 #include "parser.h"
 #include "title.h"
 #include "json2map.h"
+#include "mirror.h"
 #include "fakepause.h"
 #include "tabulate/table.hpp"
 #include "downloader.h"
@@ -202,7 +203,7 @@ int main(){
         warning_print("输入范围小于0，已自动设为0");
         file_index=0;
     }
-    string selected_url=files[file_index]["url"];
+    string selected_url=replaceModrinthFilesMirror(files[file_index]["url"]);
     string download_dir=beautified_input("请输入下载路径",true);
     info_print(fmt::format("正在下载 🌐 {} -> 📂 {}/{} ...",selected_url,download_dir,files[file_index]["filename"]));
     bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
