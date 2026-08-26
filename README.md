@@ -105,5 +105,3 @@ fmt（字符串格式化+部分文字输出）：<https://github.com/fmtlib/fmt>
 termcolor（彩色终端输出）：<https://github.com/ikalnytskyi/termcolor>
 
 Tabulate（终端表格库）：<https://github.com/p-ranav/tabulate>
-
-OpenSSL（SSL协议）：<https://github.com/openssl/openssl>

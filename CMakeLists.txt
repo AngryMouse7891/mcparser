@@ -96,7 +96,6 @@ aux_source_directory(${CMAKE_SOURCE_DIR}/src SRC_FILES)
 
 # 添加到包含目录
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${OPENSSL_INCLUDE_DIR})
 include_directories(${JSONCPP_INCLUDE_DIRS})
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(src/include)
