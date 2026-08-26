@@ -7,6 +7,12 @@ theme:
   name: material
   language: zh
   favicon: mcparser_docs.png
+  palette:
+    primary: green
+  features:
+    - navigation.instant
+    - navigation.tabs
+  logo: mcparser_docs.png
 
 nav:
   - 主页: index.md
