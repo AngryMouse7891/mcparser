@@ -143,7 +143,7 @@ set(CPACK_RPM_PACKAGE_SUMMARY "A toolkit that can parse Minecraft community reso
 set(CPACK_RPM_PACKAGE_RELEASE 1)
 set(CPACK_RPM_PACKAGE_LICENSE "MIT")
 set(CPACK_RPM_PACKAGE_GROUP "games")
-set(CPACK_RPM_PACKAGE_REQUIRES "libjsoncpp27 >= 1.0.0, libfmt12, libcurl4 >= 8.0.0, libopenssl3, ca-certificates")
+set(CPACK_RPM_PACKAGE_REQUIRES "libjsoncpp27 >= 1.0.0, libfmt12, libcurl4 >= 8.0.0, ca-certificates")
 set(CPACK_RPM_PACKAGE_DESCRIPTION "一个解析Minecraft社区资源的软件")
 set(CPACK_RPM_CHANGELOG_FILE ${CMAKE_SOURCE_DIR}/CHANGELOG)
 
