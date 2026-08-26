@@ -61,7 +61,7 @@ pacman -S mingw-w64-ucrt-x86_64-nsis #安装NSIS
 
 ```bash
 cpack -C Release #通过CPack打包
-````
+```
 
 打包完成后，会出现两个文件：
 
