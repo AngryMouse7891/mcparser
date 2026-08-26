@@ -60,7 +60,7 @@ if(MCPARSER_BUILD_DOCS)
     )
 
     if(NOT MKDOCS_EXECUTABLE)
-        message(FATAL_ERROR "BUILD_DOCS is ON but mkdocs was not found!")
+        message(FATAL_ERROR "MCPARSER_BUILD_DOCS is ON but mkdocs was not found!")
     endif()
 
     # 文档输出路径：构建目录下 docs/site
@@ -81,7 +81,33 @@ if(MCPARSER_BUILD_DOCS)
     )
 endif()
 
+if(MCPARSER_BUILD_ZENSICAL_DOCS)
+    find_program(ZENSICAL_EXECUTABLE
+            NAMES zensical
+            DOC "Zensical static site generator"
+    )
 
+    if(NOT ZENSICAL_EXECUTABLE)
+        message(FATAL_ERROR "MCPARSER_BUILD_ZENSICAL_DOCS is ON but zensical was not found!")
+    endif()
+
+    # 文档输出路径：构建目录下 docs/site
+    set(MKDOCS_OUTPUT_DIR "${CMAKE_BINARY_DIR}/zensical/site")
+
+    add_custom_target(docs
+            COMMAND ${ZENSICAL_EXECUTABLE} build
+                    -d ${ZENSICAL_OUTPUT_DIR}
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            COMMENT "Building Zensical documentation -> ${ZENSICAL_OUTPUT_DIR}"
+            VERBATIM
+    )
+
+    # 安装规则
+    install(DIRECTORY ${ZENSICAL_OUTPUT_DIR}/
+            DESTINATION "share/doc/mcparser"
+            COMPONENT docs
+    )
+endif()
 
 # 将时间戳存储到变量中
 set(BUILD_TIME ${CURRENT_TIMESTAMP})
