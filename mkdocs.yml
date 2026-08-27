@@ -41,6 +41,7 @@ plugins:
   - search
   - glightbox
   - git-revision-date-localized
+  - git-authors
   - extrafiles:
       files:
         - src: images/** # glob (copies all matches)
