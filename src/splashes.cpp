@@ -39,7 +39,11 @@ vector<string> splashes={
     "Ciallo～(∠・ω・)⌒☆",
     "MkDocs update!",
     "MkDocs+Material for MkDocs, YYDS!",
-    "眼睛瞎在手机上"
+    "眼睛瞎在手机上",
+    "⚡ Gotta Go Fast! 🔵",
+    "囊囊囊囊囊囊囊~",
+    "闯关弟子注意，本关考验你听声辩位功夫",
+    "我命由我不由天！！！"
 };
 
 int randint(int mininum,int maxinum){
