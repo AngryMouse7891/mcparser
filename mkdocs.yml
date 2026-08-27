@@ -2,13 +2,23 @@ site_name: MCParser百科全书（bushi
 repo_url: https://gitee.com/AngryMouse7891/mcparser
 repo_name: AngryMouse7891/mcparser
 site_description: MCParser社区资源解析助手百科全书（bushi
+copyright: Copyright &copy; 2026 红温的鼠鼠7891
 
 theme:
   name: material
   language: zh
   favicon: mcparser_docs.png
   palette:
-    primary: green
+    - scheme: default
+      primary: green
+      toggle:
+        icon: material/brightness-7
+        name: 切换到深色模式
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
   features:
     - navigation.instant
     - navigation.tabs
@@ -30,9 +40,20 @@ plugins:
       enabled: true
   - search
   - glightbox
+  - git-revision-date-localized
   - extrafiles:
       files:
         - src: images/** # glob (copies all matches)
           dest: images/ # must end with '/' to indicate a directory
         - src: screenshots/** # glob (copies all matches)
           dest: screenshots/ # must end with '/' to indicate a directory
+
+extra:
+  social:
+    - icon: simple/gitee
+      link: https://gitee.com/AngryMouse7891
+    - icon: material/minecraft
+      link: https://www.mcbbs.co/space-uid-199297.html
+
+extra_css:
+ - stylesheets/extra.css

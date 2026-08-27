@@ -1,0 +1,12 @@
+body {
+   background-image: url('/background.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.md-main__inner {
+    background: rgba(255,255,255,0.9);
+    border-radius: 8px;
+}
