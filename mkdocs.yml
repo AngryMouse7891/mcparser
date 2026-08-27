@@ -29,6 +29,7 @@ nav:
   - 使用方法: manual.md
   - 开发指南: BUILD.md
   - 链接: links.md
+  - 更新日志: CHANGELOG
 
 markdown_extensions:
   - admonition
@@ -55,6 +56,8 @@ extra:
       link: https://gitee.com/AngryMouse7891
     - icon: material/minecraft
       link: https://www.mcbbs.co/space-uid-199297.html
+    - icon: material/qqchat
+      link: https://qm.qq.com/q/NOdOHB79wC
 
 extra_css:
  - stylesheets/extra.css

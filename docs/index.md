@@ -27,3 +27,5 @@
 * [开发指南](./BUILD.md)
 
 * [链接](./links.md)
+
+* [更新日志](./CHANGELOG)
