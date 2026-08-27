@@ -29,7 +29,7 @@ nav:
   - 使用方法: manual.md
   - 开发指南: BUILD.md
   - 链接: links.md
-  - 更新日志: CHANGELOG
+  - 更新日志: CHANGELOG.md
 
 markdown_extensions:
   - admonition
