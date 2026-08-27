@@ -17,7 +17,7 @@ sha256sums=('SKIP')
 build() {
     mkdir -p build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ../../../
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DMCPARSER_BUILD_DOCS=ON ../../../
     cmake --build . --target all docs -- -j$(nproc)
 }
 
