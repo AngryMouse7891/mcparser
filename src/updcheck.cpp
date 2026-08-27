@@ -73,7 +73,7 @@ void check(){
     if (res=="0") {
         success_print(fmt::format("已是最新版（{}）\n",VERSION_STRING));
     } else if (res=="-1") {
-        error_print("更新检查失败");
+        error_print("更新检查失败辣！ヽ(*。>Д<)o゜");
     } else {
         std::string prompt_str=fmt::format("发现新版本！{} -> {}请去以下下载渠道下载更新：\nGitee Releases（可下载Windows、Linux版（<=1.4.4）以及源代码）：https://gitee.com/AngryMouse7891/mcparser/releases\n夸克网盘（仅Windows版）：https://pan.quark.cn/s/f88f5aed5752\n百度网盘（可下载Windows、Linux版，提取码`bikb`）：https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew\nMineBBS（仅Windows版）：https://www.minebbs.com/resources/mcparser.17435/\nMCBBS纪念版（可下载Windows、Linux版）：https://www.mcbbs.co/thread-5638-1-1.html\n蓝奏云（可下载Windows、Linux版，提取码`cu7m`）：https://wwbdd.lanzouu.com/b01euppgqj\n",
             VERSION_STRING,res);

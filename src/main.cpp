@@ -11,6 +11,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <ctime>
 #include "input_beautify.h"
 #include "parser.h"
 #include "title.h"
@@ -89,9 +90,12 @@ int main(){
     print_title();
     check();
     string s=beautified_input("请输入要解析的项目ID",true);
+    time_t start ,end ;  
+    double cost;  
+    time(&start);  
     string resp=parse_modrinth(s);
     if(resp=="-1"){
-        error_print("解析失败！");
+        error_print("解析失败辣！ゞ◎Д◎ヾ");
         #if _WIN32
             SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
         #endif
@@ -112,7 +116,9 @@ int main(){
     #if _WIN32
     system(fmt::format("title MCParser v{} (r{}) - by {} - 已解析{}个文件",VERSION_STRING,GIT_HASH,AUTHOR,files.size()).c_str());
     #endif
-    success_print(fmt::format("解析成功，共解析{}个文件\n",files.size()));
+    time(&end);
+    cost=difftime(end,start);    
+    success_print(fmt::format("解析成功，共解析{}个文件，耗时{}秒\n",files.size(),cost));
     string show_limit1=beautified_input("请输入最多展示几条（0或`all`为所有，留空则默认为5）");
     ll limit=0;
     if(show_limit1.empty()){
@@ -184,7 +190,7 @@ int main(){
         .font_color(Color::none);
     filelist[0][6].format()
         .font_color(Color::none);
-    fmt::print("\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
+    fmt::print("📄\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
     cout<<filelist.str()<<'\n';
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
