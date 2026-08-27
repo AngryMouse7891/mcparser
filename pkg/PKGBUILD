@@ -18,7 +18,7 @@ build() {
     mkdir -p build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ../../../
-    make -j$(nproc)
+    cmake --build . --target all docs -- -j$(nproc)
 }
 
 # 安装函数，make install 把文件部署到 makepkg 的临时打包目录 $pkgdir
