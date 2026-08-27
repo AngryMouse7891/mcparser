@@ -1,6 +1,6 @@
 # 包基础信息
 pkgname=mcparser
-pkgver=1.4.7
+pkgver=1.5.0
 pkgrel=1
 pkgdesc="A toolkit that can parse Minecraft community resources (such as mods)"
 arch=('x86_64')
