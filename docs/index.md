@@ -28,4 +28,4 @@
 
 * [链接](./links.md)
 
-* [更新日志](./CHANGELOG)
+* [更新日志](./CHANGELOG.md)
