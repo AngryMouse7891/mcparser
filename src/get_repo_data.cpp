@@ -56,7 +56,7 @@ void print_data(){
     std::string fetched=get_repo_data();
     if (fetched=="-1")
     {
-        error_print("仓库数据获取失败");
+        error_print("仓库数据获取失败辣！ヽ(*。>Д<)o゜");
         return;
     }
     std::map<std::string,int> repo_data=convert_data(fetched);
