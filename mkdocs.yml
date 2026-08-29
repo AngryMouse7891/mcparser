@@ -58,6 +58,8 @@ extra:
       link: https://www.mcbbs.co/space-uid-199297.html
     - icon: material/qqchat
       link: https://qm.qq.com/q/NOdOHB79wC
+    - icon: material/mail
+      link: mailto:pystart@qq.com
 
 extra_css:
  - stylesheets/extra.css
