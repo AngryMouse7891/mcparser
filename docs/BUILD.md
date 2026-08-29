@@ -9,7 +9,7 @@
 在MSYS2 UCRT64终端中输入以下命令以安装工具链以及其它依赖然后配置环境变量：
 
 ```bash
-pacman -S mingw-w64-ucrt-x86_64-{gcc,make,jsoncpp,curl,fmt,openssl,pkgconf,cmake} #安装GCC、make、jsoncpp、cURL、fmt、OpenSSL、pkg-config、CMake
+pacman -S mingw-w64-ucrt-x86_64-{gcc,make,jsoncpp,curl,fmt,pkgconf,cmake} #安装GCC、make、jsoncpp、cURL、fmt、OpenSSL、pkg-config、CMake
 export PATH=/ucrt64/bin:$PATH
 ```
 
@@ -42,10 +42,9 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" #配置项�
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Ninja" #若使用Ninja
 cd build #切换到构建目录
 cmake --build . -- -j $(nproc) #构建项目（最大线程）
-cmake --install . --prefix test_install --config Release #安装项目（带收集dll）
 ```
 
-上述步骤完成后，`build/test_install/bin/mcparser.exe`就是构建之后的文件。
+上述步骤完成后，`build/mcparser.exe`就是构建之后的文件。
 
 5. 打包（可选）
 
@@ -76,7 +75,15 @@ cpack -C Release #通过CPack打包
 1. 配置环境
 
 ```bash
-pacman -S fmt jsoncpp curl openssl cmake make #如果是Arch Linux
+sudo pacman -S fmt jsoncpp curl cmake make pkgconf #如果是Arch Linux
+sudo zypper in libfmt12 fmt-devel jsoncpp-devel libjsoncpp27 libcurl-devel libcurl4 pkgconf pkgconf-pkg-config #如果是 openSUSE
+```
+
+你也可以将Ninja作为底层构建工具：
+
+```bash
+sudo pacman -S ninja #如果是Arch Linux
+sudo zypper in ninja #如果是 openSUSE
 ```
 
 2. 获取源码：
@@ -84,30 +91,14 @@ pacman -S fmt jsoncpp curl openssl cmake make #如果是Arch Linux
 通过Git克隆该仓库：
 
 ```bash
-pacman -S git #安装git
+sudo pacman -S git #安装git（如果是Arch Linux）
+sudo zypper in git #如果是 openSUSE
 
 git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
 
 ```
 
-你也可以将Ninja作为底层构建工具：
-
-```bash
-pacman -S ninja
-```
-
-3. 获取源码：
-
-通过Git克隆该仓库：
-
-```bash
-pacman -S git #安装git
-
-git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
-
-```
-
-4. 正式构建：
+3. 正式构建：
 
 ```bash
 cd mcparser #切换到源码目录
@@ -115,15 +106,15 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" #配置项目
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -G "Ninja" #若使用Ninja
 cd build #切换到构建目录
 cmake --build . -- -j $(nproc) #构建项目（最大线程）
-cmake --install . --prefix test_install --config Release #安装项目（带收集dll）
 ```
 
-上述步骤完成后，`build/test_install/bin/mcparser`就是构建之后的文件。
+上述步骤完成后，`build/mcparser`就是构建之后的文件。
 
-5. 打包（可选）
+4. 打包（可选）
 
 在源码目录下的`build`目录运行命令：
 
 ```bash
 cpack -C Release #通过CPack打包
-````
+
+```
