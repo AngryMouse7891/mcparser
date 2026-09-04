@@ -46,7 +46,11 @@ vector<string> splashes={
     "我命由我不由天！！！",
     "🍉吃瓜群众 请围观🍉",
     "头 脑 风 暴",
-    "再见，暑假(ノへ￣、)"
+    "再见，暑假(ノへ￣、)",
+    "🌽欧 洲 玉 米🌽",
+    "噫吁嚱，危乎高哉！Flutter之难，难于上青天！",
+    "到底是谁把Minecraft守卫者看成痞老板的",
+    "烤🔥绿🟢鸟🐦"
 };
 
 int randint(int mininum,int maxinum){
