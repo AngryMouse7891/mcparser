@@ -201,6 +201,7 @@ install(FILES data/256x256@2x/mcparser.png DESTINATION share/icons/hicolor/256x2
 install(FILES data/MCParser.desktop DESTINATION share/applications)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
   install(FILES mcparser.exe.manifest DESTINATION bin)
+  install(FILES data/launcher.bat DESTINATION bin)
 endif()
 
 include(BundleUtilities)
