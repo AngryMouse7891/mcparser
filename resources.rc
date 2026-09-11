@@ -21,7 +21,7 @@ FILETYPE VFT_APP
       VALUE "FileVersion", "1.5.0"
       VALUE "FileDescription", "一个一个一个一个一个一个一个一个一个一个一个一个一个解析《我的世界》社区资源（如模组）的工具。"
       VALUE "InternalName", "MCParser"
-      VALUE "LegalCopyright", ""
+      VALUE "LegalCopyright", "Copyright (c) 2026 红温的鼠鼠7891"
       VALUE "LegalTrademarks", ""
       VALUE "OriginalFilename", "mcparser.exe"
       VALUE "ProductName", "MCParser"
