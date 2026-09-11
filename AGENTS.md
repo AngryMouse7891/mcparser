@@ -13,3 +13,11 @@
 
 - 配置项目：cmake -B build
 - 构建命令：cmake --build build，输出目录为 build/
+
+## 3. Other Rules（其他规则）
+
+### 3.1 禁止操作
+
+- 不得修改/删除：.python-version（uv生成的ython版本文件）、.env/（Python虚拟环境）、/（迁移文件）
+- 不得修改：package.json 中的依赖版本、CI/CD 流水线配置（`.github/workflows/`、`.gitlab-ci.yml`）
+- 不得提交：build 目录、IDE 配置文件（`.vscode/`、`.idea/`）、未完成的测试代码
