@@ -18,6 +18,6 @@
 
 ### 3.1 禁止操作
 
-- 不得修改/删除：.python-version（uv生成的ython版本文件）、.env/（Python虚拟环境）、pkg/（软件包配置文件）
+- 不得修改/删除：.python-version（uv生成的Python版本文件）、.env/（Python虚拟环境）、pkg/（软件包配置文件）、data/（额外数据文件）、screenshots/（截图文件）、images/（图片文件）
 - 不得修改：package.json 中的依赖版本、CI/CD 流水线配置（`.github/workflows/`、`.gitlab-ci.yml`）
 - 不得提交：build 目录、out 目录、IDE 配置文件（`.vscode/`、`.idea/`）、未完成的测试代码
