@@ -22,6 +22,8 @@ MineBBS：<https://www.minebbs.com/resources/mcparser.17435/>
 
 MCBBS纪念版：<https://www.mcbbs.co/thread-5638-1-1.html>
 
+BBSMC：<https://bbsmc.net/software/mcparser>
+
 ## 通过源码编译安装
 
 详细请看[开发指南](./BUILD.md)。

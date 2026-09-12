@@ -86,6 +86,8 @@ MineBBS：<https://www.minebbs.com/resources/mcparser.17435/>
 
 MCBBS纪念版：<https://www.mcbbs.co/thread-5638-1-1.html>
 
+BBSMC：<https://bbsmc.net/software/mcparser>
+
 ## 支持的资源平台
 
 | 资源平台 | 是否支持 |
