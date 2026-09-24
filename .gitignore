@@ -9,6 +9,7 @@
 /pkg/pkg
 /pkg/src
 /pkg/mcparser-*.tar.zst
+/pkg/*.sig
 /.venv
 /site
 /.cache
