@@ -180,7 +180,7 @@ set (CPACK_PACKAGE_ICON
      "${CMAKE_SOURCE_DIR}/data/install.bmp")
 
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
-  set(CPACK_GENERATOR "NSIS;ZIP")
+  set(CPACK_GENERATOR "NSIS;7Z_LZMA2")
 else()
   set(CPACK_GENERATOR "TGZ")
 endif ()
