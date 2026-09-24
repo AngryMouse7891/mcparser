@@ -248,7 +248,7 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 # 桌面快捷方式
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
-      "CreateShortCut \"$DESKTOP\\MCParser.lnk\" \"$INSTDIR\\bin\\MCParser.exe\"")
+      "CreateShortCut \"$DESKTOP/MCParser.lnk\" \"$INSTDIR/bin/MCParser.exe\"")
 endif()
 
 # 开始菜单名称
