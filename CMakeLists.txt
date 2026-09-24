@@ -246,8 +246,10 @@ set (CPACK_PACKAGE_EXECUTABLES "mcparser;MCParser" )
 set(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 # 桌面快捷方式
-set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
-    "CreateShortCut \"$DESKTOP\\MCParser.lnk\" \"$INSTDIR\\bin\\MCParser.exe\"")
+if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
+      "CreateShortCut \"$DESKTOP\\MCParser.lnk\" \"$INSTDIR\\bin\\MCParser.exe\"")
+endif()
 
 # 开始菜单名称
 set(CPACK_NSIS_PACKAGE_NAME "MCParser")
