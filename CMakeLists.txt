@@ -246,9 +246,15 @@ set (CPACK_PACKAGE_EXECUTABLES "mcparser;MCParser" )
 set(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 # 桌面快捷方式
+# 注意：CPack 会把变量值原样写入 build/CPackConfig.cmake 的 set() 行中，
+# 因此值本身必须已是合法的 CMake 字面量：
+#   \\\" -> 值中的 \"  -> CPackConfig 解析后还原成 "（NSIS 引号）
+#   \\\\ -> 值中的 \\  -> CPackConfig 解析后还原成 \（Windows 路径分隔符）
+# 最终写入 NSIS 脚本的语句为：
+#   CreateShortCut "$DESKTOP\MCParser.lnk" "$INSTDIR\bin\mcparser.exe"
 if (CMAKE_HOST_SYSTEM_NAME MATCHES "Windows")
   set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
-      "CreateShortCut \"$DESKTOP/MCParser.lnk\" \"$INSTDIR/bin/MCParser.exe\"")
+      "CreateShortCut \\\"$DESKTOP\\\\MCParser.lnk\\\" \\\"$INSTDIR\\\\bin\\\\mcparser.exe\\\"")
 endif()
 
 # 开始菜单名称
