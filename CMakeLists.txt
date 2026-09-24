@@ -249,7 +249,6 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY "MCParser")
 set(CPACK_GENERATOR NSIS)
 set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
     "CreateShortCut \"$DESKTOP\\MCParser.lnk\" \"$INSTDIR\\bin\\MCParser.exe\"")
-include(CPack)
 
 # 开始菜单名称
 set(CPACK_NSIS_PACKAGE_NAME "MCParser")
