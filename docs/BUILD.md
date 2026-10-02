@@ -30,6 +30,7 @@ pacman -S git #安装git
 
 git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
 
+git clone https://gitee.com/AngryMouse7891/mcparser.git --branch 1.5.1 #或者仅获取特定版本或分支
 ```
 
 如果你不想通过MSYS2安装Git，你也可以从 [Git官网](https://git-scm.com) 下载安装。
@@ -96,6 +97,7 @@ sudo zypper in git #如果是 openSUSE
 
 git clone https://gitee.com/AngryMouse7891/mcparser.git #克隆仓库
 
+git clone https://gitee.com/AngryMouse7891/mcparser.git --branch 1.5.1 #或者仅获取特定版本或分支
 ```
 
 3. 正式构建：
@@ -116,5 +118,4 @@ cmake --build . -- -j $(nproc) #构建项目（最大线程）
 
 ```bash
 cpack -C Release #通过CPack打包
-
 ```
