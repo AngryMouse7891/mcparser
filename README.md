@@ -7,9 +7,9 @@
 <p align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
    <img src="https://img.shields.io/badge/github-repo-blue?logo=github&style=for-the-badge" alt="GitHub Repo">
-   <img src="https://img.shields.io/github/license/AngryMouse7891/mcparser
+   <img src="https://img.shields.io/github/license/AngryMouse7891/mcparser?style=for-the-badge
    " alt="License">
-   <img src="https://img.shields.io/github/v/tag/AngryMouse7891/mcparser?label=latest&color=orange
+   <img src="https://img.shields.io/github/v/tag/AngryMouse7891/mcparser?label=latest&color=orange?style=for-the-badge
    " alt="Version">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B0%5D.percent&suffix=%25&style=for-the-badge&logo=C%2B%2B&label=C%2B%2B&color=f34b7d
    " alt="C++">
