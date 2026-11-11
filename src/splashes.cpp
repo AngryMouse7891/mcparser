@@ -50,7 +50,10 @@ vector<string> splashes={
     "🌽欧 洲 玉 米🌽",
     "噫吁嚱，危乎高哉！Flutter之难，难于上青天！",
     "到底是谁把Minecraft守卫者看成痞老板的",
-    "烤🔥绿🟢鸟🐦"
+    "烤🔥绿🟢鸟🐦",
+    "MIT Licensed!",
+    "C++23 Standard!",
+    "I have github account now :)"
 };
 
 int randint(int mininum,int maxinum){
