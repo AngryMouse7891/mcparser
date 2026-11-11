@@ -39,10 +39,8 @@ SOFTWARE.
 
 #if __cplusplus >= 201703L
 #include <optional>
-using std::optional;
 #else
 #include <tabulate/optional_lite.hpp>
-using nonstd::optional;
 #endif
 
 #include <vector>
@@ -55,11 +53,19 @@ using nonstd::optional;
 
 namespace tabulate {
 
+#if __cplusplus >= 201703L
+using std::optional;
+#else
+using nonstd::optional;
+#endif
+
 class Row {
 public:
-  explicit Row(std::shared_ptr<class TableInternal> parent) : parent_(parent) {}
+  explicit Row(std::shared_ptr<class TableInternal> parent) : parent_(parent.get()) {}
 
   void add_cell(std::shared_ptr<Cell> cell) { cells_.push_back(cell); }
+
+  void erase_cell(size_t index) { cells_.erase(cells_.begin() + index); }
 
   Cell &operator[](size_t index) { return cell(index); }
 
@@ -101,7 +107,7 @@ private:
     size_t result{0};
     for (size_t i = 0; i < size(); ++i) {
       auto cell = cells_[i];
-      auto format = cell->format();
+      const auto &format = cell->format();
       if (format.height_.has_value())
         result = std::max(result, *format.height_);
     }
@@ -142,7 +148,7 @@ private:
   size_t get_cell_height(size_t cell_index, size_t column_width) {
     size_t result{0};
     Cell &cell = *(cells_[cell_index]);
-    auto format = cell.format();
+    const auto &format = cell.format();
     auto text = cell.get_text();
 
     auto padding_left = *format.padding_left_;
@@ -172,7 +178,8 @@ private:
         std::count(word_wrapped_text.begin(), word_wrapped_text.end(), '\n');
     auto estimated_row_height = newlines_in_wrapped_text;
 
-    if (!word_wrapped_text.empty() &&
+    // Empty cells still occupy one content line, in addition to their padding.
+    if (word_wrapped_text.empty() ||
         word_wrapped_text[word_wrapped_text.size() - 1] != '\n') // text doesn't end with a newline
       estimated_row_height += 1;
 
@@ -184,8 +191,10 @@ private:
   }
 
   std::vector<std::shared_ptr<Cell>> cells_;
-  std::weak_ptr<class TableInternal> parent_;
+  // Raw, not weak_ptr: see the comment on Cell::parent_ in cell.hpp.
+  class TableInternal *parent_;
   optional<Format> format_;
+  optional<Format> parent_format_snapshot_;
 };
 
 } // namespace tabulate

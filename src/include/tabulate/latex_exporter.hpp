@@ -36,13 +36,17 @@ SOFTWARE.
 
 #if __cplusplus >= 201703L
 #include <optional>
-using std::optional;
 #else
 #include <tabulate/optional_lite.hpp>
-using nonstd::optional;
 #endif
 
 namespace tabulate {
+
+#if __cplusplus >= 201703L
+using std::optional;
+#else
+using nonstd::optional;
+#endif
 
 class LatexExporter : public Exporter {
 
@@ -103,7 +107,7 @@ private:
     std::string result{"{"};
 
     for (auto &cell : table[0]) {
-      auto format = cell.format();
+      const auto &format = cell.format();
       if (format.font_align_.value() == FontAlign::left) {
         result += 'l';
       } else if (format.font_align_.value() == FontAlign::center) {

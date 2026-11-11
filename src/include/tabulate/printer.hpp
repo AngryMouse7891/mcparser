@@ -41,8 +41,19 @@ namespace tabulate {
 
 class Printer {
 public:
+  // Column widths alone (no word-wrapping involved), used both by
+  // compute_cell_dimensions() and by print_table(), which needs them before
+  // it can word-wrap cell content to compute row heights.
+  static std::vector<size_t> compute_column_widths(TableInternal &table);
+
   static std::pair<std::vector<size_t>, std::vector<size_t>>
   compute_cell_dimensions(TableInternal &table);
+
+  // Word-wraps and splits a cell's text into the lines that will be printed,
+  // given the column width it will be rendered at. Shared by print_table()
+  // and TableInternal::print_row() so incremental, per-row printing applies
+  // the exact same word-wrapping as a full print.
+  static std::vector<std::string> split_cell_text(Cell &cell, size_t column_width);
 
   static void print_table(std::ostream &stream, TableInternal &table);
 
@@ -72,6 +83,29 @@ public:
   static void reset_element_style(std::ostream &stream) { stream << termcolor::reset; }
 
 private:
+  // Repeats `unit` until the result is `width` units long. Used to build
+  // border/separator lines. A naive loop appending `unit` once per
+  // iteration is the single hottest part of printing a plain table (profiled
+  // via `sample` -- each append(), even reserve()'d, still pays a function
+  // call + bounds check per column-width unit, 10-20+ times per cell). The
+  // single-char case (the overwhelming majority: "-", "|", "+", ...) uses
+  // the fill constructor directly; the general case doubles the buffer each
+  // round instead of growing it one unit at a time, for O(log width) appends.
+  static std::string repeat_to_width(const std::string &unit, size_t width) {
+    if (width == 0 || unit.empty())
+      return {};
+    if (unit.size() == 1)
+      return std::string(width, unit[0]);
+    const size_t target = unit.size() * width;
+    std::string line = unit;
+    line.reserve(target);
+    while (line.size() < target) {
+      size_t remaining = target - line.size();
+      line.append(line, 0, std::min(line.size(), remaining));
+    }
+    return line;
+  }
+
   static void print_content_left_aligned(std::ostream &stream, const std::string &cell_content,
                                          const Format &format, size_t text_with_padding_size,
                                          size_t column_width) {
@@ -86,9 +120,7 @@ private:
     apply_element_style(stream, *format.font_color_, *format.font_background_color_, {});
 
     if (text_with_padding_size < column_width) {
-      for (size_t j = 0; j < (column_width - text_with_padding_size); ++j) {
-        stream << " ";
-      }
+      stream << std::string(column_width - text_with_padding_size, ' ');
     }
   }
 
@@ -98,8 +130,7 @@ private:
     auto num_spaces = column_width - text_with_padding_size;
     if (num_spaces % 2 == 0) {
       // Even spacing on either side
-      for (size_t j = 0; j < num_spaces / 2; ++j)
-        stream << " ";
+      stream << std::string(num_spaces / 2, ' ');
 
       // Apply font style
       apply_element_style(stream, *format.font_color_, *format.font_background_color_,
@@ -110,12 +141,10 @@ private:
       reset_element_style(stream);
       apply_element_style(stream, *format.font_color_, *format.font_background_color_, {});
 
-      for (size_t j = 0; j < num_spaces / 2; ++j)
-        stream << " ";
+      stream << std::string(num_spaces / 2, ' ');
     } else {
       auto num_spaces_before = num_spaces / 2 + 1;
-      for (size_t j = 0; j < num_spaces_before; ++j)
-        stream << " ";
+      stream << std::string(num_spaces_before, ' ');
 
       // Apply font style
       apply_element_style(stream, *format.font_color_, *format.font_background_color_,
@@ -126,8 +155,7 @@ private:
       reset_element_style(stream);
       apply_element_style(stream, *format.font_color_, *format.font_background_color_, {});
 
-      for (size_t j = 0; j < num_spaces - num_spaces_before; ++j)
-        stream << " ";
+      stream << std::string(num_spaces - num_spaces_before, ' ');
     }
   }
 
@@ -135,9 +163,7 @@ private:
                                           const Format &format, size_t text_with_padding_size,
                                           size_t column_width) {
     if (text_with_padding_size < column_width) {
-      for (size_t j = 0; j < (column_width - text_with_padding_size); ++j) {
-        stream << " ";
-      }
+      stream << std::string(column_width - text_with_padding_size, ' ');
     }
 
     // Apply font style
@@ -207,6 +233,9 @@ private:
     case Color::white:
       stream << termcolor::white;
       break;
+    case Color::black:
+      stream << termcolor::black;
+      break;
     case Color::none:
     default:
       break;
@@ -238,6 +267,9 @@ private:
       break;
     case Color::white:
       stream << termcolor::on_white;
+      break;
+    case Color::black:
+      stream << termcolor::on_black;
       break;
     case Color::none:
     default:

@@ -37,14 +37,22 @@ SOFTWARE.
 #if __cplusplus >= 201703L
 #include <string_view>
 #include <variant>
+#else
+#include <tabulate/string_view_lite.hpp>
+#include <tabulate/variant_lite.hpp>
+#endif
+
+#include <utility>
+
+namespace tabulate {
+
+#if __cplusplus >= 201703L
 using std::get_if;
 using std::holds_alternative;
 using std::string_view;
 using std::variant;
 using std::visit;
 #else
-#include <tabulate/string_view_lite.hpp>
-#include <tabulate/variant_lite.hpp>
 using nonstd::get_if;
 using nonstd::holds_alternative;
 using nonstd::string_view;
@@ -52,9 +60,8 @@ using nonstd::variant;
 using nonstd::visit;
 #endif
 
-#include <utility>
-
-namespace tabulate {
+// Unicode box-drawing glyph sets, for use with Table::use_unicode_borders().
+enum class BorderStyle { Light, Heavy, Double };
 
 class Table {
 public:
@@ -79,6 +86,7 @@ public:
       std::fill(cell_strings.begin(), cell_strings.end(), "");
     }
 
+    std::vector<size_t> nested_table_indices;
     for (size_t i = 0; i < cells.size(); ++i) {
       auto cell = cells[i];
       if (holds_alternative<std::string>(cell)) {
@@ -90,12 +98,21 @@ public:
       } else {
         auto table = *get_if<Table>(&cell);
         std::stringstream stream;
+        // termcolor emits nothing on a stream that is not a terminal, which
+        // would strip every color the nested table asked for. The destination
+        // is not known until the outer table is printed, so follow std::cout.
+        if (termcolor::_internal::is_colorized(std::cout))
+          stream << termcolor::colorize;
         table.print(stream);
         cell_strings[i] = stream.str();
+        nested_table_indices.push_back(i);
       }
     }
 
     table_->add_row(cell_strings);
+    // A nested table's text is pre-formatted ASCII art: trimming would corrupt its layout.
+    for (auto i : nested_table_indices)
+      row(rows_)[i].format().trim_mode(Format::TrimMode::kNone);
     rows_ += 1;
     return *this;
   }
@@ -106,9 +123,95 @@ public:
 
   Column column(size_t index) { return table_->column(index); }
 
+  Table &erase_column(size_t index) {
+    table_->erase_column(index);
+    if (cols_ > 0)
+      cols_ -= 1;
+    return *this;
+  }
+
+  // Configures clean Unicode box-drawing borders/corners instead of the
+  // default ASCII "+"/"-"/"|", in one of the common box-drawing weights
+  // (BorderStyle::Light "┌─┬─┐", ::Heavy "┏━┳━┓", or ::Double "╔═╦═╗").
+  // With show_row_separators = false (the default), only the outer box is
+  // drawn; with true, every row boundary gets the matching T-junction/cross
+  // characters too.
+  Table &use_unicode_borders(bool show_row_separators = false, BorderStyle style = BorderStyle::Light) {
+    struct Glyphs {
+      const char *horizontal;
+      const char *vertical;
+      const char *top_left, *top_mid, *top_right;
+      const char *mid_left, *mid_mid, *mid_right;
+      const char *bottom_left, *bottom_mid, *bottom_right;
+    };
+
+    Glyphs glyphs;
+    switch (style) {
+    case BorderStyle::Heavy:
+      glyphs = {"\u2501", "\u2503", "\u250f", "\u2533", "\u2513",
+                "\u2523", "\u254b", "\u252b", "\u2517", "\u253b", "\u251b"};
+      break;
+    case BorderStyle::Double:
+      glyphs = {"\u2550", "\u2551", "\u2554", "\u2566", "\u2557",
+                "\u2560", "\u256c", "\u2563", "\u255a", "\u2569", "\u255d"};
+      break;
+    case BorderStyle::Light:
+    default:
+      glyphs = {"\u2500", "\u2502", "\u250c", "\u252c", "\u2510",
+                "\u251c", "\u253c", "\u2524", "\u2514", "\u2534", "\u2518"};
+      break;
+    }
+
+    format()
+        .border_left(glyphs.vertical)
+        .border_right(glyphs.vertical)
+        .border_top(glyphs.horizontal)
+        .border_bottom(glyphs.horizontal);
+
+    size_t num_rows = size();
+    for (size_t i = 0; i < num_rows; ++i) {
+      Row &r = row(i);
+      size_t num_cols = r.size();
+      bool is_first_row = (i == 0);
+      bool is_last_row = (i + 1 == num_rows);
+      for (size_t j = 0; j < num_cols; ++j) {
+        bool is_first_col = (j == 0);
+        bool is_last_col = (j + 1 == num_cols);
+        Cell &cell = r[j];
+
+        if (is_first_row) {
+          cell.format().corner_top_left(is_first_col ? glyphs.top_left : glyphs.top_mid);
+          if (is_last_col)
+            cell.format().corner_top_right(glyphs.top_right);
+        } else if (show_row_separators) {
+          cell.format().corner_top_left(is_first_col ? glyphs.mid_left : glyphs.mid_mid);
+          if (is_last_col)
+            cell.format().corner_top_right(glyphs.mid_right);
+        } else {
+          cell.format().hide_border_top();
+        }
+
+        if (is_last_row) {
+          cell.format().corner_bottom_left(is_first_col ? glyphs.bottom_left : glyphs.bottom_mid);
+          if (is_last_col)
+            cell.format().corner_bottom_right(glyphs.bottom_right);
+        }
+      }
+    }
+    return *this;
+  }
+
   Format &format() { return table_->format(); }
 
   void print(std::ostream &stream) { table_->print(stream); }
+
+  // Prints just one row (see TableInternal::print_row() for the column-width
+  // caveat around streaming rows as they're added).
+  void print_row(size_t index, std::ostream &stream = std::cout) { table_->print_row(stream, index); }
+
+  // Prints the table's closing bottom border. Pair with print_row() once
+  // the last row has been added and printed.
+  void print_bottom_border(std::ostream &stream = std::cout) { table_->print_bottom_border(stream); }
 
   std::string str() {
     std::stringstream stream;
@@ -118,7 +221,68 @@ public:
 
   size_t size() const { return table_->size(); }
 
+  // {number of rows, number of columns} actually added to the table. Not to
+  // be confused with shape(), which measures the *rendered* table instead.
+  std::pair<size_t, size_t> dimensions() const { return {size(), cols_}; }
+
   std::pair<size_t, size_t> shape() { return table_->shape(); }
+
+  // Splits the table into pages of `rows_per_page` data rows each, suitable
+  // for printing a large table in consistently-formatted chunks. Column
+  // widths are computed once from the *entire* table and fixed on every
+  // page, so pages always line up with each other regardless of which page
+  // happens to hold the widest content. Each page is an independent,
+  // self-contained Table (its own top/bottom border) carrying over the
+  // original table-level format and every cell's resolved formatting
+  // (colors, alignment, custom borders, etc.) as a snapshot -- later changes
+  // to the original table do not propagate to already-created pages.
+  //
+  // When repeat_header_row is true (the default), row 0 of this table is
+  // treated as a header and repeated at the top of every page; the first
+  // "real" data row is row 1, and rows_per_page counts only data rows (so a
+  // page has rows_per_page + 1 total rows: the header plus its data).
+  std::vector<Table> paginate(size_t rows_per_page, bool repeat_header_row = true) {
+    std::vector<Table> pages;
+    if (rows_per_page == 0 || size() == 0)
+      return pages;
+
+    size_t first_data_row = repeat_header_row ? 1 : 0;
+    if (first_data_row >= size())
+      return pages;
+
+    size_t num_columns = dimensions().second;
+    auto column_widths = Printer::compute_cell_dimensions(*table_).second;
+
+    auto copy_row_into = [&](Table &page, size_t src_index) {
+      Row_t row_text;
+      row_text.reserve(num_columns);
+      for (size_t j = 0; j < num_columns; ++j)
+        row_text.push_back(row(src_index)[j].get_text());
+      page.add_row(row_text);
+      size_t dst_index = page.size() - 1;
+      for (size_t j = 0; j < num_columns; ++j)
+        page[dst_index][j].format() = row(src_index)[j].format();
+    };
+
+    for (size_t start = first_data_row; start < size(); start += rows_per_page) {
+      size_t end = (std::min)(start + rows_per_page, size());
+
+      Table page;
+      page.format() = format();
+
+      if (repeat_header_row)
+        copy_row_into(page, 0);
+      for (size_t i = start; i < end; ++i)
+        copy_row_into(page, i);
+
+      for (size_t j = 0; j < num_columns; ++j)
+        page.column(j).format().width(column_widths[j]);
+
+      pages.push_back(page);
+    }
+
+    return pages;
+  }
 
   class RowIterator {
   public:

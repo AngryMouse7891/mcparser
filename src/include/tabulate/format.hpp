@@ -44,25 +44,40 @@ SOFTWARE.
 
 #if __cplusplus >= 201703L
 #include <optional>
-using std::optional;
 #else
 #include <tabulate/optional_lite.hpp>
-using nonstd::optional;
 #endif
 
 #include <vector>
 
 namespace tabulate {
 
+#if __cplusplus >= 201703L
+using std::optional;
+#else
+using nonstd::optional;
+#endif
+
 class Format {
 public:
   Format &width(size_t value) {
     width_ = value;
+    touch();
+    return *this;
+  }
+
+  // Number of spaces to prepend to every line of the rendered table. Only
+  // consulted on the table's own format (table.format().indent(n)); row- and
+  // cell-level values have no effect.
+  Format &indent(size_t value) {
+    indent_ = value;
+    touch();
     return *this;
   }
 
   Format &height(size_t value) {
     height_ = value;
+    touch();
     return *this;
   }
 
@@ -71,26 +86,31 @@ public:
     padding_right_ = value;
     padding_top_ = value;
     padding_bottom_ = value;
+    touch();
     return *this;
   }
 
   Format &padding_left(size_t value) {
     padding_left_ = value;
+    touch();
     return *this;
   }
 
   Format &padding_right(size_t value) {
     padding_right_ = value;
+    touch();
     return *this;
   }
 
   Format &padding_top(size_t value) {
     padding_top_ = value;
+    touch();
     return *this;
   }
 
   Format &padding_bottom(size_t value) {
     padding_bottom_ = value;
+    touch();
     return *this;
   }
 
@@ -99,6 +119,7 @@ public:
     border_right_ = value;
     border_top_ = value;
     border_bottom_ = value;
+    touch();
     return *this;
   }
 
@@ -107,6 +128,7 @@ public:
     border_right_color_ = value;
     border_top_color_ = value;
     border_bottom_color_ = value;
+    touch();
     return *this;
   }
 
@@ -115,66 +137,112 @@ public:
     border_right_background_color_ = value;
     border_top_background_color_ = value;
     border_bottom_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &border_style(const std::vector<FontStyle> &value) {
+    border_left_style_ = value;
+    border_right_style_ = value;
+    border_top_style_ = value;
+    border_bottom_style_ = value;
+    touch();
     return *this;
   }
 
   Format &border_left(const std::string &value) {
     border_left_ = value;
+    touch();
     return *this;
   }
 
   Format &border_left_color(Color value) {
     border_left_color_ = value;
+    touch();
     return *this;
   }
 
   Format &border_left_background_color(Color value) {
     border_left_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &border_left_style(const std::vector<FontStyle> &value) {
+    border_left_style_ = value;
+    touch();
     return *this;
   }
 
   Format &border_right(const std::string &value) {
     border_right_ = value;
+    touch();
     return *this;
   }
 
   Format &border_right_color(Color value) {
     border_right_color_ = value;
+    touch();
     return *this;
   }
 
   Format &border_right_background_color(Color value) {
     border_right_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &border_right_style(const std::vector<FontStyle> &value) {
+    border_right_style_ = value;
+    touch();
     return *this;
   }
 
   Format &border_top(const std::string &value) {
     border_top_ = value;
+    touch();
     return *this;
   }
 
   Format &border_top_color(Color value) {
     border_top_color_ = value;
+    touch();
     return *this;
   }
 
   Format &border_top_background_color(Color value) {
     border_top_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &border_top_style(const std::vector<FontStyle> &value) {
+    border_top_style_ = value;
+    touch();
     return *this;
   }
 
   Format &border_bottom(const std::string &value) {
     border_bottom_ = value;
+    touch();
     return *this;
   }
 
   Format &border_bottom_color(Color value) {
     border_bottom_color_ = value;
+    touch();
     return *this;
   }
 
   Format &border_bottom_background_color(Color value) {
     border_bottom_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &border_bottom_style(const std::vector<FontStyle> &value) {
+    border_bottom_style_ = value;
+    touch();
     return *this;
   }
 
@@ -183,6 +251,7 @@ public:
     show_border_bottom_ = true;
     show_border_left_ = true;
     show_border_right_ = true;
+    touch();
     return *this;
   }
 
@@ -191,52 +260,62 @@ public:
     show_border_bottom_ = false;
     show_border_left_ = false;
     show_border_right_ = false;
+    touch();
     return *this;
   }
 
   Format &show_border_top() {
     show_border_top_ = true;
+    touch();
     return *this;
   }
 
   Format &hide_border_top() {
     show_border_top_ = false;
+    touch();
     return *this;
   }
 
   Format &show_border_bottom() {
     show_border_bottom_ = true;
+    touch();
     return *this;
   }
 
   Format &hide_border_bottom() {
     show_border_bottom_ = false;
+    touch();
     return *this;
   }
 
   Format &show_border_left() {
     show_border_left_ = true;
+    touch();
     return *this;
   }
 
   Format &hide_border_left() {
     show_border_left_ = false;
+    touch();
     return *this;
   }
 
   Format &show_border_right() {
     show_border_right_ = true;
+    touch();
     return *this;
   }
 
   Format &hide_border_right() {
     show_border_right_ = false;
+    touch();
     return *this;
   }
 
   Format& show_row_separator() {
     show_border_top_ = true;
     show_row_separator_ = true;
+    touch();
     return *this;
   }
 
@@ -245,6 +324,7 @@ public:
     corner_top_right_ = value;
     corner_bottom_left_ = value;
     corner_bottom_right_ = value;
+    touch();
     return *this;
   }
 
@@ -253,6 +333,7 @@ public:
     corner_top_right_color_ = value;
     corner_bottom_left_color_ = value;
     corner_bottom_right_color_ = value;
+    touch();
     return *this;
   }
 
@@ -261,86 +342,136 @@ public:
     corner_top_right_background_color_ = value;
     corner_bottom_left_background_color_ = value;
     corner_bottom_right_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &corner_style(const std::vector<FontStyle> &value) {
+    corner_top_left_style_ = value;
+    corner_top_right_style_ = value;
+    corner_bottom_left_style_ = value;
+    corner_bottom_right_style_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_left(const std::string &value) {
     corner_top_left_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_left_color(Color value) {
     corner_top_left_color_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_left_background_color(Color value) {
     corner_top_left_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &corner_top_left_style(const std::vector<FontStyle> &value) {
+    corner_top_left_style_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_right(const std::string &value) {
     corner_top_right_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_right_color(Color value) {
     corner_top_right_color_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_top_right_background_color(Color value) {
     corner_top_right_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &corner_top_right_style(const std::vector<FontStyle> &value) {
+    corner_top_right_style_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_left(const std::string &value) {
     corner_bottom_left_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_left_color(Color value) {
     corner_bottom_left_color_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_left_background_color(Color value) {
     corner_bottom_left_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &corner_bottom_left_style(const std::vector<FontStyle> &value) {
+    corner_bottom_left_style_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_right(const std::string &value) {
     corner_bottom_right_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_right_color(Color value) {
     corner_bottom_right_color_ = value;
+    touch();
     return *this;
   }
 
   Format &corner_bottom_right_background_color(Color value) {
     corner_bottom_right_background_color_ = value;
+    touch();
+    return *this;
+  }
+
+  Format &corner_bottom_right_style(const std::vector<FontStyle> &value) {
+    corner_bottom_right_style_ = value;
+    touch();
     return *this;
   }
 
   Format &column_separator(const std::string &value) {
     column_separator_ = value;
+    touch();
     return *this;
   }
 
   Format &column_separator_color(Color value) {
     column_separator_color_ = value;
+    touch();
     return *this;
   }
 
   Format &column_separator_background_color(Color value) {
     column_separator_background_color_ = value;
+    touch();
     return *this;
   }
 
   Format &font_align(FontAlign value) {
     font_align_ = value;
+    touch();
     return *this;
   }
 
@@ -351,16 +482,19 @@ public:
     } else {
       font_style_ = style;
     }
+    touch();
     return *this;
   }
 
   Format &font_color(Color value) {
     font_color_ = value;
+    touch();
     return *this;
   }
 
   Format &font_background_color(Color value) {
     font_background_color_ = value;
+    touch();
     return *this;
   }
 
@@ -368,6 +502,7 @@ public:
     font_color(value);
     border_color(value);
     corner_color(value);
+    touch();
     return *this;
   }
 
@@ -375,16 +510,19 @@ public:
     font_background_color(value);
     border_background_color(value);
     corner_background_color(value);
+    touch();
     return *this;
   }
 
   Format &multi_byte_characters(bool value) {
     multi_byte_characters_ = value;
+    touch();
     return *this;
   }
 
   Format &locale(const std::string &value) {
     locale_ = value;
+    touch();
     return *this;
   }
 
@@ -397,6 +535,7 @@ public:
 
   Format &trim_mode(TrimMode trim_mode) {
     trim_mode_ = trim_mode;
+    touch();
     return *this;
   }
 
@@ -411,11 +550,10 @@ public:
 
     for (size_t i = 0; i < words.size(); ++i) {
       std::string word = words[i];
+      auto word_length = get_sequence_length(word, locale, is_multi_byte_character_support_enabled);
       // If adding the new word to the current line would be too long,
       // then put it on a new line (and split it up if it's too long).
-      if (current_line_length +
-              get_sequence_length(word, locale, is_multi_byte_character_support_enabled) >
-          width) {
+      if (current_line_length + word_length > width) {
         // Only move down to a new line if we have text on the current line.
         // Avoids situation where wrapped whitespace causes emptylines in text.
         if (current_line_length > 0) {
@@ -425,19 +563,24 @@ public:
 
         // If the current word is too long to fit on a line even on it's own
         // then split the word up.
-        while (get_sequence_length(word, locale, is_multi_byte_character_support_enabled) > width) {
-          result += word.substr(0, width - 1) + "-";
-          word = word.substr(width - 1);
+        while (word_length > width) {
+          // Split on a character boundary, not a byte offset, so multi-byte
+          // sequences (e.g. CJK text) aren't cut in half.
+          auto split_at = byte_offset_for_width(word, locale, is_multi_byte_character_support_enabled,
+                                                width - 1);
+          result += word.substr(0, split_at) + "-";
+          word = word.substr(split_at);
           result += '\n';
+          word_length = get_sequence_length(word, locale, is_multi_byte_character_support_enabled);
         }
 
         // Remove leading whitespace from the word so the new line starts flush
         // to the left.
         word = trim_left(word);
+        word_length = get_sequence_length(word, locale, is_multi_byte_character_support_enabled);
       }
       result += word;
-      current_line_length +=
-          get_sequence_length(word, locale, is_multi_byte_character_support_enabled);
+      current_line_length += word_length;
     }
     return result;
   }
@@ -446,19 +589,169 @@ public:
                                               const std::string &locale,
                                               bool is_multi_byte_character_support_enabled) {
     std::vector<std::string> result{};
-    std::string input = text;
-    size_t pos = 0;
-    std::string token;
-    while ((pos = input.find(delimiter)) != std::string::npos) {
-      token = input.substr(0, pos);
-      result.push_back(token);
-      input.erase(0, pos + delimiter.length());
+    // Index-based scan instead of copying `text` into a mutable buffer and
+    // repeatedly erase()-ing its front: erase() shifts the whole remainder
+    // left, making that approach O(n^2) in the number of lines.
+    size_t start = 0;
+    size_t pos;
+    while ((pos = text.find(delimiter, start)) != std::string::npos) {
+      result.push_back(text.substr(start, pos - start));
+      start = pos + delimiter.length();
     }
-    if (get_sequence_length(input, locale, is_multi_byte_character_support_enabled))
-      result.push_back(input);
+    std::string tail = text.substr(start);
+    if (get_sequence_length(tail, locale, is_multi_byte_character_support_enabled))
+      result.push_back(std::move(tail));
     return result;
   };
 
+  // Clears every field in `target` that is still identical to `previous`.
+  //
+  // Row/Cell cache their effective format by merging their own overrides with
+  // their parent's format. That cache must not freeze fields the caller never
+  // explicitly overrode, or later changes to an ancestor's format (e.g.
+  // table.format().hide_border_bottom() after printing once) would be
+  // silently ignored. Before re-merging, this resets any field that still
+  // matches the snapshot taken at the last merge, so unmodified fields go
+  // back to tracking the parent while explicit overrides are preserved.
+  static void reset_inherited_fields(Format &target, const Format &previous) {
+#define TABULATE_RESET_IF_UNCHANGED(field)                                                       \
+    if (target.field == previous.field)                                                         \
+    target.field.reset()
+    TABULATE_RESET_IF_UNCHANGED(width_);
+    TABULATE_RESET_IF_UNCHANGED(indent_);
+    TABULATE_RESET_IF_UNCHANGED(height_);
+    TABULATE_RESET_IF_UNCHANGED(font_align_);
+    TABULATE_RESET_IF_UNCHANGED(font_style_);
+    TABULATE_RESET_IF_UNCHANGED(font_color_);
+    TABULATE_RESET_IF_UNCHANGED(font_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(padding_left_);
+    TABULATE_RESET_IF_UNCHANGED(padding_top_);
+    TABULATE_RESET_IF_UNCHANGED(padding_right_);
+    TABULATE_RESET_IF_UNCHANGED(padding_bottom_);
+    TABULATE_RESET_IF_UNCHANGED(border_left_);
+    TABULATE_RESET_IF_UNCHANGED(border_left_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_left_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_left_style_);
+    TABULATE_RESET_IF_UNCHANGED(border_top_);
+    TABULATE_RESET_IF_UNCHANGED(border_top_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_top_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_top_style_);
+    TABULATE_RESET_IF_UNCHANGED(border_bottom_);
+    TABULATE_RESET_IF_UNCHANGED(border_bottom_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_bottom_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_bottom_style_);
+    TABULATE_RESET_IF_UNCHANGED(border_right_);
+    TABULATE_RESET_IF_UNCHANGED(border_right_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_right_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(border_right_style_);
+    TABULATE_RESET_IF_UNCHANGED(show_border_top_);
+    TABULATE_RESET_IF_UNCHANGED(show_border_bottom_);
+    TABULATE_RESET_IF_UNCHANGED(show_border_left_);
+    TABULATE_RESET_IF_UNCHANGED(show_border_right_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_left_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_left_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_left_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_left_style_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_right_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_right_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_right_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_top_right_style_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_left_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_left_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_left_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_left_style_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_right_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_right_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_right_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(corner_bottom_right_style_);
+    TABULATE_RESET_IF_UNCHANGED(column_separator_);
+    TABULATE_RESET_IF_UNCHANGED(column_separator_color_);
+    TABULATE_RESET_IF_UNCHANGED(column_separator_background_color_);
+    TABULATE_RESET_IF_UNCHANGED(multi_byte_characters_);
+    TABULATE_RESET_IF_UNCHANGED(locale_);
+    TABULATE_RESET_IF_UNCHANGED(trim_mode_);
+    TABULATE_RESET_IF_UNCHANGED(show_row_separator_);
+#undef TABULATE_RESET_IF_UNCHANGED
+  }
+
+public:
+  // Lets Row/Cell::format() cheaply detect "did the parent's format actually
+  // change since my last merge?" and skip re-merging (which touches every
+  // field) when it didn't -- the common case when printing a table more
+  // than once, or rendering the same cell multiple times within one print.
+  // Short-circuits on the first differing field, same as reset_inherited_fields.
+  bool operator==(const Format &other) const {
+#define TABULATE_FIELD_EQUAL(field)                                                               \
+    if (!(field == other.field))                                                                  \
+    return false
+    TABULATE_FIELD_EQUAL(width_);
+    TABULATE_FIELD_EQUAL(indent_);
+    TABULATE_FIELD_EQUAL(height_);
+    TABULATE_FIELD_EQUAL(font_align_);
+    TABULATE_FIELD_EQUAL(font_style_);
+    TABULATE_FIELD_EQUAL(font_color_);
+    TABULATE_FIELD_EQUAL(font_background_color_);
+    TABULATE_FIELD_EQUAL(padding_left_);
+    TABULATE_FIELD_EQUAL(padding_top_);
+    TABULATE_FIELD_EQUAL(padding_right_);
+    TABULATE_FIELD_EQUAL(padding_bottom_);
+    TABULATE_FIELD_EQUAL(border_left_);
+    TABULATE_FIELD_EQUAL(border_left_color_);
+    TABULATE_FIELD_EQUAL(border_left_background_color_);
+    TABULATE_FIELD_EQUAL(border_left_style_);
+    TABULATE_FIELD_EQUAL(border_top_);
+    TABULATE_FIELD_EQUAL(border_top_color_);
+    TABULATE_FIELD_EQUAL(border_top_background_color_);
+    TABULATE_FIELD_EQUAL(border_top_style_);
+    TABULATE_FIELD_EQUAL(border_bottom_);
+    TABULATE_FIELD_EQUAL(border_bottom_color_);
+    TABULATE_FIELD_EQUAL(border_bottom_background_color_);
+    TABULATE_FIELD_EQUAL(border_bottom_style_);
+    TABULATE_FIELD_EQUAL(border_right_);
+    TABULATE_FIELD_EQUAL(border_right_color_);
+    TABULATE_FIELD_EQUAL(border_right_background_color_);
+    TABULATE_FIELD_EQUAL(border_right_style_);
+    TABULATE_FIELD_EQUAL(show_border_top_);
+    TABULATE_FIELD_EQUAL(show_border_bottom_);
+    TABULATE_FIELD_EQUAL(show_border_left_);
+    TABULATE_FIELD_EQUAL(show_border_right_);
+    TABULATE_FIELD_EQUAL(corner_top_left_);
+    TABULATE_FIELD_EQUAL(corner_top_left_color_);
+    TABULATE_FIELD_EQUAL(corner_top_left_background_color_);
+    TABULATE_FIELD_EQUAL(corner_top_left_style_);
+    TABULATE_FIELD_EQUAL(corner_top_right_);
+    TABULATE_FIELD_EQUAL(corner_top_right_color_);
+    TABULATE_FIELD_EQUAL(corner_top_right_background_color_);
+    TABULATE_FIELD_EQUAL(corner_top_right_style_);
+    TABULATE_FIELD_EQUAL(corner_bottom_left_);
+    TABULATE_FIELD_EQUAL(corner_bottom_left_color_);
+    TABULATE_FIELD_EQUAL(corner_bottom_left_background_color_);
+    TABULATE_FIELD_EQUAL(corner_bottom_left_style_);
+    TABULATE_FIELD_EQUAL(corner_bottom_right_);
+    TABULATE_FIELD_EQUAL(corner_bottom_right_color_);
+    TABULATE_FIELD_EQUAL(corner_bottom_right_background_color_);
+    TABULATE_FIELD_EQUAL(corner_bottom_right_style_);
+    TABULATE_FIELD_EQUAL(column_separator_);
+    TABULATE_FIELD_EQUAL(column_separator_color_);
+    TABULATE_FIELD_EQUAL(column_separator_background_color_);
+    TABULATE_FIELD_EQUAL(multi_byte_characters_);
+    TABULATE_FIELD_EQUAL(locale_);
+    TABULATE_FIELD_EQUAL(trim_mode_);
+    TABULATE_FIELD_EQUAL(show_row_separator_);
+#undef TABULATE_FIELD_EQUAL
+    return true;
+  }
+
+  bool operator!=(const Format &other) const { return !(*this == other); }
+
+  // Monotonically increases whenever any setter runs (including transitively,
+  // e.g. color() calling font_color()/border_color()/corner_color()) or a
+  // merge() produces a new combined Format. Cell/Row::format() compare this
+  // against a saved snapshot to detect "did anything upstream change" in O(1)
+  // instead of comparing every field.
+  size_t generation() const { return generation_; }
+
+private:
   // Merge two formats
   // first has higher precedence
   // e.g., first = cell-level formatting and
@@ -473,6 +766,11 @@ public:
       result.width_ = first.width_;
     else
       result.width_ = second.width_;
+
+    if (first.indent_.has_value())
+      result.indent_ = first.indent_;
+    else
+      result.indent_ = second.indent_;
 
     if (first.height_.has_value())
       result.height_ = first.height_;
@@ -548,6 +846,11 @@ public:
     else
       result.border_left_background_color_ = second.border_left_background_color_;
 
+    if (first.border_left_style_.has_value())
+      result.border_left_style_ = first.border_left_style_;
+    else
+      result.border_left_style_ = second.border_left_style_;
+
     if (first.border_top_.has_value())
       result.border_top_ = first.border_top_;
     else
@@ -562,6 +865,11 @@ public:
       result.border_top_background_color_ = first.border_top_background_color_;
     else
       result.border_top_background_color_ = second.border_top_background_color_;
+
+    if (first.border_top_style_.has_value())
+      result.border_top_style_ = first.border_top_style_;
+    else
+      result.border_top_style_ = second.border_top_style_;
 
     if (first.border_bottom_.has_value())
       result.border_bottom_ = first.border_bottom_;
@@ -578,6 +886,11 @@ public:
     else
       result.border_bottom_background_color_ = second.border_bottom_background_color_;
 
+    if (first.border_bottom_style_.has_value())
+      result.border_bottom_style_ = first.border_bottom_style_;
+    else
+      result.border_bottom_style_ = second.border_bottom_style_;
+
     if (first.border_right_.has_value())
       result.border_right_ = first.border_right_;
     else
@@ -592,6 +905,11 @@ public:
       result.border_right_background_color_ = first.border_right_background_color_;
     else
       result.border_right_background_color_ = second.border_right_background_color_;
+
+    if (first.border_right_style_.has_value())
+      result.border_right_style_ = first.border_right_style_;
+    else
+      result.border_right_style_ = second.border_right_style_;
 
     if (first.show_border_top_.has_value())
       result.show_border_top_ = first.show_border_top_;
@@ -629,6 +947,11 @@ public:
     else
       result.corner_top_left_background_color_ = second.corner_top_left_background_color_;
 
+    if (first.corner_top_left_style_.has_value())
+      result.corner_top_left_style_ = first.corner_top_left_style_;
+    else
+      result.corner_top_left_style_ = second.corner_top_left_style_;
+
     if (first.corner_top_right_.has_value())
       result.corner_top_right_ = first.corner_top_right_;
     else
@@ -643,6 +966,11 @@ public:
       result.corner_top_right_background_color_ = first.corner_top_right_background_color_;
     else
       result.corner_top_right_background_color_ = second.corner_top_right_background_color_;
+
+    if (first.corner_top_right_style_.has_value())
+      result.corner_top_right_style_ = first.corner_top_right_style_;
+    else
+      result.corner_top_right_style_ = second.corner_top_right_style_;
 
     if (first.corner_bottom_left_.has_value())
       result.corner_bottom_left_ = first.corner_bottom_left_;
@@ -659,6 +987,11 @@ public:
     else
       result.corner_bottom_left_background_color_ = second.corner_bottom_left_background_color_;
 
+    if (first.corner_bottom_left_style_.has_value())
+      result.corner_bottom_left_style_ = first.corner_bottom_left_style_;
+    else
+      result.corner_bottom_left_style_ = second.corner_bottom_left_style_;
+
     if (first.corner_bottom_right_.has_value())
       result.corner_bottom_right_ = first.corner_bottom_right_;
     else
@@ -673,6 +1006,11 @@ public:
       result.corner_bottom_right_background_color_ = first.corner_bottom_right_background_color_;
     else
       result.corner_bottom_right_background_color_ = second.corner_bottom_right_background_color_;
+
+    if (first.corner_bottom_right_style_.has_value())
+      result.corner_bottom_right_style_ = first.corner_bottom_right_style_;
+    else
+      result.corner_bottom_right_style_ = second.corner_bottom_right_style_;
 
     if (first.column_separator_.has_value())
       result.column_separator_ = first.column_separator_;
@@ -710,10 +1048,18 @@ public:
 	  else
 		  result.show_row_separator_ = second.show_row_separator_;
 
+    result.touch();
     return result;
   }
 
 private:
+  static size_t &generation_counter() {
+    static size_t counter = 0;
+    return counter;
+  }
+  void touch() { generation_ = ++generation_counter(); }
+  mutable size_t generation_ = 0;
+
   friend class Cell;
   friend class Row;
   friend class Column;
@@ -725,6 +1071,7 @@ private:
 
   void set_defaults() {
     // NOTE: width and height are not set here
+    indent_ = 0;
     font_align_ = FontAlign::left;
     font_style_ = std::vector<FontStyle>{};
     font_color_ = font_background_color_ = Color::none;
@@ -736,11 +1083,15 @@ private:
     border_top_color_ = border_top_background_color_ = border_bottom_color_ =
         border_bottom_background_color_ = border_left_color_ = border_left_background_color_ =
             border_right_color_ = border_right_background_color_ = Color::none;
+    border_top_style_ = border_bottom_style_ = border_left_style_ = border_right_style_ =
+        std::vector<FontStyle>{};
     corner_top_left_ = corner_top_right_ = corner_bottom_left_ = corner_bottom_right_ = "+";
     corner_top_left_color_ = corner_top_left_background_color_ = corner_top_right_color_ =
         corner_top_right_background_color_ = corner_bottom_left_color_ =
             corner_bottom_left_background_color_ = corner_bottom_right_color_ =
                 corner_bottom_right_background_color_ = Color::none;
+    corner_top_left_style_ = corner_top_right_style_ = corner_bottom_left_style_ =
+        corner_bottom_right_style_ = std::vector<FontStyle>{};
     column_separator_ = "|";
     column_separator_color_ = column_separator_background_color_ = Color::none;
     multi_byte_characters_ = false;
@@ -776,16 +1127,18 @@ private:
 
   static size_t index_of_any(const std::string &input, size_t start_index,
                              const std::vector<std::string> &split_characters) {
-    std::vector<size_t> indices{};
-    for (auto &c : split_characters) {
-      auto index = input.find(c, start_index);
-      if (index != std::string::npos)
-        indices.push_back(index);
-    }
-    if (indices.size() > 0)
-      return *std::min_element(indices.begin(), indices.end());
-    else
-      return std::string::npos;
+    // Single-pass scan for any of the (single-character) delimiters, instead
+    // of a separate input.find() per delimiter. The old approach meant any
+    // delimiter that doesn't occur again before the end of the string (e.g.
+    // no more '-' or '\t' in typical prose) scanned the *entire* remainder of
+    // the string on every call, making word-wrap's caller (explode_string)
+    // effectively quadratic in input length.
+    std::string delimiters;
+    delimiters.reserve(split_characters.size());
+    for (auto &c : split_characters)
+      if (!c.empty())
+        delimiters += c[0];
+    return input.find_first_of(delimiters, start_index);
   }
 
   static std::vector<std::string> explode_string(const std::string &input,
@@ -818,6 +1171,7 @@ private:
 
   // Element width and height
   optional<size_t> width_{};
+  optional<size_t> indent_{};
   optional<size_t> height_{};
 
   // Font styling
@@ -837,38 +1191,46 @@ private:
   optional<std::string> border_top_{};
   optional<Color> border_top_color_{};
   optional<Color> border_top_background_color_{};
+  optional<std::vector<FontStyle>> border_top_style_{};
 
   optional<bool> show_border_bottom_{};
   optional<std::string> border_bottom_{};
   optional<Color> border_bottom_color_{};
   optional<Color> border_bottom_background_color_{};
+  optional<std::vector<FontStyle>> border_bottom_style_{};
 
   optional<bool> show_border_left_{};
   optional<std::string> border_left_{};
   optional<Color> border_left_color_{};
   optional<Color> border_left_background_color_{};
+  optional<std::vector<FontStyle>> border_left_style_{};
 
   optional<bool> show_border_right_{};
   optional<std::string> border_right_{};
   optional<Color> border_right_color_{};
   optional<Color> border_right_background_color_{};
+  optional<std::vector<FontStyle>> border_right_style_{};
 
   // Element corner
   optional<std::string> corner_top_left_{};
   optional<Color> corner_top_left_color_{};
   optional<Color> corner_top_left_background_color_{};
+  optional<std::vector<FontStyle>> corner_top_left_style_{};
 
   optional<std::string> corner_top_right_{};
   optional<Color> corner_top_right_color_{};
   optional<Color> corner_top_right_background_color_{};
+  optional<std::vector<FontStyle>> corner_top_right_style_{};
 
   optional<std::string> corner_bottom_left_{};
   optional<Color> corner_bottom_left_color_{};
   optional<Color> corner_bottom_left_background_color_{};
+  optional<std::vector<FontStyle>> corner_bottom_left_style_{};
 
   optional<std::string> corner_bottom_right_{};
   optional<Color> corner_bottom_right_color_{};
   optional<Color> corner_bottom_right_background_color_{};
+  optional<std::vector<FontStyle>> corner_bottom_right_style_{};
 
   // Element column separator
   optional<std::string> column_separator_{};
