@@ -2,8 +2,7 @@
    <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/> 
 </p> 
 
-# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> <img src="https://img.shields.io/github/stars/AngryMouse7891/mcparser
-" alt="GitHub Stars" /> <img src="https://img.shields.io/github/forks/AngryMouse7891/mcparser" alt="GitHub Forks" /> </p> 
+# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> <img src="https://img.shields.io/github/stars/AngryMouse7891/mcparser" alt="GitHub Stars" /> <img src="https://img.shields.io/github/forks/AngryMouse7891/mcparser" alt="GitHub Forks" /> </p> 
 
 <p align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
