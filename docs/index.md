@@ -2,7 +2,7 @@
    <img src="./images/thumbnail.png" alt="封面" width="60%" height="auto"/> 
 </p> 
 
-# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> </p> 
+# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> <img src="https://img.shields.io/github/stars/AngryMouse7891/mcparser" alt="GitHub Stars" /> <img src="https://img.shields.io/github/forks/AngryMouse7891/mcparser" alt="GitHub Forks" /> </p> </p> 
 
 <p align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
@@ -20,6 +20,10 @@
     <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B3%5D.percent&suffix=%25&style=for-the-badge&logo=gnubash&label=Shell&color=89e051
    " alt="Shell">
 </p>
+
+## 仓库统计（GitHub）
+
+![Alt](https://repobeats.axiom.co/api/embed/be94c38e15b559197ff852d93d904b221e4876a7.svg "Repobeats analytics image")
 
 ## 文档导航
 
