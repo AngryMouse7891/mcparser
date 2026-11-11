@@ -191,7 +191,7 @@ int main(){
     filelist[0][6].format()
         .font_color(Color::none);
     fmt::print("📄\033[3m文件列表（共{}个文件，已列出{}个）\033[0m\n",files.size(),limit);
-    cout<<filelist.str()<<'\n';
+    fmt::print("{}\n",filelist.str());
     string file_index_input=beautified_input("请输入要下载的文件索引（留空则默认为0）");
     ll file_index=0;
     if (file_index_input.empty()){
