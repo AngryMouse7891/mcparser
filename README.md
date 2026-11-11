@@ -108,6 +108,16 @@ BBSMC：<https://bbsmc.net/software/mcparser>
 
 ![Alt](https://repobeats.axiom.co/api/embed/be94c38e15b559197ff852d93d904b221e4876a7.svg "Repobeats analytics image")
 
+## 星标历史
+
+<a href="https://www.star-history.com/?repos=angrymouse7891%2Fmcparser&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=angrymouse7891/mcparser&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=angrymouse7891/mcparser&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=angrymouse7891/mcparser&type=date&legend=top-left" />
+ </picture>
+</a>
+
 ## 使用库
 
 JsonCpp（JSON解析）：<https://github.com/open-source-parsers/jsoncpp>
