@@ -60,6 +60,8 @@ extra:
       link: https://qm.qq.com/q/NOdOHB79wC
     - icon: material/mail
       link: mailto:pystart@qq.com
+    - icon: material/github
+      link: https://github.com/AngryMouse7891
 
 extra_css:
  - stylesheets/extra.css
