@@ -104,6 +104,10 @@ BBSMC：<https://bbsmc.net/software/mcparser>
 | [Modrinth](https://modrinth.com "Modrinth官网") | ✅ |
 | [MCArchive](https://mcarchive.net "MCArchive官网") | ❌ |
 
+## 仓库统计（GitHub）
+
+![Alt](https://repobeats.axiom.co/api/embed/be94c38e15b559197ff852d93d904b221e4876a7.svg "Repobeats analytics image")
+
 ## 使用库
 
 JsonCpp（JSON解析）：<https://github.com/open-source-parsers/jsoncpp>
