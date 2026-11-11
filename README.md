@@ -2,13 +2,15 @@
    <img src="images/thumbnail.png" alt="封面" width="60%" height="auto"/> 
 </p> 
 
-# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> </p> 
+# <p align="center"> MCParser <img src="https://gitee.com/AngryMouse7891/mcparser/badge/star.svg?theme=dark" alt="star" /> <img src="https://gitee.com/AngryMouse7891/mcparser/badge/fork.svg?theme=dark" alt="star" /> <img src="https://img.shields.io/github/stars/AngryMouse7891/mcparser
+" alt="GitHub Stars"/> <img src="https://img.shields.io/github/forks/AngryMouse7891/mcparser" alt="GitHub Forks"/> </p> 
 
 <p align="center">
    <img src="https://img.shields.io/badge/gitee-repo-blue?logo=gitee&style=for-the-badge" alt="Gitee Repo">
-   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flicense&query=%24.license&style=for-the-badge&label=license&color=green
+   <img src="https://img.shields.io/badge/github-repo-blue?logo=github&style=for-the-badge" alt="GitHub Repo">
+   <img src="https://img.shields.io/github/license/AngryMouse7891/mcparser
    " alt="License">
-   <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Freleases%2Flatest&query=%24.tag_name&style=for-the-badge&label=version&color=orange
+   <img src="https://img.shields.io/github/v/tag/AngryMouse7891/mcparser?label=latest&color=orange
    " alt="Version">
    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2FAngryMouse7891%2Fmcparser%2Flanguages&query=%24.languages%5B0%5D.percent&suffix=%25&style=for-the-badge&logo=C%2B%2B&label=C%2B%2B&color=f34b7d
    " alt="C++">
@@ -23,6 +25,11 @@
 ---
 
 ## 公告栏
+
+### 2026/11/11
+
+> [!TIP]
+> 本人已注册GitHub账号，以后预构建二进制文件将不会上传到Gitee Releases，取而代之的是GitHub Releases，徽章也会替换/添加为GitHub的
 
 ### 2026/08/22
 
@@ -75,6 +82,8 @@ MCParser是一个一个一个一个~~一个一个一个一个一个一个一个�
 ## 下载链接
 
 Gitee Releases（预构建二进制文件仅`<=1.4.4`版本可下载）：<https://gitee.com/AngryMouse7891/mcparser/releases>
+
+GitHub Releases：<https://github.com/AngryMouse7891/mcparser/releases>
 
 夸克网盘：<https://pan.quark.cn/s/f88f5aed5752>
 
