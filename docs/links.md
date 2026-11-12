@@ -8,6 +8,8 @@
 
 我的MineBBS主页：<https://www.minebbs.com/members/angrymouse.348561/>
 
+我的BBSMC主页：<https://bbsmc.net/user/AngryMouse7891>
+
 我的QQ主页：<https://qm.qq.com/q/NOdOHB79wC>
 
 我的GitHub主页：<https://github.com/AngryMouse7891/mcparser>
