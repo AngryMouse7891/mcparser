@@ -254,6 +254,22 @@ namespace termcolor
     }
 
     template <typename CharT>
+    std::basic_ostream<CharT>& black(std::basic_ostream<CharT>& stream)
+    {
+        if (_internal::is_colorized(stream))
+        {
+        #if defined(TERMCOLOR_USE_ANSI_ESCAPE_SEQUENCES)
+            stream << "\033[30m";
+        #elif defined(TERMCOLOR_USE_WINDOWS_API)
+            _internal::win_change_attributes(stream,
+                0   // black
+            );
+        #endif
+        }
+        return stream;
+    }
+
+    template <typename CharT>
     std::basic_ostream<CharT>& grey(std::basic_ostream<CharT>& stream)
     {
         if (_internal::is_colorized(stream))
@@ -510,6 +526,22 @@ namespace termcolor
         return stream;
     }
 
+
+    template <typename CharT>
+    std::basic_ostream<CharT>& on_black(std::basic_ostream<CharT>& stream)
+    {
+        if (_internal::is_colorized(stream))
+        {
+        #if defined(TERMCOLOR_USE_ANSI_ESCAPE_SEQUENCES)
+            stream << "\033[40m";
+        #elif defined(TERMCOLOR_USE_WINDOWS_API)
+            _internal::win_change_attributes(stream, -1,
+                0   // black
+            );
+        #endif
+        }
+        return stream;
+    }
 
     template <typename CharT>
     std::basic_ostream<CharT>& on_grey(std::basic_ostream<CharT>& stream)
