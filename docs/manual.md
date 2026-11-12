@@ -12,6 +12,8 @@
 
 Gitee Releases（`v1.4.5`之后停止更新二进制文件）：<https://gitee.com/AngryMouse7891/mcparser/releases>
 
+GitHub Releases：<https://github.com/AngryMouse7891/mcparser/releases>
+
 夸克网盘：<https://pan.quark.cn/s/f88f5aed5752>
 
 百度网盘（提取码`bikb`）：<https://pan.baidu.com/s/1-WTiixGq7kUxkVbkALO_Ew>
