@@ -1,9 +1,9 @@
 #include <windows.h> // include for version info constants
 
-MCParser ICON "data/mcparser.ico"
+MCParser ICON "@CMAKE_SOURCE_DIR@/data/mcparser.ico"
 
 #define RT_MANIFEST 24
-1 RT_MANIFEST "mcparser.exe.manifest"
+1 RT_MANIFEST "@CMAKE_SOURCE_DIR@/mcparser.exe.manifest"
 
 //
 // TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
