@@ -16,7 +16,7 @@ std::string beautified_input(std::string prompt,bool required){
     }
     else
     {
-        std::cout<<"\033[36m"<<prompt<<"\033[37m ==> \033[00m"<<termcolor::reset<<std::flush;
+        std::cout<<"\033[36m "<<prompt<<"\033[37m ==> \033[00m"<<termcolor::reset<<std::flush;
     }
     std::string result;
     std::cin>>result;
