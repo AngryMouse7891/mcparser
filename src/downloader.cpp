@@ -134,6 +134,11 @@ bool download_file(std::string url, std::string output_path)
     // 写入文件
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+
+    //设置UA为MCParser的
+    struct curl_slist *headers = NULL;
+    headers = curl_slist_append(headers, fmt::format("User-Agent: AngryMouse7891/mcparser/{}",VERSION_STRING).c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     
     // 启用进度回调
     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);

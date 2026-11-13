@@ -9,6 +9,7 @@
 #include "certdir.h"
 #include "parser.h"
 #include "gradient.h"
+#include "version.h"
 
 std::string get_repo_data(){
     CURL* curl;
@@ -23,6 +24,7 @@ std::string get_repo_data(){
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json;charset=UTF-8");
+        headers = curl_slist_append(headers, fmt::format("User-Agent: AngryMouse7891/mcparser/{}",VERSION_STRING).c_str());
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10000L);

@@ -6,6 +6,7 @@
 #include "print_beautify.h"
 #include "certdir.h"
 #include "parser.h"
+#include "version.h"
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
@@ -28,6 +29,7 @@ std::string parse_modrinth(std::string project_id){
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, fmt::format("User-Agent: AngryMouse7891/mcparser/{}",VERSION_STRING).c_str());
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         // 可选：设置超时时间（单位：毫秒）
         curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 30000L);
