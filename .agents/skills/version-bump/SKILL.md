@@ -53,47 +53,9 @@ git diff <上回标签结果>..HEAD
 用户授权后：
 
 1. 更新`CMakeLists.txt`的`project`指令里面的`VERSION`字段
-2. 更新`resources.rc`如下：
-```rc
-#include <windows.h> // include for version info constants
-
-MCParser ICON "data/mcparser.ico"
-
-#define RT_MANIFEST 24
-1 RT_MANIFEST "mcparser.exe.manifest"
-
-//
-// TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
-//
-1 VERSIONINFO
-FILEVERSION x,y,z,0 //修改为实际的版本
-PRODUCTVERSION x,y,z,0 //修改为实际的版本
-FILETYPE VFT_APP
-{
-  BLOCK "StringFileInfo"
-  {
-    BLOCK "080404e4"
-    {
-      VALUE "CompanyName", "AngryMouse7891"
-      VALUE "FileVersion", "x.y.z" //修改为实际的版本
-      VALUE "FileDescription", "一个一个一个一个一个一个一个一个一个一个一个一个一个解析《我的世界》社区资源（如模组）的工具。"
-      VALUE "InternalName", "MCParser"
-      VALUE "LegalCopyright", "Copyright (c) 2026 红温的鼠鼠7891"
-      VALUE "LegalTrademarks", ""
-      VALUE "OriginalFilename", "mcparser.exe"
-      VALUE "ProductName", "MCParser"
-      VALUE "ProductVersion", "x.y.z" //修改为实际的版本
-    }
-  }
-  BLOCK "VarFileInfo"
-  {
-    VALUE "Translation", 0x0804, 1252
-  }
-}
-```
-3. 更新`pkg/PKGBUILD`里面的`pkgver`字段
-4. 更新`pkg/snapcraft.yaml`里面的`version`字段
-5. 添加`docs/CHANGELOG.md`如下信息（须在`# MCParser发行注记`之下）：
+2. 更新`pkg/PKGBUILD`里面的`pkgver`字段
+3. 更新`pkg/snapcraft.yaml`里面的`version`字段
+4. 添加`docs/CHANGELOG.md`如下信息（须在`# MCParser发行注记`之下）：
 ```markdown
 
 ## X.Y.Z (yyyy/mm/dd)
@@ -101,8 +63,8 @@ FILETYPE VFT_APP
 * 写一下更新了啥
 
 ```
-6. 提交更改：`chore: bump version to X.Y.Z `
-7. 创建git tag: `vX.Y.Z`
+5. 提交更改：`chore: bump version to X.Y.Z `
+6. 创建git tag: `vX.Y.Z`
 
 ### 5. 完成报告
 
