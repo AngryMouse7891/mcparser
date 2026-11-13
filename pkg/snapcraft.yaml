@@ -1,5 +1,5 @@
 name: mcparser
-version: 1.5.2
+version: 1.6.0
 summary: Minecraft community resources parser
 description: |
   A toolkit that can parse Minecraft community resources
