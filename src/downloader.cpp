@@ -115,6 +115,9 @@ size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp)
 
 bool download_file(std::string url, std::string output_path)
 {
+    time_t download_start ,download_end ;  
+    double download_cost;  
+    time(&download_start);  
     CURL* curl = curl_easy_init();
     if (!curl) {
         error_print("初始化 CURL 失败辣！(￣□￣)");
@@ -156,6 +159,9 @@ bool download_file(std::string url, std::string output_path)
     
     fclose(fp);
     curl_easy_cleanup(curl);
+
+    time(&download_end);
+    download_cost=difftime(download_end,download_start);  
     
     fmt::print("\n");
     
@@ -164,6 +170,6 @@ bool download_file(std::string url, std::string output_path)
         return false;
     }
 
-    success_print("下载完成!ヘ(￣ω￣ヘ)");
+    success_print(fmt::format("下载完成!耗时{}秒 ヘ(￣ω￣ヘ)",download_cost));
     return true;
 }
