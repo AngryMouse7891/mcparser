@@ -214,7 +214,7 @@ int main(){
         file_index=0;
     }
     string selected_url=replaceModrinthFilesMirror(files[file_index]["url"]);
-    string download_dir=beautified_input("请输入下载路径",true);
+    string download_dir=fs::absolute(beautified_input("请输入下载路径",true)).string();
     info_print(fmt::format("正在下载 🌐 {} -> 📂 {}/{} ...",selected_url,download_dir,files[file_index]["filename"]));
     bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
     fakepause();
