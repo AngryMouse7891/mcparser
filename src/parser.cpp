@@ -36,18 +36,23 @@ std::string parse_modrinth(std::string project_id){
         // 指定证书文件路径
         curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir().c_str());
 
+        fmt::print(" \033[36m GET \033[0m{} ",url);
 
         res = curl_easy_perform(curl);
 
         if (res == CURLE_OK) {
             curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+            fmt::print(" \033[32m{} OK \033[0m ",http_code);
         }
 
         if (res != CURLE_OK) {
+            fmt::print(" \033[31m{} ERR \033[0m ",http_code);
             error_print(fmt::format("GET request failed: {}",curl_easy_strerror(res)));
             readBuffer.clear();
             return "-1";
         }
+
+        fmt::print("\n");
 
         curl_easy_cleanup(curl);
     }
