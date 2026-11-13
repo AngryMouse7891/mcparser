@@ -4,10 +4,6 @@
 #include "print_beautify.h"
 #include "input_beautify.h"
 typedef long long ll;
-#ifdef _WIN32
-#include <windows.h>
-ll outputCP = GetConsoleOutputCP();
-#endif
 
 std::string beautified_input(std::string prompt,bool required){
     if (required)

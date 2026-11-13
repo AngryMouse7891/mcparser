@@ -39,7 +39,6 @@ typedef long long ll;
 #include <winsock2.h>
 #include <windows.h>
 #include <wincon.h> // 强制加载控制台 API
-ll outputCodePage = GetConsoleOutputCP();
 #endif
 
 // 切换工作目录到程序自身所在文件夹
