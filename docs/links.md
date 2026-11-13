@@ -15,3 +15,7 @@
 我的GitHub主页：<https://github.com/AngryMouse7891>
 
 GitHub仓库主页：<https://github.com/AngryMouse7891/mcparser>
+
+我的AtomGit主页：<https://atomgit.com/AngryMouse7891>
+
+AtomGit仓库主页：<https://atomgit.com/AngryMouse7891/mcparser>
