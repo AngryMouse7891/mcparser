@@ -4,7 +4,7 @@ pkgver=1.5.2
 pkgrel=1
 pkgdesc="A toolkit that can parse Minecraft community resources (such as mods)"
 arch=('x86_64')
-url="https://gitee.com/AngryMouse7891/mcparser"
+url="https://github.com/AngryMouse7891/mcparser"
 license=('MIT')
 # 编译依赖：cmake、编译器、构建工具；运行依赖按需添加
 makedepends=('cmake' 'gcc' 'make')
