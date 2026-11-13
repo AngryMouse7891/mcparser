@@ -53,7 +53,8 @@ vector<string> splashes={
     "烤🔥绿🟢鸟🐦",
     "MIT Licensed!",
     "C++23 Standard!",
-    "I have github account now :)"
+    "I have github account now :)",
+    "😸 Avaliable on AtomGit!"
 };
 
 int randint(int mininum,int maxinum){
