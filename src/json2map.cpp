@@ -32,6 +32,9 @@ Json::Value parse(std::string src){
 
 std::vector<std::map<std::string,std::string>> json2vec(Json::Value src){
     std::vector<std::map<std::string,std::string>> res;
+    if (!src.isArray()) {
+        return res;
+    }
     for(int i=0; i<src.size(); i++) {
         res.push_back(
             {

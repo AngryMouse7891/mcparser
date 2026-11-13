@@ -81,7 +81,6 @@ bool chdir_to_exe_dir()
 
 int main(){
     #if _WIN32
-        SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为 UTF-8 编码
         enableAnsiColor();
     #endif
     ios::sync_with_stdio(false); cin.tie(nullptr);
@@ -96,9 +95,6 @@ int main(){
     string resp=parse_modrinth(s);
     if(resp=="-1"){
         error_print("解析失败辣！ゞ◎Д◎ヾ");
-        #if _WIN32
-            SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-        #endif
         fakepause();
         return -1;
     }
@@ -107,9 +103,6 @@ int main(){
     {
         warning_print("解析结果为空，请检查输入是否正确");
         error_print("解析失败辣！ゞ◎Д◎ヾ");
-        #if _WIN32
-            SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-        #endif
         fakepause();
         return 1;
     }
@@ -126,7 +119,12 @@ int main(){
     }else if(show_limit1=="0" || show_limit1=="all"){
         limit=files.size();
     }else{
-        limit=stoll(show_limit1);
+        try{
+            limit=stoll(show_limit1);
+        }catch(const std::exception&){
+            warning_print("输入无效，已自动设为5");
+            limit=5;
+        }
     }
     if (limit>files.size())
     {
@@ -144,7 +142,8 @@ int main(){
         .border_bottom("=")
         .border_left("|")
         .border_right("|")
-        .corner("+");
+        .corner("+")
+        .multi_byte_characters(true);
     filelist.add_row({"#️⃣索引","🆔版本ID","📇版本名","🕒发行时间","📥下载量","📄文件名","📄大小","#️⃣Minecraft版本"});
     for (ll i=0; i<limit; i++) {
         filelist.add_row(
@@ -197,7 +196,12 @@ int main(){
     if (file_index_input.empty()){
         file_index=0;
     }else{
-        file_index=stoll(file_index_input);
+        try{
+            file_index=stoll(file_index_input);
+        }catch(const std::exception&){
+            warning_print("输入无效，已自动设为0");
+            file_index=0;
+        }
     }
     if (file_index>=files.size())
     {
@@ -213,9 +217,6 @@ int main(){
     string download_dir=beautified_input("请输入下载路径",true);
     info_print(fmt::format("正在下载 🌐 {} -> 📂 {}/{} ...",selected_url,download_dir,files[file_index]["filename"]));
     bool result=download_file(selected_url, download_dir+"/"+files[file_index]["filename"]);
-    #if _WIN32
-        SetConsoleOutputCP(outputCodePage); // 设置控制台输出为系统原编码
-    #endif
     fakepause();
     if (result)
     {

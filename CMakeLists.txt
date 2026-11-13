@@ -143,6 +143,12 @@ target_link_libraries(
   ${FMT_LIBRARIES}
 )
 
+if(MSVC)
+   add_compile_options(/utf-8)
+else()
+   add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+endif()
+
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
   # 给mcparser目标添加O2优化，跨平台兼容
   target_compile_options(mcparser PRIVATE

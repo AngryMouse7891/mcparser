@@ -15,6 +15,7 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 std::string parse_modrinth(std::string project_id){
     CURL* curl;
     CURLcode res;
+    long http_code = 0;
     std::string readBuffer;
 
     curl = curl_easy_init();
@@ -29,12 +30,16 @@ std::string parse_modrinth(std::string project_id){
         headers = curl_slist_append(headers, "Accept: application/json");
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
         // 可选：设置超时时间（单位：毫秒）
-        curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10000L);
+        curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 30000L);
         // 指定证书文件路径
         curl_easy_setopt(curl, CURLOPT_CAINFO, get_cert_dir().c_str());
 
 
         res = curl_easy_perform(curl);
+
+        if (res == CURLE_OK) {
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+        }
 
         if (res != CURLE_OK) {
             error_print(fmt::format("GET request failed: {}",curl_easy_strerror(res)));
@@ -43,6 +48,9 @@ std::string parse_modrinth(std::string project_id){
         }
 
         curl_easy_cleanup(curl);
+    }
+    if (http_code >= 400) {
+        return "-1";
     }
     return readBuffer;
 }
