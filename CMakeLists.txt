@@ -118,6 +118,12 @@ configure_file(
   "${CMAKE_BINARY_DIR}/version.h"
 )
 
+# 创建版本头文件
+configure_file(
+  "${CMAKE_SOURCE_DIR}/resources.rc.in"
+  "${CMAKE_BINARY_DIR}/resources.rc"
+)
+
 aux_source_directory(${CMAKE_SOURCE_DIR}/src SRC_FILES)
 
 # 添加到包含目录
@@ -126,7 +132,7 @@ include_directories(${JSONCPP_INCLUDE_DIRS})
 include_directories(${CURL_INCLUDE_DIRS})
 include_directories(src/include)
 
-add_executable(mcparser ${SRC_FILES} resources.rc)
+add_executable(mcparser ${SRC_FILES} ${CMAKE_BINARY_DIR}/resources.rc)
 
 target_link_libraries(
   mcparser
