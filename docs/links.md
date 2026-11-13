@@ -12,4 +12,6 @@
 
 我的QQ主页：<https://qm.qq.com/q/NOdOHB79wC>
 
-我的GitHub主页：<https://github.com/AngryMouse7891/mcparser>
+我的GitHub主页：<https://github.com/AngryMouse7891>
+
+GitHub仓库主页：<https://github.com/AngryMouse7891/mcparser>
