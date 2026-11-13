@@ -55,6 +55,12 @@ std::string islatest(){
     }
     Json::Value releases=parse(stat);
     std::string latest=releases["tag_name"].asString();
+    if (latest[0]=='v')
+    {
+        ll latest_len=latest.size();
+        latest=latest.substr(1,latest_len-1);
+    }
+    
     std::vector latest_spilt=spiltstr(latest,'.');
     std::vector cur_spilt=spiltstr(current_version,'.');
 
