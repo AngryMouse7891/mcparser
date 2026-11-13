@@ -32,7 +32,7 @@ BBSMC：<https://bbsmc.net/software/mcparser>
 
 详细请看[开发指南](./BUILD.md)。
 
-# 使用
+## 使用
 
 !!! warning "避坑指南"
     输入文字之后，一定要按回车，一定要按回车！！！
