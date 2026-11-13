@@ -13,3 +13,7 @@
 /.venv
 /site
 /.cache
+/.atomcode/local/
+/.atomcode/artifacts/
+/.atomcode/.setup.lock
+/.atomcode/capability-notices.json
